@@ -52,6 +52,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -170,89 +172,151 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InputController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Entity\Account.cs">
+      <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\AccountDetail.cs">
+      <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Bank.cs">
+      <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\BankFacility.cs">
+      <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Department.cs">
+      <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\DIPO_INVESTAMA_DB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DIPO_INVESTAMA_DB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\DIPO_INVESTAMA_DB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\DIPO_INVESTAMA_DB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DIPO_INVESTAMA_DB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Menu.cs">
+      <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\MenuRestriction.cs">
+      <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\PettyCash.cs">
+      <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Role.cs">
+      <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\sp_AccountDDL_Result.cs">
+      <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\sp_BankFacilityDDL_Result.cs">
+      <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\sp_TodaysJournal_Result.cs">
+      <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\sp_UserLogin_Result.cs">
+      <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\User.cs">
+      <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Logic\InputBusinessLogic.cs" />
+    <Compile Include="Logic\Logging.cs" />
+    <Compile Include="Logic\UserBusinessLogic.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\InputViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PagedList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utils\common.cs" />
     <Compile Include="Utils\SessionManager.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\background_login.png" />
+    <Content Include="Assets\background_login_dipo.png" />
+    <Content Include="Assets\icon_password.png" />
+    <Content Include="Assets\icon_user.png" />
+    <Content Include="Assets\logo_dipo_dashboard.png" />
+    <Content Include="Assets\logo_dipo_investama.png" />
+    <Content Include="Assets\user_dummy.jpg" />
+    <Content Include="Content\AdminLTE\css\AdminLTE.min.css" />
+    <Content Include="Content\AdminLTE\css\bootstrap.min.css" />
+    <Content Include="Content\AdminLTE\css\ionicons.min.css" />
+    <Content Include="Content\AdminLTE\css\_all-skins.min.css" />
+    <Content Include="Content\AdminLTE\datepicker\bootstrap-datepicker.min.css" />
+    <Content Include="Content\AdminLTE\datepicker\daterangepicker.css" />
+    <Content Include="Content\AdminLTE\fonts\font-awesome.min.css" />
+    <Content Include="Content\AdminLTE\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\AdminLTE\js\adminlte.min.js" />
+    <Content Include="Content\AdminLTE\js\bootstrap-daterangepicker\bootstrap-datepicker.min.js" />
+    <Content Include="Content\AdminLTE\js\bootstrap-daterangepicker\daterangepicker.js" />
+    <Content Include="Content\AdminLTE\js\bootstrap\bootstrap.min.js" />
+    <Content Include="Content\AdminLTE\js\dashboard.js" />
+    <Content Include="Content\AdminLTE\js\demo.js" />
+    <Content Include="Content\AdminLTE\js\fastclick.js" />
+    <Content Include="Content\AdminLTE\js\jquery-sparkline\jquery.sparkline.min.js" />
+    <Content Include="Content\AdminLTE\js\jquery-ui.min.js" />
+    <Content Include="Content\AdminLTE\js\jquery.min.js" />
+    <Content Include="Content\AdminLTE\js\jquery.slimscroll.min.js" />
+    <Content Include="Content\AdminLTE\js\momen\moment.min.js" />
+    <Content Include="Content\AdminLTE\js\morris\morris.min.js" />
+    <Content Include="Content\AdminLTE\js\plugin\bootstrap3-wysihtml5.all.min.js" />
+    <Content Include="Content\AdminLTE\js\plugin\jquery-knob\jquery.knob.min.js" />
+    <Content Include="Content\AdminLTE\js\plugin\jvectormap\jquery-jvectormap-1.2.2.min.js" />
+    <Content Include="Content\AdminLTE\js\plugin\jvectormap\jquery-jvectormap-world-mill-en.js" />
+    <Content Include="Content\AdminLTE\js\raphael\raphael.min.js" />
+    <Content Include="Content\AdminLTE\jvectormap\jquery-jvectormap.css" />
+    <Content Include="Content\AdminLTE\morris\morris.css" />
+    <Content Include="Content\AdminLTE\plugins\bootstrap3-wysihtml5.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\SBAdmin\dist\assets\demo\chart-area-demo.js" />
-    <Content Include="Content\SBAdmin\dist\assets\demo\chart-bar-demo.js" />
-    <Content Include="Content\SBAdmin\dist\assets\demo\chart-pie-demo.js" />
-    <Content Include="Content\SBAdmin\dist\assets\demo\datatables-demo.js" />
-    <Content Include="Content\SBAdmin\dist\assets\img\error-404-monochrome.svg" />
-    <Content Include="Content\SBAdmin\dist\css\styles.css" />
-    <Content Include="Content\SBAdmin\dist\js\scripts.js" />
-    <Content Include="Content\SBAdmin\scripts\build-assets.js" />
-    <Content Include="Content\SBAdmin\scripts\build-pug.js" />
-    <Content Include="Content\SBAdmin\scripts\build-scripts.js" />
-    <Content Include="Content\SBAdmin\scripts\build-scss.js" />
-    <Content Include="Content\SBAdmin\scripts\clean.js" />
-    <Content Include="Content\SBAdmin\scripts\render-assets.js" />
-    <Content Include="Content\SBAdmin\scripts\render-pug.js" />
-    <Content Include="Content\SBAdmin\scripts\render-scripts.js" />
-    <Content Include="Content\SBAdmin\scripts\render-scss.js" />
-    <Content Include="Content\SBAdmin\scripts\sb-watch.js" />
-    <Content Include="Content\SBAdmin\scripts\start-debug.js" />
-    <Content Include="Content\SBAdmin\scripts\start.js" />
-    <Content Include="Content\SBAdmin\src\assets\demo\chart-area-demo.js" />
-    <Content Include="Content\SBAdmin\src\assets\demo\chart-bar-demo.js" />
-    <Content Include="Content\SBAdmin\src\assets\demo\chart-pie-demo.js" />
-    <Content Include="Content\SBAdmin\src\assets\demo\datatables-demo.js" />
-    <Content Include="Content\SBAdmin\src\assets\img\error-404-monochrome.svg" />
-    <Content Include="Content\SBAdmin\src\js\scripts.js" />
+    <Content Include="Entity\DIPO_INVESTAMA_DB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DIPO_INVESTAMA_DB.edmx</DependentUpon>
+      <LastGenOutput>DIPO_INVESTAMA_DB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Entity\DIPO_INVESTAMA_DB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DIPO_INVESTAMA_DB.edmx</DependentUpon>
+      <LastGenOutput>DIPO_INVESTAMA_DB.cs</LastGenOutput>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Content\SBAdmin\src\pug\layouts\authentication.pug" />
-    <Content Include="Content\SBAdmin\src\pug\layouts\dashboard.pug" />
-    <Content Include="Content\SBAdmin\src\pug\layouts\error.pug" />
-    <Content Include="Content\SBAdmin\src\pug\layouts\includes\footer.pug" />
-    <Content Include="Content\SBAdmin\src\pug\layouts\includes\head\css.pug" />
-    <Content Include="Content\SBAdmin\src\pug\layouts\includes\head\icons.pug" />
-    <Content Include="Content\SBAdmin\src\pug\layouts\includes\head\meta.pug" />
-    <Content Include="Content\SBAdmin\src\pug\layouts\includes\head\title.pug" />
-    <Content Include="Content\SBAdmin\src\pug\layouts\includes\navigation\sidenav.pug" />
-    <Content Include="Content\SBAdmin\src\pug\layouts\includes\navigation\topnav.pug" />
-    <Content Include="Content\SBAdmin\src\pug\layouts\includes\scripts.pug" />
-    <Content Include="Content\SBAdmin\src\pug\pages\401.pug" />
-    <Content Include="Content\SBAdmin\src\pug\pages\404.pug" />
-    <Content Include="Content\SBAdmin\src\pug\pages\500.pug" />
-    <Content Include="Content\SBAdmin\src\pug\pages\charts.pug" />
-    <Content Include="Content\SBAdmin\src\pug\pages\includes\datatable.pug" />
-    <Content Include="Content\SBAdmin\src\pug\pages\includes\page-header.pug" />
-    <Content Include="Content\SBAdmin\src\pug\pages\index.pug" />
-    <Content Include="Content\SBAdmin\src\pug\pages\layout-sidenav-light.pug" />
-    <Content Include="Content\SBAdmin\src\pug\pages\layout-static.pug" />
-    <Content Include="Content\SBAdmin\src\pug\pages\login.pug" />
-    <Content Include="Content\SBAdmin\src\pug\pages\password.pug" />
-    <Content Include="Content\SBAdmin\src\pug\pages\register.pug" />
-    <Content Include="Content\SBAdmin\src\pug\pages\tables.pug" />
-    <Content Include="Content\SBAdmin\src\scss\layout\_authentication.scss" />
-    <Content Include="Content\SBAdmin\src\scss\layout\_dashboard-default.scss" />
-    <Content Include="Content\SBAdmin\src\scss\layout\_dashboard-fixed.scss" />
-    <Content Include="Content\SBAdmin\src\scss\layout\_error.scss" />
-    <Content Include="Content\SBAdmin\src\scss\navigation\sidenav\_sidenav-dark.scss" />
-    <Content Include="Content\SBAdmin\src\scss\navigation\sidenav\_sidenav-light.scss" />
-    <Content Include="Content\SBAdmin\src\scss\navigation\sidenav\_sidenav.scss" />
-    <Content Include="Content\SBAdmin\src\scss\navigation\_nav.scss" />
-    <Content Include="Content\SBAdmin\src\scss\navigation\_topnav.scss" />
-    <Content Include="Content\SBAdmin\src\scss\styles.scss" />
-    <Content Include="Content\SBAdmin\src\scss\variables\_navigation.scss" />
-    <Content Include="Content\SBAdmin\src\scss\variables\_spacing.scss" />
-    <Content Include="Content\SBAdmin\src\scss\_global.scss" />
-    <Content Include="Content\SBAdmin\src\scss\_variables.scss" />
+    <Content Include="Content\AdminLTE\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\AdminLTE\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\AdminLTE\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\AdminLTE\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\AdminLTE\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\AdminLTE\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\AdminLTE\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\AdminLTE\fonts\fontawesome-webfont.woff2" />
+    <EntityDeploy Include="Entity\DIPO_INVESTAMA_DB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DIPO_INVESTAMA_DB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Entity\DIPO_INVESTAMA_DB.edmx.diagram">
+      <DependentUpon>DIPO_INVESTAMA_DB.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -299,12 +363,13 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Input\Index.cshtml" />
+    <Content Include="Views\Input\PartialViews\Journals.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Entity\" />
-    <Folder Include="Logging\" />
-    <Folder Include="Logic\" />
+    <Folder Include="Log\" />
+    <Folder Include="Views\Output\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -313,6 +378,9 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -343,11 +411,6 @@
     </VisualStudio>
   </ProjectExtensions>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

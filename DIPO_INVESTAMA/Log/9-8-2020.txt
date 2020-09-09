@@ -1,0 +1,12 @@
+Time: 08/09/2020 10:17:41 AM
+------------------------------------------------------------------------
+Message: The context cannot be used while the model is being created. This exception may be thrown if the context is used inside the OnModelCreating method or if the same context instance is accessed by multiple threads concurrently. Note that instance members of DbContext and related classes are not guaranteed to be thread safe.
+StackTrace:    at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.LazyInternalContext.get_ObjectContext()
+   at System.Data.Entity.DbContext.System.Data.Entity.Infrastructure.IObjectContextAdapter.get_ObjectContext()
+   at DIPO_INVESTAMA.Entity.DIPO_INVESTAMAEntities.sp_UserLogin(String username, String password) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Entity\DIPO_INVESTAMA_DB.Context.cs:line 51
+   at DIPO_INVESTAMA.Logic.UserBusinessLogic.UserLogin(String userName, String password) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Logic\UserBusinessLogic.cs:line 29
+Source: EntityFramework
+TargetSite: Void InitializeContext()
+------------------------------------------------------------------------
+

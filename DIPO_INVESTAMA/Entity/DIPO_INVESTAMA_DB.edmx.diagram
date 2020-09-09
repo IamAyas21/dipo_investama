@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7e3f4a113c5b4324a90c877530158680" Name="Diagram1">
+        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.Account" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.AccountDetail" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.Bank" Width="1.5" PointX="0.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.BankFacility" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.Department" Width="1.5" PointX="3.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.Menu" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.MenuRestriction" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.PettyCash" Width="1.5" PointX="5.25" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.Role" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.User" Width="1.5" PointX="6" PointY="4.625" IsExpanded="true" />
+        <AssociationConnector Association="DIPO_INVESTAMAModel.FK_AccountDetail_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="DIPO_INVESTAMAModel.FK_PettyCash_AccountDetail" ManuallyRouted="false" />
+        <AssociationConnector Association="DIPO_INVESTAMAModel.FK_BankFacility_Bank" ManuallyRouted="false" />
+        <AssociationConnector Association="DIPO_INVESTAMAModel.FK_PettyCash_BankFacility" ManuallyRouted="false" />
+        <AssociationConnector Association="DIPO_INVESTAMAModel.FK_Users_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="DIPO_INVESTAMAModel.FK_MenuRestriction_Menu" ManuallyRouted="false" />
+        <AssociationConnector Association="DIPO_INVESTAMAModel.FK_MenuRestriction_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="DIPO_INVESTAMAModel.FK_Users_Role" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
