@@ -1,0 +1,85 @@
+Time: 10/09/2020 07:50:18 PM
+------------------------------------------------------------------------
+Message: The underlying provider failed on Open.
+StackTrace:    at System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+   at System.Data.Entity.Core.Objects.ObjectContext.EnsureConnection(Boolean shouldMonitorTransactions)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass47`1.<ExecuteFunction>b__45()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ExecutionOptions executionOptions, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, MergeOption mergeOption, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ObjectParameter[] parameters)
+   at DIPO_INVESTAMA.Entity.DIPO_INVESTAMAEntities.sp_UserLogin(String username, String password) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Entity\DIPO_INVESTAMA_DB.Context.cs:line 99
+   at DIPO_INVESTAMA.Logic.UserBusinessLogic.UserLogin(String userName, String password) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Logic\UserBusinessLogic.cs:line 29
+Source: EntityFramework
+TargetSite: Void Open()
+------------------------------------------------------------------------
+
+Time: 10/09/2020 07:50:47 PM
+------------------------------------------------------------------------
+Message: The underlying provider failed on Open.
+StackTrace:    at System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+   at System.Data.Entity.Core.Objects.ObjectContext.EnsureConnection(Boolean shouldMonitorTransactions)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass47`1.<ExecuteFunction>b__45()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ExecutionOptions executionOptions, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, MergeOption mergeOption, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ObjectParameter[] parameters)
+   at DIPO_INVESTAMA.Entity.DIPO_INVESTAMAEntities.sp_UserLogin(String username, String password) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Entity\DIPO_INVESTAMA_DB.Context.cs:line 99
+   at DIPO_INVESTAMA.Logic.UserBusinessLogic.UserLogin(String userName, String password) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Logic\UserBusinessLogic.cs:line 29
+Source: EntityFramework
+TargetSite: Void Open()
+------------------------------------------------------------------------
+
+Time: 10/09/2020 07:52:20 PM
+------------------------------------------------------------------------
+Message: The underlying provider failed on Open.
+StackTrace:    at System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+   at System.Data.Entity.Core.Objects.ObjectContext.EnsureConnection(Boolean shouldMonitorTransactions)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass47`1.<ExecuteFunction>b__45()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ExecutionOptions executionOptions, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, MergeOption mergeOption, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ObjectParameter[] parameters)
+   at DIPO_INVESTAMA.Entity.DIPO_INVESTAMAEntities.sp_UserLogin(String username, String password) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Entity\DIPO_INVESTAMA_DB.Context.cs:line 99
+   at DIPO_INVESTAMA.Logic.UserBusinessLogic.UserLogin(String userName, String password) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Logic\UserBusinessLogic.cs:line 29
+Source: EntityFramework
+TargetSite: Void Open()
+------------------------------------------------------------------------
+
+Time: 10/09/2020 07:52:58 PM
+------------------------------------------------------------------------
+Message: The underlying provider failed on Open.
+StackTrace:    at System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+   at System.Data.Entity.Core.Objects.ObjectContext.EnsureConnection(Boolean shouldMonitorTransactions)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass47`1.<ExecuteFunction>b__45()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ExecutionOptions executionOptions, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, MergeOption mergeOption, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ObjectParameter[] parameters)
+   at DIPO_INVESTAMA.Entity.DIPO_INVESTAMAEntities.sp_UserLogin(String username, String password) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Entity\DIPO_INVESTAMA_DB.Context.cs:line 99
+   at DIPO_INVESTAMA.Logic.UserBusinessLogic.UserLogin(String userName, String password) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Logic\UserBusinessLogic.cs:line 29
+Source: EntityFramework
+TargetSite: Void Open()
+------------------------------------------------------------------------
+
+Time: 10/09/2020 07:53:52 PM
+------------------------------------------------------------------------
+Message: The underlying provider failed on Open.
+StackTrace:    at System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+   at System.Data.Entity.Core.Objects.ObjectContext.EnsureConnection(Boolean shouldMonitorTransactions)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass47`1.<ExecuteFunction>b__45()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ExecutionOptions executionOptions, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, MergeOption mergeOption, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ObjectParameter[] parameters)
+   at DIPO_INVESTAMA.Entity.DIPO_INVESTAMAEntities.sp_UserLogin(String username, String password) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Entity\DIPO_INVESTAMA_DB.Context.cs:line 99
+   at DIPO_INVESTAMA.Logic.UserBusinessLogic.UserLogin(String userName, String password) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Logic\UserBusinessLogic.cs:line 29
+Source: EntityFramework
+TargetSite: Void Open()
+------------------------------------------------------------------------
+
