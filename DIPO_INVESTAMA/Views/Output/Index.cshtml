@@ -1,0 +1,143 @@
+﻿@model DIPO_INVESTAMA.Models.OutputViewModels
+@{
+    ViewBag.Title = "Today's Journal";
+}
+
+@using (Html.BeginForm("Index", "Output"))
+{
+    if (TempData["Error"] != null)
+    {
+        <div class="alert alert-warning" style="margin:10px">
+            <p><i class="fa fa-warning"></i> @TempData["Error"].ToString()</p>
+        </div>
+    }
+    if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success" style="margin:10px">
+            <strong>Success!</strong> @TempData["Success"].ToString()
+        </div>
+    }
+
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Quick Example</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form role="form">
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <div class="input-group date">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                @Html.TextBoxFor(model => model.Date, new { @class = "form-control pull-left", @placeholder = "Date", autocomplete = "off"})
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="form-group">
+                            @Html.DropDownListFor(model => model.Account, ViewBag.AccountList as SelectList, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="form-group">
+                            @Html.DropDownListFor(model => model.BankAccount, ViewBag.BankFacilityList as SelectList, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="form-group">
+                            @Html.DropDownListFor(model => model.SortBy, ViewBag.SortByList as SelectList, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <button type="submit" name="Submit" value="PDF"><img src="~/Assets/icon_pdf.png" width="30" height="30"/></button>
+                        <button type="submit" name="Submit" value="Excel"><img src="~/Assets/icon_xlxs.png" width="30" height="30" /></button>
+                        <button type="submit" name="Submit" value="Print"><img src="~/Assets/icon_printer.png" width="30" height="30" /></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    @Html.Partial("PartialViews/Journals", Model.TodaysJournal)
+}
+
+<script type="text/javascript">
+    $(function()
+    {
+        $('#Date').daterangepicker({
+            autoclose: true
+        })
+        $('#Date').val("");
+        $("#Date").on("change", function () {
+            var data = { Date: $("#Date").val(), Account: $("#Account").val(), BankAccount: $("#BankAccount").val(), SortBy: $("#SortBy").val() };
+
+            $.ajax(
+            {
+                url: "@Url.Action("Index", "Output")",
+                type: 'POST',
+                data: { model: data },
+                success: function (response) {
+                  
+                },
+                error: function () {
+                    alert("error");
+                }
+            });
+        });
+
+        $("#Account").on("change", function () {
+            var data = { Date: $("#Date").val(), Account: $("#Account").val(), BankAccount: $("#BankAccount").val(), SortBy: $("#SortBy").val() };
+
+            $.ajax(
+            {
+                url: "@Url.Action("Index", "Output")",
+                type: 'POST',
+            data: { model: data },
+            success: function (response) {
+                  
+            },
+            error: function () {
+                alert("error");
+            }
+        });
+        });
+
+        $("#BankAccount").on("change", function () {
+            var data = { Date: $("#Date").val(), Account: $("#Account").val(), BankAccount: $("#BankAccount").val(), SortBy: $("#SortBy").val() };
+
+            $.ajax(
+            {
+                url: "@Url.Action("Index", "Output")",
+                type: 'POST',
+            data: { model: data },
+            success: function (response) {
+                  
+            },
+            error: function () {
+                alert("error");
+            }
+        });
+    });
+
+        $("#SortBy").on("change", function () {
+            var data = { Date: $("#Date").val(), Account: $("#Account").val(), BankAccount: $("#BankAccount").val(), SortBy: $("#SortBy").val() };
+
+            $.ajax(
+            {
+                url: "@Url.Action("Index", "Output")",
+                type: 'POST',
+            data: { model: data },
+            success: function (response) {
+                  
+            },
+            error: function () {
+                alert("error");
+            }
+        });
+    });
+    })
+</script>

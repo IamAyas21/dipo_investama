@@ -37,6 +37,7 @@ namespace DIPO_INVESTAMA.Entity
         public virtual DbSet<PettyCash> PettyCashes { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<vw_PettyCash> vw_PettyCash { get; set; }
     
         public virtual ObjectResult<sp_AccountDDL_Result> sp_AccountDDL()
         {
@@ -79,6 +80,35 @@ namespace DIPO_INVESTAMA.Entity
                 new ObjectParameter("userId", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InputJournal", dateParameter, accountParameter, bankAccountParameter, amountParameter, descriptionParameter, originParameter, userIdParameter);
+        }
+    
+        public virtual ObjectResult<sp_OutputJournal_Result> sp_OutputJournal(string userId, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, string accountDetailId, string bankFacilityId, string sortBy)
+        {
+            var userIdParameter = userId != null ?
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(string));
+    
+            var startDateParameter = startDate.HasValue ?
+                new ObjectParameter("startDate", startDate) :
+                new ObjectParameter("startDate", typeof(System.DateTime));
+    
+            var endDateParameter = endDate.HasValue ?
+                new ObjectParameter("endDate", endDate) :
+                new ObjectParameter("endDate", typeof(System.DateTime));
+    
+            var accountDetailIdParameter = accountDetailId != null ?
+                new ObjectParameter("accountDetailId", accountDetailId) :
+                new ObjectParameter("accountDetailId", typeof(string));
+    
+            var bankFacilityIdParameter = bankFacilityId != null ?
+                new ObjectParameter("bankFacilityId", bankFacilityId) :
+                new ObjectParameter("bankFacilityId", typeof(string));
+    
+            var sortByParameter = sortBy != null ?
+                new ObjectParameter("sortBy", sortBy) :
+                new ObjectParameter("sortBy", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_OutputJournal_Result>("sp_OutputJournal", userIdParameter, startDateParameter, endDateParameter, accountDetailIdParameter, bankFacilityIdParameter, sortByParameter);
         }
     
         public virtual ObjectResult<sp_TodaysJournal_Result> sp_TodaysJournal()

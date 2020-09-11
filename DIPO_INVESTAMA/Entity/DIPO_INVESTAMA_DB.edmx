@@ -145,6 +145,21 @@
           <Property Name="UpdatedAt" Type="datetime" />
           <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_PettyCash">
+          <Key>
+            <PropertyRef Name="PettyCashId" />
+          </Key>
+          <Property Name="No" Type="bigint" />
+          <Property Name="PettyCashId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TransactionDate" Type="datetime" />
+          <Property Name="AccountName" Type="varchar" MaxLength="100" />
+          <Property Name="FacilityName" Type="varchar" MaxLength="100" />
+          <Property Name="Description" Type="varchar" MaxLength="100" />
+          <Property Name="Cash In" Type="money" />
+          <Property Name="Cash Out" Type="money" />
+        </EntityType>
         <Association Name="FK_AccountDetail_Account">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
           <End Role="AccountDetail" Type="Self.AccountDetail" Multiplicity="*" />
@@ -252,6 +267,14 @@
           <Parameter Name="Origin" Type="varchar" Mode="In" />
           <Parameter Name="userId" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="sp_OutputJournal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userId" Type="varchar" Mode="In" />
+          <Parameter Name="startDate" Type="datetime" Mode="In" />
+          <Parameter Name="endDate" Type="datetime" Mode="In" />
+          <Parameter Name="accountDetailId" Type="varchar" Mode="In" />
+          <Parameter Name="bankFacilityId" Type="varchar" Mode="In" />
+          <Parameter Name="sortBy" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="sp_TodaysJournal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_UserLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="username" Type="varchar" Mode="In" />
@@ -268,6 +291,18 @@
           <EntitySet Name="PettyCash" EntityType="Self.PettyCash" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vw_PettyCash" EntityType="Self.vw_PettyCash" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_PettyCash].[No] AS [No], 
+    [vw_PettyCash].[PettyCashId] AS [PettyCashId], 
+    [vw_PettyCash].[TransactionDate] AS [TransactionDate], 
+    [vw_PettyCash].[AccountName] AS [AccountName], 
+    [vw_PettyCash].[FacilityName] AS [FacilityName], 
+    [vw_PettyCash].[Description] AS [Description], 
+    [vw_PettyCash].[Cash In] AS [Cash In], 
+    [vw_PettyCash].[Cash Out] AS [Cash Out]
+    FROM [dbo].[vw_PettyCash] AS [vw_PettyCash]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_AccountDetail_Account" Association="Self.FK_AccountDetail_Account">
             <End Role="Account" EntitySet="Account" />
             <End Role="AccountDetail" EntitySet="AccountDetail" />
@@ -462,6 +497,19 @@
           <NavigationProperty Name="Department" Relationship="Self.FK_Users_Department" FromRole="Users" ToRole="Department" />
           <NavigationProperty Name="Role" Relationship="Self.FK_Users_Role" FromRole="Users" ToRole="Role" />
         </EntityType>
+        <EntityType Name="vw_PettyCash">
+          <Key>
+            <PropertyRef Name="PettyCashId" />
+          </Key>
+          <Property Name="No" Type="Int64" />
+          <Property Name="PettyCashId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TransactionDate" Type="DateTime" Precision="3" />
+          <Property Name="AccountName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FacilityName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Cash_In" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Cash_Out" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
         <Association Name="FK_AccountDetail_Account">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
           <End Role="AccountDetail" Type="Self.AccountDetail" Multiplicity="*" />
@@ -569,6 +617,7 @@
           <EntitySet Name="PettyCashes" EntityType="Self.PettyCash" />
           <EntitySet Name="Roles" EntityType="Self.Role" />
           <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="vw_PettyCash" EntityType="Self.vw_PettyCash" />
           <AssociationSet Name="FK_AccountDetail_Account" Association="Self.FK_AccountDetail_Account">
             <End Role="Account" EntitySet="Accounts" />
             <End Role="AccountDetail" EntitySet="AccountDetails" />
@@ -612,6 +661,14 @@
             <Parameter Name="Origin" Mode="In" Type="String" />
             <Parameter Name="userId" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_OutputJournal" ReturnType="Collection(DIPO_INVESTAMAModel.sp_OutputJournal_Result)">
+            <Parameter Name="userId" Mode="In" Type="String" />
+            <Parameter Name="startDate" Mode="In" Type="DateTime" />
+            <Parameter Name="endDate" Mode="In" Type="DateTime" />
+            <Parameter Name="accountDetailId" Mode="In" Type="String" />
+            <Parameter Name="bankFacilityId" Mode="In" Type="String" />
+            <Parameter Name="sortBy" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="sp_TodaysJournal" ReturnType="Collection(DIPO_INVESTAMAModel.sp_TodaysJournal_Result)" />
           <FunctionImport Name="sp_UserLogin" ReturnType="Collection(DIPO_INVESTAMAModel.sp_UserLogin_Result)">
             <Parameter Name="username" Mode="In" Type="String" />
@@ -625,6 +682,17 @@
         <ComplexType Name="sp_BankFacilityDDL_Result">
           <Property Type="String" Name="ID" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="NAME" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_OutputJournal_Result">
+          <Property Type="Int64" Name="No" Nullable="true" />
+          <Property Type="String" Name="PettyCashId" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="TransactionDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="AccountName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="FacilityName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="Cash_In" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="Cash_Out" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="Balance" Nullable="true" Precision="19" />
         </ComplexType>
         <ComplexType Name="sp_TodaysJournal_Result">
           <Property Type="DateTime" Name="TransactionDate" Nullable="true" Precision="23" />
@@ -804,6 +872,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="vw_PettyCash">
+            <EntityTypeMapping TypeName="DIPO_INVESTAMAModel.vw_PettyCash">
+              <MappingFragment StoreEntitySet="vw_PettyCash">
+                <ScalarProperty Name="No" ColumnName="No" />
+                <ScalarProperty Name="PettyCashId" ColumnName="PettyCashId" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="FacilityName" ColumnName="FacilityName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Cash_In" ColumnName="Cash In" />
+                <ScalarProperty Name="Cash_Out" ColumnName="Cash Out" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="sp_AccountDDL" FunctionName="DIPO_INVESTAMAModel.Store.sp_AccountDDL">
             <ResultMapping>
               <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_AccountDDL_Result">
@@ -821,6 +903,21 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_InputJournal" FunctionName="DIPO_INVESTAMAModel.Store.sp_InputJournal" />
+          <FunctionImportMapping FunctionImportName="sp_OutputJournal" FunctionName="DIPO_INVESTAMAModel.Store.sp_OutputJournal">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_OutputJournal_Result">
+                <ScalarProperty Name="No" ColumnName="No" />
+                <ScalarProperty Name="PettyCashId" ColumnName="PettyCashId" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="FacilityName" ColumnName="FacilityName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Cash_In" ColumnName="Cash In" />
+                <ScalarProperty Name="Cash_Out" ColumnName="Cash Out" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_TodaysJournal" FunctionName="DIPO_INVESTAMAModel.Store.sp_TodaysJournal">
             <ResultMapping>
               <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_TodaysJournal_Result">
