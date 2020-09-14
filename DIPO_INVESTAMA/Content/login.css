@@ -31,7 +31,7 @@ background: radial-gradient(circle, rgba(0,212,255,1) 0%, rgba(9,9,121,1) 95%);
     max-width: none;
     width: calc(100% - 30px);
     margin: 0 auto 0 auto;
-    padding: 0px 1rem;
+    padding: 0px 5rem;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -57,4 +57,8 @@ border-radius: 17.5px !important;
 background: #9f9f9f;
 box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
 
+}
+
+.login-box-msg{
+ padding: 20px 20px 20px 20px;
 }
