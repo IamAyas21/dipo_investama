@@ -181,9 +181,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BankController.cs" />
+    <Compile Include="Controllers\AccountDetailsController.cs" />
+    <Compile Include="Controllers\BankFacilityController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InputController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MasterAccountController.cs" />
     <Compile Include="Controllers\OutputController.cs" />
     <Compile Include="Entity\Account.cs">
       <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
@@ -230,7 +234,25 @@
     <Compile Include="Entity\sp_AccountDDL_Result.cs">
       <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entity\sp_AccountDetailsDDL_Result.cs">
+      <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\sp_AccountDetailSelect_Result.cs">
+      <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\sp_AccountSelect_Result.cs">
+      <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\sp_BankDDL_Result.cs">
+      <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entity\sp_BankFacilityDDL_Result.cs">
+      <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\sp_BankFacilitySelect_Result.cs">
+      <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\sp_BankSelect_Result.cs">
       <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\sp_OutputJournal_Result.cs">
@@ -251,6 +273,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Logic\AccountBusinessLogic.cs" />
+    <Compile Include="Logic\AccountDetailsBusinessLogic.cs" />
+    <Compile Include="Logic\BankFacilityBusinessLogic.cs" />
+    <Compile Include="Logic\BankBusinessLogic.cs" />
     <Compile Include="Logic\InputBusinessLogic.cs" />
     <Compile Include="Logic\Logging.cs" />
     <Compile Include="Logic\OutputBusinessLogic.cs" />
@@ -390,14 +416,23 @@
     <Content Include="Views\Input\PartialViews\Journals.cshtml" />
     <Content Include="Views\Output\Index.cshtml" />
     <Content Include="Views\Output\PartialViews\Journals.cshtml" />
+    <Content Include="Views\Bank\Index.cshtml" />
+    <Content Include="Views\Bank\Create.cshtml" />
+    <Content Include="Views\Bank\Edit.cshtml" />
+    <Content Include="Views\BankFacility\Index.cshtml" />
+    <Content Include="Views\BankFacility\Create.cshtml" />
+    <Content Include="Views\BankFacility\Edit.cshtml" />
+    <Content Include="Views\MasterAccount\Index.cshtml" />
+    <Content Include="Views\MasterAccount\Create.cshtml" />
+    <Content Include="Views\MasterAccount\Edit.cshtml" />
+    <Content Include="Views\MasterAccountDetails\Create.cshtml" />
+    <Content Include="Views\MasterAccountDetails\Edit.cshtml" />
+    <Content Include="Views\MasterAccountDetails\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Log\" />
-    <Folder Include="Views\BankFacility\" />
-    <Folder Include="Views\Bank\" />
     <Folder Include="Views\Department\" />
-    <Folder Include="Views\MasterAccount\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

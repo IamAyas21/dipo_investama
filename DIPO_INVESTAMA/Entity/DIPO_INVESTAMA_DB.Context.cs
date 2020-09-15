@@ -128,5 +128,255 @@ namespace DIPO_INVESTAMA.Entity
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_UserLogin_Result>("sp_UserLogin", usernameParameter, passwordParameter);
         }
+    
+        public virtual ObjectResult<sp_BankSelect_Result> sp_BankSelect()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_BankSelect_Result>("sp_BankSelect");
+        }
+    
+        public virtual int sp_BankUpdate(string bankId, string bankName, string accountNo, string userId)
+        {
+            var bankIdParameter = bankId != null ?
+                new ObjectParameter("bankId", bankId) :
+                new ObjectParameter("bankId", typeof(string));
+    
+            var bankNameParameter = bankName != null ?
+                new ObjectParameter("bankName", bankName) :
+                new ObjectParameter("bankName", typeof(string));
+    
+            var accountNoParameter = accountNo != null ?
+                new ObjectParameter("accountNo", accountNo) :
+                new ObjectParameter("accountNo", typeof(string));
+    
+            var userIdParameter = userId != null ?
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_BankUpdate", bankIdParameter, bankNameParameter, accountNoParameter, userIdParameter);
+        }
+    
+        public virtual int sp_BankCreate(string bankName, string accountNo, string userId)
+        {
+            var bankNameParameter = bankName != null ?
+                new ObjectParameter("bankName", bankName) :
+                new ObjectParameter("bankName", typeof(string));
+    
+            var accountNoParameter = accountNo != null ?
+                new ObjectParameter("accountNo", accountNo) :
+                new ObjectParameter("accountNo", typeof(string));
+    
+            var userIdParameter = userId != null ?
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_BankCreate", bankNameParameter, accountNoParameter, userIdParameter);
+        }
+    
+        public virtual int sp_BankDelete(string bankId)
+        {
+            var bankIdParameter = bankId != null ?
+                new ObjectParameter("bankId", bankId) :
+                new ObjectParameter("bankId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_BankDelete", bankIdParameter);
+        }
+    
+        public virtual ObjectResult<sp_BankFacilitySelect_Result> sp_BankFacilitySelect()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_BankFacilitySelect_Result>("sp_BankFacilitySelect");
+        }
+    
+        public virtual int sp_BankFacilityCreate(string facilityName, Nullable<decimal> celling, Nullable<decimal> costMoney, string bankId, Nullable<System.DateTime> createdAt, string createdBy)
+        {
+            var facilityNameParameter = facilityName != null ?
+                new ObjectParameter("FacilityName", facilityName) :
+                new ObjectParameter("FacilityName", typeof(string));
+    
+            var cellingParameter = celling.HasValue ?
+                new ObjectParameter("Celling", celling) :
+                new ObjectParameter("Celling", typeof(decimal));
+    
+            var costMoneyParameter = costMoney.HasValue ?
+                new ObjectParameter("CostMoney", costMoney) :
+                new ObjectParameter("CostMoney", typeof(decimal));
+    
+            var bankIdParameter = bankId != null ?
+                new ObjectParameter("BankId", bankId) :
+                new ObjectParameter("BankId", typeof(string));
+    
+            var createdAtParameter = createdAt.HasValue ?
+                new ObjectParameter("CreatedAt", createdAt) :
+                new ObjectParameter("CreatedAt", typeof(System.DateTime));
+    
+            var createdByParameter = createdBy != null ?
+                new ObjectParameter("CreatedBy", createdBy) :
+                new ObjectParameter("CreatedBy", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_BankFacilityCreate", facilityNameParameter, cellingParameter, costMoneyParameter, bankIdParameter, createdAtParameter, createdByParameter);
+        }
+    
+        public virtual int sp_BankFacilityDelete(string bankFacilityId)
+        {
+            var bankFacilityIdParameter = bankFacilityId != null ?
+                new ObjectParameter("BankFacilityId", bankFacilityId) :
+                new ObjectParameter("BankFacilityId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_BankFacilityDelete", bankFacilityIdParameter);
+        }
+    
+        public virtual int sp_BankFacilityUpdate(string bankFacilityId, string facilityName, Nullable<decimal> celling, Nullable<decimal> costMoney, string bankId, Nullable<System.DateTime> updatedAt, string updatedBy)
+        {
+            var bankFacilityIdParameter = bankFacilityId != null ?
+                new ObjectParameter("BankFacilityId", bankFacilityId) :
+                new ObjectParameter("BankFacilityId", typeof(string));
+    
+            var facilityNameParameter = facilityName != null ?
+                new ObjectParameter("FacilityName", facilityName) :
+                new ObjectParameter("FacilityName", typeof(string));
+    
+            var cellingParameter = celling.HasValue ?
+                new ObjectParameter("Celling", celling) :
+                new ObjectParameter("Celling", typeof(decimal));
+    
+            var costMoneyParameter = costMoney.HasValue ?
+                new ObjectParameter("CostMoney", costMoney) :
+                new ObjectParameter("CostMoney", typeof(decimal));
+    
+            var bankIdParameter = bankId != null ?
+                new ObjectParameter("BankId", bankId) :
+                new ObjectParameter("BankId", typeof(string));
+    
+            var updatedAtParameter = updatedAt.HasValue ?
+                new ObjectParameter("UpdatedAt", updatedAt) :
+                new ObjectParameter("UpdatedAt", typeof(System.DateTime));
+    
+            var updatedByParameter = updatedBy != null ?
+                new ObjectParameter("UpdatedBy", updatedBy) :
+                new ObjectParameter("UpdatedBy", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_BankFacilityUpdate", bankFacilityIdParameter, facilityNameParameter, cellingParameter, costMoneyParameter, bankIdParameter, updatedAtParameter, updatedByParameter);
+        }
+    
+        public virtual ObjectResult<sp_BankDDL_Result> sp_BankDDL()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_BankDDL_Result>("sp_BankDDL");
+        }
+    
+        public virtual int sp_AccountCreate(string accountNo, string accountName, string createdBy)
+        {
+            var accountNoParameter = accountNo != null ?
+                new ObjectParameter("AccountNo", accountNo) :
+                new ObjectParameter("AccountNo", typeof(string));
+    
+            var accountNameParameter = accountName != null ?
+                new ObjectParameter("AccountName", accountName) :
+                new ObjectParameter("AccountName", typeof(string));
+    
+            var createdByParameter = createdBy != null ?
+                new ObjectParameter("CreatedBy", createdBy) :
+                new ObjectParameter("CreatedBy", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_AccountCreate", accountNoParameter, accountNameParameter, createdByParameter);
+        }
+    
+        public virtual int sp_AccountDelete(string accountId)
+        {
+            var accountIdParameter = accountId != null ?
+                new ObjectParameter("AccountId", accountId) :
+                new ObjectParameter("AccountId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_AccountDelete", accountIdParameter);
+        }
+    
+        public virtual ObjectResult<sp_AccountSelect_Result> sp_AccountSelect()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_AccountSelect_Result>("sp_AccountSelect");
+        }
+    
+        public virtual int sp_AccountUpdate(string accountId, string accountNo, string accountName, string updatedBy)
+        {
+            var accountIdParameter = accountId != null ?
+                new ObjectParameter("AccountId", accountId) :
+                new ObjectParameter("AccountId", typeof(string));
+    
+            var accountNoParameter = accountNo != null ?
+                new ObjectParameter("AccountNo", accountNo) :
+                new ObjectParameter("AccountNo", typeof(string));
+    
+            var accountNameParameter = accountName != null ?
+                new ObjectParameter("AccountName", accountName) :
+                new ObjectParameter("AccountName", typeof(string));
+    
+            var updatedByParameter = updatedBy != null ?
+                new ObjectParameter("UpdatedBy", updatedBy) :
+                new ObjectParameter("UpdatedBy", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_AccountUpdate", accountIdParameter, accountNoParameter, accountNameParameter, updatedByParameter);
+        }
+    
+        public virtual int sp_AccountDetailCreate(string no, string name, string accountId, string createdBy)
+        {
+            var noParameter = no != null ?
+                new ObjectParameter("No", no) :
+                new ObjectParameter("No", typeof(string));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            var accountIdParameter = accountId != null ?
+                new ObjectParameter("AccountId", accountId) :
+                new ObjectParameter("AccountId", typeof(string));
+    
+            var createdByParameter = createdBy != null ?
+                new ObjectParameter("CreatedBy", createdBy) :
+                new ObjectParameter("CreatedBy", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_AccountDetailCreate", noParameter, nameParameter, accountIdParameter, createdByParameter);
+        }
+    
+        public virtual ObjectResult<sp_AccountDetailSelect_Result> sp_AccountDetailSelect()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_AccountDetailSelect_Result>("sp_AccountDetailSelect");
+        }
+    
+        public virtual int sp_AccountDetailUpdate(string accountDetailId, string no, string name, string accountId, string updatedBy)
+        {
+            var accountDetailIdParameter = accountDetailId != null ?
+                new ObjectParameter("AccountDetailId", accountDetailId) :
+                new ObjectParameter("AccountDetailId", typeof(string));
+    
+            var noParameter = no != null ?
+                new ObjectParameter("No", no) :
+                new ObjectParameter("No", typeof(string));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            var accountIdParameter = accountId != null ?
+                new ObjectParameter("AccountId", accountId) :
+                new ObjectParameter("AccountId", typeof(string));
+    
+            var updatedByParameter = updatedBy != null ?
+                new ObjectParameter("UpdatedBy", updatedBy) :
+                new ObjectParameter("UpdatedBy", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_AccountDetailUpdate", accountDetailIdParameter, noParameter, nameParameter, accountIdParameter, updatedByParameter);
+        }
+    
+        public virtual int sp_AccountDetailDelete(string accountDetailId)
+        {
+            var accountDetailIdParameter = accountDetailId != null ?
+                new ObjectParameter("AccountDetailId", accountDetailId) :
+                new ObjectParameter("AccountDetailId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_AccountDetailDelete", accountDetailIdParameter);
+        }
+    
+        public virtual ObjectResult<sp_AccountDetailsDDL_Result> sp_AccountDetailsDDL()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_AccountDetailsDDL_Result>("sp_AccountDetailsDDL");
+        }
     }
 }

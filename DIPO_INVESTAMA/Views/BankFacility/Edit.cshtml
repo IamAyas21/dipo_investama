@@ -1,0 +1,39 @@
+﻿@model DIPO_INVESTAMA.Entity.sp_BankFacilitySelect_Result
+@using (Html.BeginForm("Edit", "BankFacility", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.BankFacilityId)
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+        <div class="modal-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Facility Name</label>
+                        @Html.TextBoxFor(model => model.FacilityName, new { @class = "form-control", @placeholder = "Facility Name", autocomplete = "off", required = "required" })
+                    </div>
+                    <div class="col-md-6">
+                        <label>Ceiling</label>
+                        @Html.TextBoxFor(model => model.Celling, new { @class = "form-control", @placeholder = "Ceiling", autocomplete = "off", required = "required" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Cost Money</label>
+                        @Html.TextBoxFor(model => model.CostMoney, new { @class = "form-control", @placeholder = "Cost Money", autocomplete = "off", required = "required" })
+                    </div>
+                    <div class="col-md-6">
+                        <label>Bank</label>
+                        @Html.DropDownListFor(model => model.BankId, ViewBag.BankAccountList as SelectList, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a type="button" class="btn btn-default" href="@Url.Action("Index","BankFacility")">Kembali</a>
+        </div>
+    </div>
+}
