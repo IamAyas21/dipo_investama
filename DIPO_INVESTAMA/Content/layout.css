@@ -1,0 +1,17 @@
+﻿.body-content-wrapper{
+/*background: rgb(38,80,198);
+background: radial-gradient(circle, rgba(38,80,198,1) 0%, rgba(51,78,152,1) 100%);*/
+
+background: linear-gradient(#284aaa 0%, #0e1834 100%);
+}
+
+.body-sidebar{
+ background-color: #001e6e !important;
+
+ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+}
+
+.body-navbar-top{
+  background-color: #001e6e !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+}
