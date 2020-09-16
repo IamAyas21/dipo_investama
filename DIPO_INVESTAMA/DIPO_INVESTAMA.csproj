@@ -313,6 +313,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\login.css" />
     <Content Include="Content\layout.css" />
+    <Content Include="Content\input.css" />
+    <Content Include="Content\myFont.css" />
     <Content Include="Entity\DIPO_INVESTAMA_DB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DIPO_INVESTAMA_DB.edmx</DependentUpon>
