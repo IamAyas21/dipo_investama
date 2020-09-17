@@ -328,6 +328,20 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           <Parameter Name="accountNo" Type="varchar" Mode="In" />
           <Parameter Name="userId" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="sp_DepartmentCreate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DepartmentName" Type="varchar" Mode="In" />
+          <Parameter Name="CreatedBy" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_DepartmentDDL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_DepartmentDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DepartmentId" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_DepartmentSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_DepartmentUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DepartmentId" Type="varchar" Mode="In" />
+          <Parameter Name="DepartmentName" Type="varchar" Mode="In" />
+          <Parameter Name="UpdatedBy" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="sp_InputJournal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="date" Type="datetime" Mode="In" />
           <Parameter Name="account" Type="varchar" Mode="In" />
@@ -337,6 +351,24 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           <Parameter Name="Origin" Type="varchar" Mode="In" />
           <Parameter Name="userId" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="sp_MenuCreate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MenuId" Type="varchar" Mode="In" />
+          <Parameter Name="RoleId" Type="varchar" Mode="In" />
+          <Parameter Name="CreatedBy" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_MenuDDL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RoleId" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_MenuDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RestrictionId" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_MenuRestrictionSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_MenuUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RestrictionId" Type="varchar" Mode="In" />
+          <Parameter Name="MenuId" Type="varchar" Mode="In" />
+          <Parameter Name="RoleId" Type="varchar" Mode="In" />
+          <Parameter Name="UpdatedBy" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="sp_OutputJournal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="userId" Type="varchar" Mode="In" />
           <Parameter Name="startDate" Type="datetime" Mode="In" />
@@ -345,10 +377,53 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           <Parameter Name="bankFacilityId" Type="varchar" Mode="In" />
           <Parameter Name="sortBy" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="sp_RoleCreate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RoleName" Type="varchar" Mode="In" />
+          <Parameter Name="Maker" Type="varchar" Mode="In" />
+          <Parameter Name="Checker" Type="varchar" Mode="In" />
+          <Parameter Name="Approval" Type="varchar" Mode="In" />
+          <Parameter Name="SuperUser" Type="varchar" Mode="In" />
+          <Parameter Name="CreatedBy" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_RoleDDL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_RoleDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RoleId" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_RoleSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_RoleUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RoleId" Type="varchar" Mode="In" />
+          <Parameter Name="RoleName" Type="varchar" Mode="In" />
+          <Parameter Name="Maker" Type="varchar" Mode="In" />
+          <Parameter Name="Checker" Type="varchar" Mode="In" />
+          <Parameter Name="Approval" Type="varchar" Mode="In" />
+          <Parameter Name="SuperUser" Type="varchar" Mode="In" />
+          <Parameter Name="UpdatedBy" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="sp_TodaysJournal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_UserCreate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+          <Parameter Name="Name" Type="varchar" Mode="In" />
+          <Parameter Name="RoleId" Type="varchar" Mode="In" />
+          <Parameter Name="DepartmentId" Type="varchar" Mode="In" />
+          <Parameter Name="CreatedBy" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_UserDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="sp_UserLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="username" Type="varchar" Mode="In" />
           <Parameter Name="password" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_UserSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_UserUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="varchar" Mode="In" />
+          <Parameter Name="UserName" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+          <Parameter Name="Name" Type="varchar" Mode="In" />
+          <Parameter Name="RoleId" Type="varchar" Mode="In" />
+          <Parameter Name="DepartmentId" Type="varchar" Mode="In" />
+          <Parameter Name="UpdatedBy" Type="varchar" Mode="In" />
         </Function>
         <EntityContainer Name="DIPO_INVESTAMAModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
@@ -810,9 +885,84 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
             <Parameter Name="UpdatedBy" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_AccountDetailDelete">
-            <Parameter Name="AccountDetailId" Mode="In" Type="String" />
+          <Parameter Name="AccountDetailId" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_AccountDetailsDDL" ReturnType="Collection(DIPO_INVESTAMAModel.sp_AccountDetailsDDL_Result)" />
+          <FunctionImport Name="sp_DepartmentCreate">
+            <Parameter Name="DepartmentName" Mode="In" Type="String" />
+            <Parameter Name="CreatedBy" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_DepartmentDelete">
+          <Parameter Name="DepartmentId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_DepartmentSelect" ReturnType="Collection(DIPO_INVESTAMAModel.sp_DepartmentSelect_Result)" />
+          <FunctionImport Name="sp_DepartmentUpdate">
+            <Parameter Name="DepartmentId" Mode="In" Type="String" />
+            <Parameter Name="DepartmentName" Mode="In" Type="String" />
+            <Parameter Name="UpdatedBy" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_RoleCreate">
+            <Parameter Name="RoleName" Mode="In" Type="String" />
+            <Parameter Name="Maker" Mode="In" Type="String" />
+            <Parameter Name="Checker" Mode="In" Type="String" />
+            <Parameter Name="Approval" Mode="In" Type="String" />
+            <Parameter Name="SuperUser" Mode="In" Type="String" />
+            <Parameter Name="CreatedBy" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_RoleDelete">
+          <Parameter Name="RoleId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_RoleSelect" ReturnType="Collection(DIPO_INVESTAMAModel.sp_RoleSelect_Result)" />
+          <FunctionImport Name="sp_RoleUpdate">
+            <Parameter Name="RoleId" Mode="In" Type="String" />
+            <Parameter Name="RoleName" Mode="In" Type="String" />
+            <Parameter Name="Maker" Mode="In" Type="String" />
+            <Parameter Name="Checker" Mode="In" Type="String" />
+            <Parameter Name="Approval" Mode="In" Type="String" />
+            <Parameter Name="SuperUser" Mode="In" Type="String" />
+            <Parameter Name="UpdatedBy" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_UserCreate">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="RoleId" Mode="In" Type="String" />
+            <Parameter Name="DepartmentId" Mode="In" Type="String" />
+            <Parameter Name="CreatedBy" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_UserDelete">
+          <Parameter Name="UserId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_UserSelect" ReturnType="Collection(DIPO_INVESTAMAModel.sp_UserSelect_Result)" />
+          <FunctionImport Name="sp_UserUpdate">
+            <Parameter Name="UserId" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="RoleId" Mode="In" Type="String" />
+            <Parameter Name="DepartmentId" Mode="In" Type="String" />
+            <Parameter Name="UpdatedBy" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_DepartmentDDL" ReturnType="Collection(DIPO_INVESTAMAModel.sp_DepartmentDDL_Result)" />
+          <FunctionImport Name="sp_RoleDDL" ReturnType="Collection(DIPO_INVESTAMAModel.sp_RoleDDL_Result)" />
+          <FunctionImport Name="sp_MenuCreate">
+            <Parameter Name="MenuId" Mode="In" Type="String" />
+            <Parameter Name="RoleId" Mode="In" Type="String" />
+            <Parameter Name="CreatedBy" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_MenuDDL" ReturnType="Collection(DIPO_INVESTAMAModel.sp_MenuDDL_Result)">
+            <Parameter Name="RoleId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_MenuDelete">
+            <Parameter Name="RestrictionId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_MenuRestrictionSelect" ReturnType="Collection(DIPO_INVESTAMAModel.sp_MenuRestrictionSelect_Result)" />
+          <FunctionImport Name="sp_MenuUpdate">
+            <Parameter Name="RestrictionId" Mode="In" Type="String" />
+            <Parameter Name="MenuId" Mode="In" Type="String" />
+            <Parameter Name="RoleId" Mode="In" Type="String" />
+            <Parameter Name="UpdatedBy" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_AccountDDL_Result">
           <Property Type="String" Name="ID" Nullable="false" MaxLength="50" />
@@ -904,6 +1054,63 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
         <ComplexType Name="sp_AccountDetailsDDL_Result">
           <Property Type="String" Name="ID" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="NAME" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_DepartmentSelect_Result">
+          <Property Type="String" Name="DepartmentId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="UpdatedAt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_RoleSelect_Result">
+          <Property Type="String" Name="RoleId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="RoleName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Maker" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="Checker" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="Approval" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="SuperUser" Nullable="true" MaxLength="1" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="UpdatedAt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_UserSelect_Result">
+          <Property Type="String" Name="UserId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="RoleId" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DepartmentId" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="UpdatedAt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="RoleName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_DepartmentDDL_Result">
+          <Property Type="String" Name="ID" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="NAME" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_RoleDDL_Result">
+          <Property Type="String" Name="ID" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="NAME" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_MenuDDL_Result">
+          <Property Type="String" Name="ID" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="NAME" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_MenuRestrictionSelect_Result">
+          <Property Type="String" Name="RestrictionId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="MenuId" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="RoleId" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="UpdatedAt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MenuName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="RoleName" Nullable="true" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1223,6 +1430,103 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_DepartmentCreate" FunctionName="DIPO_INVESTAMAModel.Store.sp_DepartmentCreate" />
+          <FunctionImportMapping FunctionImportName="sp_DepartmentDelete" FunctionName="DIPO_INVESTAMAModel.Store.sp_DepartmentDelete" />
+          <FunctionImportMapping FunctionImportName="sp_DepartmentSelect" FunctionName="DIPO_INVESTAMAModel.Store.sp_DepartmentSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_DepartmentSelect_Result">
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_DepartmentUpdate" FunctionName="DIPO_INVESTAMAModel.Store.sp_DepartmentUpdate" />
+          <FunctionImportMapping FunctionImportName="sp_RoleCreate" FunctionName="DIPO_INVESTAMAModel.Store.sp_RoleCreate" />
+          <FunctionImportMapping FunctionImportName="sp_RoleDelete" FunctionName="DIPO_INVESTAMAModel.Store.sp_RoleDelete" />
+          <FunctionImportMapping FunctionImportName="sp_RoleSelect" FunctionName="DIPO_INVESTAMAModel.Store.sp_RoleSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_RoleSelect_Result">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="Maker" ColumnName="Maker" />
+                <ScalarProperty Name="Checker" ColumnName="Checker" />
+                <ScalarProperty Name="Approval" ColumnName="Approval" />
+                <ScalarProperty Name="SuperUser" ColumnName="SuperUser" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_RoleUpdate" FunctionName="DIPO_INVESTAMAModel.Store.sp_RoleUpdate" />
+          <FunctionImportMapping FunctionImportName="sp_UserCreate" FunctionName="DIPO_INVESTAMAModel.Store.sp_UserCreate" />
+          <FunctionImportMapping FunctionImportName="sp_UserDelete" FunctionName="DIPO_INVESTAMAModel.Store.sp_UserDelete" />
+          <FunctionImportMapping FunctionImportName="sp_UserSelect" FunctionName="DIPO_INVESTAMAModel.Store.sp_UserSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_UserSelect_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_UserUpdate" FunctionName="DIPO_INVESTAMAModel.Store.sp_UserUpdate" />
+          <FunctionImportMapping FunctionImportName="sp_DepartmentDDL" FunctionName="DIPO_INVESTAMAModel.Store.sp_DepartmentDDL">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_DepartmentDDL_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_RoleDDL" FunctionName="DIPO_INVESTAMAModel.Store.sp_RoleDDL">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_RoleDDL_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_MenuCreate" FunctionName="DIPO_INVESTAMAModel.Store.sp_MenuCreate" />
+          <FunctionImportMapping FunctionImportName="sp_MenuDDL" FunctionName="DIPO_INVESTAMAModel.Store.sp_MenuDDL">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_MenuDDL_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_MenuDelete" FunctionName="DIPO_INVESTAMAModel.Store.sp_MenuDelete" />
+          <FunctionImportMapping FunctionImportName="sp_MenuRestrictionSelect" FunctionName="DIPO_INVESTAMAModel.Store.sp_MenuRestrictionSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_MenuRestrictionSelect_Result">
+                <ScalarProperty Name="RestrictionId" ColumnName="RestrictionId" />
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_MenuUpdate" FunctionName="DIPO_INVESTAMAModel.Store.sp_MenuUpdate" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

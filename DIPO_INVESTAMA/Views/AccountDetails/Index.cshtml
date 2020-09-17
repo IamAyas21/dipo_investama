@@ -16,10 +16,10 @@
     <div class="box-header with-border">
         <div class="row">
             <div class="col-lg-6">
-                <h3 class="box-title">Account Detaiks</h3>
+                <h3 class="box-title">Account Details</h3>
             </div>
             <div class="col-lg-6" align="right">
-                <a style="cursor:pointer;" href="@Url.Action("Create","MasterAccountDetails")">
+                <a style="cursor:pointer;" href="@Url.Action("Create","AccountDetails")">
                     <i class="glyphicon glyphicon-new-window"></i>
                 </a>
             </div>
@@ -66,7 +66,7 @@
                                 @Html.DisplayFor(modelItem => Model.Content[i].AccountName)
                             </td>
                             <td>
-                                <a style="cursor:pointer" href="@Url.Action("Edit","MasterAccountDetails", new { id = Model.Content[i].AccountDetailId})">
+                                <a style="cursor:pointer" href="@Url.Action("Edit","AccountDetails", new { id = Model.Content[i].AccountDetailId})">
                                     <i class="glyphicon glyphicon-pencil"></i>
                                 </a>
                                 <a style="cursor:pointer" value="loop" onclick="ShowModal(@i)">
@@ -83,7 +83,7 @@
                                                 Do you really to delete @Html.DisplayFor(modelItem => Model.Content[i].Name) ??
                                             </div>
                                             <div class="modal-footer">
-                                                <a data-toggle="tooltip" title="Delete" href="@Url.Action("Delete", "MasterAccountDetails", new { id = Model.Content[i].AccountDetailId })" class="btn btn-primary"><i class="fa fa-trash"></i> Delete</a>
+                                                <a data-toggle="tooltip" title="Delete" href="@Url.Action("Delete", "AccountDetails", new { id = Model.Content[i].AccountDetailId })" class="btn btn-primary"><i class="fa fa-trash"></i> Delete</a>
                                             </div>
                                         </div>
                                     </div>

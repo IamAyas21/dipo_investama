@@ -96,6 +96,7 @@
     <script src="~/Content/AdminLTE/js/dashboard.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="~/Content/AdminLTE/js/demo.js"></script>
+    <script src="~/Scripts/Dropdownlist.js"></script>
     @RenderSection("scripts", required: false)
 </head>
 <body class="skin-blue sidebar-mini wysihtml5-supported" style="height: auto; min-height: 100%;">
@@ -186,6 +187,19 @@
                     </li>
                     <li class="treeview">
                         <a href="#">
+                            <i class="fa fa-dashboard"></i> <span>Administrator</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="@Url.Action("Index","Role")"><i class="fa fa-circle-o"></i> Role</a></li>
+                            <li><a href="@Url.Action("Index","Users")"><i class="fa fa-circle-o"></i> Users</a></li>
+                            <li><a href="@Url.Action("Index","MenuRestriction")"><i class="fa fa-circle-o"></i> Menu Restriction</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
                             <i class="fa fa-dashboard"></i> <span>Master Data</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
@@ -193,8 +207,10 @@
                         </a>
                         <ul class="treeview-menu">
                             <li><a href="@Url.Action("Index","MasterAccount")"><i class="fa fa-circle-o"></i> Account</a></li>
+                            <li><a href="@Url.Action("Index","AccountDetails")"><i class="fa fa-circle-o"></i> Account Details</a></li>
                             <li><a href="@Url.Action("Index","Bank")"><i class="fa fa-circle-o"></i> Bank</a></li>
                             <li><a href="@Url.Action("Index","BankFacility")"><i class="fa fa-circle-o"></i> Bank Facility</a></li>
+                            <li><a href="@Url.Action("Index","Department")"><i class="fa fa-circle-o"></i> Department</a></li>
                         </ul>
                     </li>
                 </ul>

@@ -186,11 +186,15 @@
     <Compile Include="Controllers\BankController.cs" />
     <Compile Include="Controllers\AccountDetailsController.cs" />
     <Compile Include="Controllers\BankFacilityController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InputController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MasterAccountController.cs" />
     <Compile Include="Controllers\OutputController.cs" />
+    <Compile Include="Controllers\MenuRestrictionController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Entity\Account.cs">
       <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
     </Compile>
@@ -257,13 +261,34 @@
     <Compile Include="Entity\sp_BankSelect_Result.cs">
       <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entity\sp_DepartmentDDL_Result.cs">
+      <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\sp_DepartmentSelect_Result.cs">
+      <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\sp_MenuDDL_Result.cs">
+      <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\sp_MenuRestrictionSelect_Result.cs">
+      <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entity\sp_OutputJournal_Result.cs">
+      <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\sp_RoleDDL_Result.cs">
+      <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\sp_RoleSelect_Result.cs">
       <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\sp_TodaysJournal_Result.cs">
       <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\sp_UserLogin_Result.cs">
+      <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\sp_UserSelect_Result.cs">
       <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\User.cs">
@@ -277,6 +302,9 @@
     </Compile>
     <Compile Include="Logic\AccountBusinessLogic.cs" />
     <Compile Include="Logic\AccountDetailsBusinessLogic.cs" />
+    <Compile Include="Logic\MenuRestrictionBusinessLogic.cs" />
+    <Compile Include="Logic\RoleBusinessLogic.cs" />
+    <Compile Include="Logic\DepartmentBusinessLogic.cs" />
     <Compile Include="Logic\BankFacilityBusinessLogic.cs" />
     <Compile Include="Logic\BankBusinessLogic.cs" />
     <Compile Include="Logic\InputBusinessLogic.cs" />
@@ -371,6 +399,7 @@
     </Content>
     <Content Include="fonts\ARIALN.TTF" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Dropdownlist.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -429,14 +458,25 @@
     <Content Include="Views\MasterAccount\Index.cshtml" />
     <Content Include="Views\MasterAccount\Create.cshtml" />
     <Content Include="Views\MasterAccount\Edit.cshtml" />
-    <Content Include="Views\MasterAccountDetails\Create.cshtml" />
-    <Content Include="Views\MasterAccountDetails\Edit.cshtml" />
-    <Content Include="Views\MasterAccountDetails\Index.cshtml" />
+    <Content Include="Views\AccountDetails\Create.cshtml" />
+    <Content Include="Views\AccountDetails\Edit.cshtml" />
+    <Content Include="Views\AccountDetails\Index.cshtml" />
+    <Content Include="Views\Department\Index.cshtml" />
+    <Content Include="Views\Department\Create.cshtml" />
+    <Content Include="Views\Department\Edit.cshtml" />
+    <Content Include="Views\Role\Create.cshtml" />
+    <Content Include="Views\Role\Edit.cshtml" />
+    <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\MenuRestriction\Create.cshtml" />
+    <Content Include="Views\MenuRestriction\Edit.cshtml" />
+    <Content Include="Views\MenuRestriction\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Log\" />
-    <Folder Include="Views\Department\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

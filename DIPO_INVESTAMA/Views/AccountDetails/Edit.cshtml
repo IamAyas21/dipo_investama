@@ -1,7 +1,8 @@
 ﻿@model DIPO_INVESTAMA.Entity.sp_AccountDetailSelect_Result
-@using (Html.BeginForm("Create", "MasterAccountDetails", FormMethod.Post))
+@using (Html.BeginForm("Edit", "AccountDetails", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.AccountDetailId)
     <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">×</button>
