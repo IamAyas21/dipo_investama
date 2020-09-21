@@ -1,4 +1,5 @@
-﻿using DIPO_INVESTAMA.Logic;
+﻿using DIPO_INVESTAMA.App_Start;
+using DIPO_INVESTAMA.Logic;
 using DIPO_INVESTAMA.Models;
 using DIPO_INVESTAMA.Utils;
 using System;
@@ -11,6 +12,7 @@ namespace DIPO_INVESTAMA.Controllers
 {
     public class HomeController : Controller
     {
+        [CheckAuthorizeAttribute()]
         public ActionResult Index()
         {
             ViewBag.FilterBankList = common.ToSelectList(BankFacilityBusinessLogic.getInstance().getBankFacilityDDL(), "ID", "NAME", string.Empty);
