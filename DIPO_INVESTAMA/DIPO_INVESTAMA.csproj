@@ -271,6 +271,9 @@
   <ItemGroup>
     <Content Include="Assets\background_login.png" />
     <Content Include="Assets\background_login_dipo.png" />
+    <Content Include="Assets\icon\print.png" />
+    <Content Include="Assets\icon\Group 1290.png" />
+    <Content Include="Assets\icon\pdf.png" />
     <Content Include="Assets\icon_password.png" />
     <Content Include="Assets\icon_pdf.png" />
     <Content Include="Assets\icon_printer.png" />
@@ -315,6 +318,7 @@
     <Content Include="Content\layout.css" />
     <Content Include="Content\input.css" />
     <Content Include="Content\myFont.css" />
+    <Content Include="Content\output.css" />
     <Content Include="Entity\DIPO_INVESTAMA_DB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DIPO_INVESTAMA_DB.edmx</DependentUpon>
