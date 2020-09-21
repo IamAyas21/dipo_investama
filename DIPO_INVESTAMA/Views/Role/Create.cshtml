@@ -1,0 +1,66 @@
+﻿@model DIPO_INVESTAMA.Entity.sp_RoleSelect_Result
+@using (Html.BeginForm("Create", "Role", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+        <div class="modal-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label>Role Name</label>
+                        @Html.TextBoxFor(model => model.RoleName, new { @class = "form-control", @placeholder = "Role Name", autocomplete = "off", required = "required" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label>Maker</label>
+                        @Html.DropDownListFor(model => model.Maker
+                       , new List<SelectListItem>
+                        {
+                           new SelectListItem{ Text="Choose", Value = "" },
+                           new SelectListItem{ Text="Yes", Value = "Y" },
+                           new SelectListItem{ Text="No", Value = "N" }
+                        }, new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-3">
+                        <label>Checker</label>
+                        @Html.DropDownListFor(model => model.Checker
+                       , new List<SelectListItem>
+                        {
+                            new SelectListItem{ Text="Choose", Value = "" },
+                           new SelectListItem{ Text="Yes", Value = "Y" },
+                           new SelectListItem{ Text="No", Value = "N" }
+                        }, new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-3">
+                        <label>Approval</label>
+                        @Html.DropDownListFor(model => model.Approval
+                       , new List<SelectListItem>
+                        {
+                           new SelectListItem{ Text="Choose", Value = "" },
+                           new SelectListItem{ Text="Yes", Value = "Y" },
+                           new SelectListItem{ Text="No", Value = "N" }
+                        }, new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-3">
+                        <label>Super User</label>
+                        @Html.DropDownListFor(model => model.SuperUser
+                       , new List<SelectListItem>
+                        {
+                            new SelectListItem{ Text="Choose", Value = "" },
+                           new SelectListItem{ Text="Yes", Value = "Y" },
+                           new SelectListItem{ Text="No", Value = "N" }
+                        }, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a type="button" class="btn btn-default" href="@Url.Action("Index","Role")">Kembali</a>
+        </div>
+    </div>
+}

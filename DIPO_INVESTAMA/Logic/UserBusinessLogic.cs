@@ -1,4 +1,6 @@
 ﻿using DIPO_INVESTAMA.Entity;
+using DIPO_INVESTAMA.Models;
+using DIPO_INVESTAMA.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +35,32 @@ namespace DIPO_INVESTAMA.Logic
                 Logging.getInstance().CreateLogError(e);
                 throw e;
             }
+        }
+
+        public PagedList<sp_UserSelect_Result> ListUsers()
+        {
+            var page = new PagedList<sp_UserSelect_Result>();
+            page.Content = _db.sp_UserSelect().ToList();
+            return page;
+        }
+
+        public int CreateUser(sp_UserSelect_Result model)
+        {
+            return _db.sp_UserCreate(model.UserName,model.Password,model.Name, model.RoleId, model.DepartmentId, SessionManager.userId());
+        }
+        public int UpdateUser(sp_UserSelect_Result model)
+        {
+            return _db.sp_UserUpdate(model.UserId, model.UserName, model.Password, model.Name, model.RoleId, model.DepartmentId, SessionManager.userId());
+        }
+
+        public User getUserById(string id)
+        {
+            return _db.Users.Where(b => b.UserId.Equals(id)).FirstOrDefault();
+        }
+
+        public int DeleteUser(string id)
+        {
+            return _db.sp_UserDelete(id);
         }
     }
 }

@@ -1,0 +1,24 @@
+﻿@model DIPO_INVESTAMA.Entity.sp_DepartmentSelect_Result
+@using (Html.BeginForm("Create", "Department", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+        <div class="modal-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label>Department Name</label>
+                        @Html.TextBoxFor(model => model.DepartmentName, new { @class = "form-control", @placeholder = "Department Name", autocomplete = "off", required = "required" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a type="button" class="btn btn-default" href="@Url.Action("Index","Department")">Kembali</a>
+        </div>
+    </div>
+}

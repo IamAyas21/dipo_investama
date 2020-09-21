@@ -1,0 +1,110 @@
+﻿@model DIPO_INVESTAMA.Models.PagedList<DIPO_INVESTAMA.Entity.sp_AccountDetailSelect_Result>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-warning" style="margin:10px">
+        <p><i class="fa fa-warning"></i> @TempData["Error"].ToString()</p>
+    </div>
+}
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success" style="margin:10px">
+        <strong>Success!</strong> @TempData["Success"].ToString()
+    </div>
+}
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <div class="row">
+            <div class="col-lg-6">
+                <h3 class="box-title">Account Details</h3>
+            </div>
+            <div class="col-lg-6" align="right">
+                <a style="cursor:pointer;" href="@Url.Action("Create","AccountDetails")">
+                    <i class="glyphicon glyphicon-new-window"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+    <form role="form">
+        <div class="box-body">
+            <table class="table table-bordered table-striped" id="example1">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("No")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Name")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Account No")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Account Name")
+                        </th>
+                        <th>
+
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Content.Count; i++)
+            {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.Content[i].No)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.Content[i].Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.Content[i].AccountNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.Content[i].AccountName)
+                            </td>
+                            <td>
+                                <a style="cursor:pointer" href="@Url.Action("Edit","AccountDetails", new { id = Model.Content[i].AccountDetailId})">
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                </a>
+                                <a style="cursor:pointer" value="loop" onclick="ShowModal(@i)">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                </a>
+                                <div id="modal_@i" class="modal fade" tabindex="-1" data-keyboard="false" data-backdrop="static">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content" style="width:700px;">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title" style="float:left; width:100px; background-color:none"> <i class="fa fa-trash"></i> Delete</h4>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Do you really to delete @Html.DisplayFor(modelItem => Model.Content[i].Name) ??
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a data-toggle="tooltip" title="Delete" href="@Url.Action("Delete", "AccountDetails", new { id = Model.Content[i].AccountDetailId })" class="btn btn-primary"><i class="fa fa-trash"></i> Delete</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </form>
+</div>
+
+<script>
+    function ShowModal(idx) {
+        $("#modal_" + idx).modal('show');
+    }
+
+    function HideModal(idx) {
+        $("#modal_" + idx).modal('hide');
+    }
+
+</script>

@@ -1,0 +1,28 @@
+﻿@model DIPO_INVESTAMA.Entity.sp_BankSelect_Result
+@using (Html.BeginForm("Create", "Bank", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+        <div class="modal-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Bank Name</label>
+                        @Html.TextBoxFor(model => model.BankName, new { @class = "form-control", @placeholder = "Bank Name", autocomplete = "off", required = "required" })
+                    </div>
+                    <div class="col-md-4">
+                        <label>Account No</label>
+                        @Html.TextBoxFor(model => model.AccountNo, new { @class = "form-control", @placeholder = "Account No", autocomplete = "off", required = "required" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a type="button" class="btn btn-default" href="@Url.Action("Index","Bank")">Kembali</a>
+        </div>
+    </div>
+}
