@@ -1,31 +1,231 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model DIPO_INVESTAMA.Models.DashboardViewModels
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h4>Report of Bank</h4>
+                        </div>
+                        <div class="col-sm-6" align="right">
+                            <button type="submit" name="Submit" value="PDF"><img src="~/Assets/icon/pdf.png" width="30" height="30" /></button>
+                            <button type="submit" name="Submit" value="Excel"><img src="~/Assets/icon_xlxs.png" width="30" height="30" /></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <label>Filter</label>
+                            @Html.DropDownListFor(model => model.FilterReportBank, ViewBag.FilterBankList as SelectList, new { @class = "form-control" })
+                        </div>
+                        <div class="col-xs-4">
+                            <label>Periode</label>
+                            @Html.TextBoxFor(model => model.PeriodeReportBank, new { @class = "form-control pull-left", @placeholder = "Date", autocomplete = "off" })
+                        </div>
+                        <div class="col-xs-4">
+                            <label>View by</label>
+                            @Html.DropDownListFor(model => model.ViewByReportBank
+                       , new List<SelectListItem>
+                        {
+                           new SelectListItem{ Text="Choose", Value = "" },
+                           new SelectListItem{ Text="Monthly", Value = "Y" },
+                           new SelectListItem{ Text="Yearly", Value = "N" }
+                        }, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h4>Report of Account</h4>
+                        </div>
+                        <div class="col-sm-6" align="right">
+                            <button type="submit" name="Submit" value="PDF"><img src="~/Assets/icon/pdf.png" width="30" height="30" /></button>
+                            <button type="submit" name="Submit" value="Excel"><img src="~/Assets/icon_xlxs.png" width="30" height="30" /></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <label>Filter</label>
+                            @Html.DropDownListFor(model => model.FilterReportAccount, ViewBag.FilterAccountList as SelectList, new { @class = "form-control" })
+                        </div>
+                        <div class="col-xs-4">
+                            <label>Periode</label>
+                            @Html.TextBoxFor(model => model.PeriodeReportAccount, new { @class = "form-control pull-left", @placeholder = "Date", autocomplete = "off" })
+                        </div>
+                        <div class="col-xs-4">
+                            <label>View by</label>
+                            @Html.DropDownListFor(model => model.ViewByReportAccount
+                       , new List<SelectListItem>
+                        {
+                           new SelectListItem{ Text="Choose", Value = "" },
+                           new SelectListItem{ Text="Monthly", Value = "Y" },
+                           new SelectListItem{ Text="Yearly", Value = "N" }
+                        }, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h4>Report of Account Cash In</h4>
+                        </div>
+                        <div class="col-sm-6" align="right">
+                            <button type="submit" name="Submit" value="PDF"><img src="~/Assets/icon/pdf.png" width="30" height="30" /></button>
+                            <button type="submit" name="Submit" value="Excel"><img src="~/Assets/icon_xlxs.png" width="30" height="30" /></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <label>Filter</label>
+                            @Html.DropDownListFor(model => model.FilterReportCashIn, ViewBag.FilterCashInList as SelectList, new { @class = "form-control" })
+                        </div>
+                        <div class="col-xs-4">
+                            <label>Periode</label>
+                            @Html.TextBoxFor(model => model.PeriodeReportCashIn, new { @class = "form-control pull-left", @placeholder = "Date", autocomplete = "off" })
+                        </div>
+                        <div class="col-xs-4">
+                            <label>View by</label>
+                            @Html.DropDownListFor(model => model.ViewByReportCashIn
+                       , new List<SelectListItem>
+                        {
+                           new SelectListItem{ Text="Choose", Value = "" },
+                           new SelectListItem{ Text="Monthly", Value = "Y" },
+                           new SelectListItem{ Text="Yearly", Value = "N" }
+                        }, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h4>Report of Account Cash Out</h4>
+                        </div>
+                        <div class="col-sm-6" align="right">
+                            <button type="submit" name="Submit" value="PDF"><img src="~/Assets/icon/pdf.png" width="30" height="30" /></button>
+                            <button type="submit" name="Submit" value="Excel"><img src="~/Assets/icon_xlxs.png" width="30" height="30" /></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <label>Filter</label>
+                            @Html.DropDownListFor(model => model.FilterReportCashOut, ViewBag.FilterCashOutList as SelectList, new { @class = "form-control" })
+                        </div>
+                        <div class="col-xs-4">
+                            <label>Periode</label>
+                            @Html.TextBoxFor(model => model.PeriodeReportCashOut, new { @class = "form-control pull-left", @placeholder = "Date", autocomplete = "off" })
+                        </div>
+                        <div class="col-xs-4">
+                            <label>View by</label>
+                            @Html.DropDownListFor(model => model.ViewByReportCashOut
+                       , new List<SelectListItem>
+                        {
+                           new SelectListItem{ Text="Choose", Value = "" },
+                           new SelectListItem{ Text="Monthly", Value = "Y" },
+                           new SelectListItem{ Text="Yearly", Value = "N" }
+                        }, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 }
+<script>
+    $(function () {
+        $('#PeriodeReportBank').daterangepicker({
+            autoclose: true
+        })
+        $('#PeriodeReportBank').val("");
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+        @*$("#PeriodeReportAccount").on("change", function () {
+            var data = { PeriodeReportAccount: $("#PeriodeReportAccount").val(), FilterReportBank: $("#FilterReportBank").val(), ViewByReportBank: $("#ViewByReportBank").val(), SortBy: $("#SortBy").val() };
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+            $.ajax(
+            {
+                url: "@Url.Action("Index", "Output")",
+                type: 'POST',
+                data: { model: data },
+                success: function (response) {
+
+                },
+                error: function () {
+                    alert("error");
+                }
+            });
+        });
+
+        $("#FilterReportBank").on("change", function () {
+            var data = { PeriodeReportAccount: $("#PeriodeReportAccount").val(), FilterReportBank: $("#FilterReportBank").val(), ViewByReportBank: $("#ViewByReportBank").val(), SortBy: $("#SortBy").val() };
+
+            $.ajax(
+            {
+                url: "@Url.Action("Index", "Output")",
+                type: 'POST',
+                data: { model: data },
+                success: function (response) {
+
+                },
+                error: function () {
+                    alert("error");
+                }
+            });
+        });
+
+        $("#ViewByReportBank").on("change", function () {
+            var data = { PeriodeReportAccount: $("#PeriodeReportAccount").val(), FilterReportBank: $("#FilterReportBank").val(), ViewByReportBank: $("#ViewByReportBank").val(), SortBy: $("#SortBy").val() };
+
+            $.ajax(
+            {
+                url: "@Url.Action("Index", "Output")",
+                type: 'POST',
+                data: { model: data },
+                success: function (response) {
+
+                },
+                error: function () {
+                    alert("error");
+                }
+            });
+        });*@
+
+        $('#PeriodeReportAccount').daterangepicker({
+            autoclose: true
+        })
+        $('#PeriodeReportAccount').val("");
+
+        $('#PeriodeReportCashIn').daterangepicker({
+            autoclose: true
+        })
+        $('#PeriodeReportCashIn').val("");
+
+        $('#PeriodeReportCashOut').daterangepicker({
+            autoclose: true
+        })
+        $('#PeriodeReportCashOut').val("");
+    });
+</script>

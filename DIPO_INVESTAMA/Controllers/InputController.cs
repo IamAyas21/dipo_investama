@@ -19,7 +19,7 @@ namespace DIPO_INVESTAMA.Controllers
             InputViewModels model = new InputViewModels();
             model.TodaysJournal = Journals();
             ViewBag.AccountList = common.ToSelectList(InputBusinessLogic.getInstance().getAccountDDL(),"ID", "NAME",string.Empty);
-            ViewBag.BankAccountList = common.ToSelectList(InputBusinessLogic.getInstance().getBankFacilityDDL(), "ID", "NAME",string.Empty);
+            ViewBag.BankAccountList = common.ToSelectList(BankFacilityBusinessLogic.getInstance().getBankFacilityDDL(), "ID", "NAME",string.Empty);
             return View(model);
         }
         [HttpPost]
@@ -36,7 +36,7 @@ namespace DIPO_INVESTAMA.Controllers
             }
 
             ViewBag.AccountList = common.ToSelectList(InputBusinessLogic.getInstance().getAccountDDL(), "ID", "NAME", model.Account);
-            ViewBag.BankAccountList = common.ToSelectList(InputBusinessLogic.getInstance().getBankFacilityDDL(), "ID", "NAME", model.BankAccount);
+            ViewBag.BankAccountList = common.ToSelectList(BankFacilityBusinessLogic.getInstance().getBankFacilityDDL(), "ID", "NAME", model.BankAccount);
             return View(model);
         }
 

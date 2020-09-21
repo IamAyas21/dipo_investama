@@ -312,6 +312,7 @@
     <Compile Include="Logic\OutputBusinessLogic.cs" />
     <Compile Include="Logic\UserBusinessLogic.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\DashboardViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\OutputViewModels.cs" />
     <Compile Include="Models\InputViewModels.cs" />
