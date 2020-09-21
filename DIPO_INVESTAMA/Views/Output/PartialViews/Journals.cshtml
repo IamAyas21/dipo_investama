@@ -1,14 +1,14 @@
 ﻿@model DIPO_INVESTAMA.Models.PagedList<DIPO_INVESTAMA.Models.OutputViewModels>
 
-<div class="box box-primary">
+<div class="box box-primary body-box-primary">
     <div class="box-header with-border">
-        <h3 class="box-title">Today's Journal</h3>
+        <h3 class="box-title Poppins-Bold font-white">Today's Journal</h3>
     </div>
     <!-- /.box-header -->
     <!-- form start -->
     <form role="form">
         <div class="box-body">
-            <table class="table table-bordered table-striped" id="example1">
+            <table class="table Poppins-Regular font-white" id="example1">
                 <thead>
                     <tr>
                         <th>
@@ -57,7 +57,15 @@
                                 @Html.DisplayFor(modelItem => Model.Content[i].CashOut)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => Model.Content[i].Balance)
+                                @if (Convert.ToDecimal(Model.Content[i].Balance) < 0)
+                                {
+                                   <span style="color:red;">@Convert.ToDecimal(Model.Content[i].Balance).ToString("#,##;[#,##];-")</span>
+                                }
+                                else
+                                {
+                                    <span>@Convert.ToDecimal(Model.Content[i].Balance).ToString("#,##;[#,##];-")</span>
+                                }
+
                             </td>
                         </tr>
                     }
