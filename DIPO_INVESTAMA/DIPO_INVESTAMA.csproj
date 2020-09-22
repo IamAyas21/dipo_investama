@@ -350,6 +350,7 @@
     <Content Include="Content\AdminLTE\js\bootstrap-daterangepicker\bootstrap-datepicker.min.js" />
     <Content Include="Content\AdminLTE\js\bootstrap-daterangepicker\daterangepicker.js" />
     <Content Include="Content\AdminLTE\js\bootstrap\bootstrap.min.js" />
+    <Content Include="Content\AdminLTE\js\chart\Chart.js" />
     <Content Include="Content\AdminLTE\js\dashboard.js" />
     <Content Include="Content\AdminLTE\js\demo.js" />
     <Content Include="Content\AdminLTE\js\fastclick.js" />
