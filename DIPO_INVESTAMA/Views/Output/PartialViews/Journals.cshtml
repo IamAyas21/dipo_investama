@@ -55,6 +55,25 @@
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => Model.Content[i].CashOut)
+                                @*@Convert.ToDecimal(Model.Content[i].CashOut.ToString())*@
+
+                                @if (Model.Content[i].CashOut != "")
+                                {
+
+                                    @Html.DisplayFor(modelItem => Model.Content[i].CashOut)
+                                }
+
+
+                                @*@if (Convert.ToDecimal(Model.Content[i].CashOut) < 0)
+                                {
+                                   <span style="color:red">@Convert.ToDecimal(Model.Content[i].CashOut).ToString("#,##;[#,##];-")</span>
+                                }
+                                else
+                                {
+                                    
+                                    <span>@Convert.ToDecimal(Model.Content[i].CashOut).ToString("#,##;[#,##];-") </span>
+                                }*@
+
                             </td>
                             <td>
                                 @if (Convert.ToDecimal(Model.Content[i].Balance) < 0)
