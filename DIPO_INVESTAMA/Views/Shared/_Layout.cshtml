@@ -125,7 +125,7 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                 <img src="~/Assets/user_dummy.jpg" class="user-image" alt="User Image">
-                                <span class="hidden-xs">Kadal Buntung</span>
+                                <span class="hidden-xs">@DIPO_INVESTAMA.Utils.SessionManager.name()</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
@@ -133,8 +133,8 @@
                                     <img src="~/Assets/user_dummy.jpg" class="img-circle" alt="User Image">
 
                                     <p>
-                                        Kadal Buntung - Web Developer
-                                        <small>Member since Nov. 2012</small>
+                                        @DIPO_INVESTAMA.Utils.SessionManager.name()
+                                        @*<small>Member since Nov. 2012</small>*@
                                     </p>
                                 </li>
                                 <!-- Menu Body -->
@@ -158,7 +158,7 @@
                                         <a href="#" class="btn btn-default btn-flat">Profile</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                        <a href="@Url.Action("Logout","Account")" class="btn btn-default btn-flat">Sign out</a>
                                     </div>
                                 </li>
                             </ul>
@@ -187,6 +187,7 @@
                         <ul class="treeview-menu">
                             <li class="active"><a href="@Url.Action("Index","Input")"><i class="fa fa-circle-o"></i> Input</a></li>
                             <li><a href="@Url.Action("Index","Output")"><i class="fa fa-circle-o"></i> Output</a></li>
+                            <li><a href="@Url.Action("Index","History")"><i class="fa fa-circle-o"></i> History</a></li>
                         </ul>
                     </li>
                     <li class="treeview">

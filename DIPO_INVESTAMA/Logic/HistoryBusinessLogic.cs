@@ -9,26 +9,26 @@ using System.Web;
 
 namespace DIPO_INVESTAMA.Logic
 {
-    public class OutputBusinessLogic
+    public class HistoryBusinessLogic
     {
         DIPO_INVESTAMAEntities _db = new DIPO_INVESTAMAEntities();
-        static OutputBusinessLogic outputBusinessLogic = null;
-        public static OutputBusinessLogic getInstance()
+        static HistoryBusinessLogic historyBusinessLogic = null;
+        public static HistoryBusinessLogic getInstance()
         {
-            if (outputBusinessLogic == null)
+            if (historyBusinessLogic == null)
             {
-                outputBusinessLogic = new OutputBusinessLogic();
-                return outputBusinessLogic;
+                historyBusinessLogic = new HistoryBusinessLogic();
+                return historyBusinessLogic;
             }
             else
             {
-                return outputBusinessLogic;
+                return historyBusinessLogic;
             }
         }
 
-        public List<OutputViewModels> TodaysJournal(OutputViewModels model)
+        public List<HistoryViewModels> TodaysJournal(HistoryViewModels model)
         {
-            List<OutputViewModels> list = new List<OutputViewModels>();
+            List<HistoryViewModels> list = new List<HistoryViewModels>();
 
             try
             {
@@ -39,10 +39,10 @@ namespace DIPO_INVESTAMA.Logic
                     startDate = Convert.ToDateTime(model.Date.Split('-')[0].Trim());
                     endDate = Convert.ToDateTime(model.Date.Split('-')[1].Trim());
                 }
-                var journalList = _db.sp_OutputJournal(SessionManager.userId(),  startDate, endDate,model.Account,model.BankAccount,model.SortBy);
+                var journalList = _db.sp_HistoryJournal(SessionManager.userId(),  startDate, endDate,model.Account,model.BankAccount,model.SortBy);
                 foreach (var item in journalList)
                 {
-                    model = new OutputViewModels();
+                    model = new HistoryViewModels();
                     DateTime? trxDate = item.TransactionDate;
                     string strTrxDate = trxDate.Value.ToString("dd MMM yyyy");
 
@@ -56,9 +56,6 @@ namespace DIPO_INVESTAMA.Logic
                     model.Balance = item.Balance.ToString();
                     model.Maker = item.Maker;
                     model.Department = item.DepartmentName;
-                    model.CheckedBy = item.CheckedBy;
-                    model.ApprovalBy = item.ApprovalBy;
-                    model.RejectedBy = item.RejectedBy;
                     list.Add(model);
                 }
                 //model.Date = string.Format("{0} - {1}", startDate, endDate);
@@ -88,21 +85,6 @@ namespace DIPO_INVESTAMA.Logic
             }
 
             return tbl;
-        }
-
-        public int Checked(string id)
-        {
-            return _db.sp_CheckedPettyCash(id,SessionManager.userId());
-        }
-
-        public int Approved(string id)
-        {
-            return _db.sp_ApprovedPettyCash(id, SessionManager.userId());
-        }
-
-        public int Rejected(string id)
-        {
-            return _db.sp_RejectedPettyCash(id, SessionManager.userId());
         }
     }
 }

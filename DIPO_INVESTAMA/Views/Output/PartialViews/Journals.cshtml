@@ -15,6 +15,12 @@
                             @Html.DisplayName("Date")
                         </th>
                         <th>
+                            @Html.DisplayName("Maker")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Department")
+                        </th>
+                        <th>
                             @Html.DisplayName("Account")
                         </th>
                         <th>
@@ -32,6 +38,8 @@
                         <th>
                             @Html.DisplayName("Balance")
                         </th>
+                        <th>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,6 +48,12 @@
                         <tr>
                             <td>
                                 @Html.DisplayFor(modelItem => Model.Content[i].Date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.Content[i].Maker)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.Content[i].Department)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => Model.Content[i].Account)
@@ -65,7 +79,75 @@
                                 {
                                     <span>@Convert.ToDecimal(Model.Content[i].Balance).ToString("#,##;[#,##];-")</span>
                                 }
+                            </td>
+                            <td>
+                                @if (Model.Content[i].CheckedBy == null && Model.Content[i].RejectedBy == null)
+                                {
+                                    <a style="cursor:pointer" value="loop" onclick="ShowModalCheck(@i)">
+                                        <i class="glyphicon glyphicon-ok"></i>
+                                    </a>
+                                    <div id="modalCheck_@i" class="modal fade" tabindex="-1" data-keyboard="false" data-backdrop="static">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content" style="width:700px;">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" style="float:left; width:100px; background-color:none"> <i class="glyphicon glyphicon-ok"></i> Check</h4>
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Do you really to checked ??
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a data-toggle="tooltip" title="Check" href="@Url.Action("Checked", "Output", new { id = Model.Content[i].PettyCashId })" class="btn btn-primary"> Check</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                else if (Model.Content[i].ApprovalBy == null && Model.Content[i].CheckedBy != null && Model.Content[i].RejectedBy == null)
+                                {
+                                    <a style="cursor:pointer" value="loop" onclick="ShowModalApprove(@i)">
+                                        <i class="glyphicon glyphicon-ok"></i>
+                                    </a>
+                                    <div id="modalApprove_@i" class="modal fade" tabindex="-1" data-keyboard="false" data-backdrop="static">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content" style="width:700px;">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" style="float:left; width:100px; background-color:none"> <i class="glyphicon glyphicon-ok"></i> Approve</h4>
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Do you really to approved ??
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a data-toggle="tooltip" title="Approve" href="@Url.Action("Approved", "Output", new { id = Model.Content[i].PettyCashId })" class="btn btn-primary"> Approve</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
 
+                                @if ((Model.Content[i].ApprovalBy == null || Model.Content[i].CheckedBy == null) && Model.Content[i].RejectedBy == null)
+                                {
+                                    <a style="cursor:pointer" value="loop" onclick="ShowModalApprove(@i)">
+                                        <i class="glyphicon glyphicon-remove"></i>
+                                    </a>
+                                    <div id="modalApprove_@i" class="modal fade" tabindex="-1" data-keyboard="false" data-backdrop="static">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content" style="width:700px;">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" style="float:left; width:100px; background-color:none"> <i class="glyphicon glyphicon-remove"></i> Reject</h4>
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Do you really to rejected ??
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a data-toggle="tooltip" title="Reject" href="@Url.Action("Rejected", "Output", new { id = Model.Content[i].PettyCashId })" class="btn btn-primary"> Reject</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
                             </td>
                         </tr>
                     }
@@ -75,4 +157,13 @@
         </div>
     </form>
 </div>
+<script>
+    function ShowModalCheck(idx) {
+        $("#modalCheck_" + idx).modal('show');
+    }
+
+    function ShowModalApprove(idx) {
+        $("#modalApprove_" + idx).modal('show');
+    }
+</script>
 

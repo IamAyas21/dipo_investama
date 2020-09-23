@@ -56,7 +56,7 @@ namespace DIPO_INVESTAMA.Logic
             DataTable tbl = new DataTable();
             tbl.Columns.Add("ID", typeof(string));
             tbl.Columns.Add("NAME", typeof(string));
-            foreach (var item in _db.sp_AccountDDL())
+            foreach (var item in _db.sp_AccountDetailsDDL())
             {
                 DataRow row = tbl.NewRow();
                 row["ID"] = item.ID;

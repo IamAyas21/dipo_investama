@@ -21,6 +21,14 @@ namespace DIPO_INVESTAMA.Entity
         public string Description { get; set; }
         public Nullable<decimal> Cash_In { get; set; }
         public Nullable<decimal> Cash_Out { get; set; }
+        public string Maker { get; set; }
+        public string DepartmentName { get; set; }
+        public Nullable<System.DateTime> CheckedAt { get; set; }
+        public string CheckedBy { get; set; }
+        public Nullable<System.DateTime> ApprovalAt { get; set; }
+        public string ApprovalBy { get; set; }
+        public Nullable<System.DateTime> RejectedAt { get; set; }
+        public string RejectedBy { get; set; }
         public Nullable<decimal> Balance { get; set; }
     }
 }

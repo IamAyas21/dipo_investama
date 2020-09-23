@@ -1,0 +1,29 @@
+Time: 23/09/2020 08:18:16 PM
+------------------------------------------------------------------------
+Message: An error occurred while executing the command definition. See the inner exception for details.
+StackTrace:    at System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   at System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.Execute(EntityCommand entityCommand, CommandBehavior behavior)
+   at System.Data.Entity.Core.EntityClient.EntityCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Entity.Core.EntityClient.EntityCommand.ExecuteNonQuery()
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunctionCommand(EntityCommand entityCommand)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass4b.<ExecuteFunction>b__4a()
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass4b.<ExecuteFunction>b__49()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction(String functionName, ObjectParameter[] parameters)
+   at DIPO_INVESTAMA.Entity.DIPO_INVESTAMAEntities.sp_InputJournal(Nullable`1 date, String account, String bankAccount, Nullable`1 amount, String description, String origin, String userId) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Entity\DIPO_INVESTAMA_DB.Context.cs:line 82
+   at DIPO_INVESTAMA.Logic.InputBusinessLogic.InputJournal(InputViewModels model) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Logic\InputBusinessLogic.cs:line 50
+Source: EntityFramework
+TargetSite: System.Data.Common.DbDataReader ExecuteStoreCommands(System.Data.Entity.Core.EntityClient.EntityCommand, System.Data.CommandBehavior)
+------------------------------------------------------------------------
+
+Time: 23/09/2020 08:36:23 PM
+------------------------------------------------------------------------
+Message: String was not recognized as a valid DateTime.
+StackTrace:    at System.DateTimeParse.Parse(String s, DateTimeFormatInfo dtfi, DateTimeStyles styles)
+   at System.Convert.ToDateTime(String value)
+   at DIPO_INVESTAMA.Logic.OutputBusinessLogic.TodaysJournal(OutputViewModels model)
+Source: mscorlib
+TargetSite: System.DateTime Parse(System.String, System.Globalization.DateTimeFormatInfo, System.Globalization.DateTimeStyles)
+------------------------------------------------------------------------
+
