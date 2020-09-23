@@ -30,6 +30,8 @@ namespace DIPO_INVESTAMA.Entity
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedAt { get; set; }
         public string UpdatedBy { get; set; }
+        public Nullable<System.DateTime> RejectedAt { get; set; }
+        public string RejectedBy { get; set; }
     
         public virtual AccountDetail AccountDetail { get; set; }
         public virtual BankFacility BankFacility { get; set; }

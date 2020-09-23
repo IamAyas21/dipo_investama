@@ -21,3 +21,16 @@ background: radial-gradient(circle, rgba(88,129,245,1) 0%, rgba(15,66,212,1) 100
 .body-main{
    margin: 0 40px;
 }
+
+.pad-top-box {
+padding-top: 10px;
+}
+
+.body-modal-content{
+    background: #001e6e;
+    color: white;
+}
+
+.body-close{
+color:white;
+}

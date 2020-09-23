@@ -26,37 +26,6 @@ namespace DIPO_INVESTAMA.Logic
             }
         }
 
-        public DataTable getAccountDDL()
-        {
-            DataTable tbl = new DataTable();
-            tbl.Columns.Add("ID", typeof(string));
-            tbl.Columns.Add("NAME", typeof(string));
-            foreach (var item in _db.sp_AccountDDL())
-            {
-                DataRow row = tbl.NewRow();
-                row["ID"] = item.ID;
-                row["NAME"] = item.NAME;
-                tbl.Rows.Add(row);
-            }
-
-            return tbl;
-        }
-
-        public DataTable getBankFacilityDDL()
-        {
-            DataTable tbl = new DataTable();
-            tbl.Columns.Add("ID", typeof(string));
-            tbl.Columns.Add("NAME", typeof(string));
-            foreach (var item in _db.sp_BankFacilityDDL())
-            {
-                DataRow row = tbl.NewRow();
-                row["ID"] = item.ID;
-                row["NAME"] = item.NAME;
-                tbl.Rows.Add(row);
-            }
-
-            return tbl;
-        }
 
         public int InputJournal(InputViewModels model)
         {

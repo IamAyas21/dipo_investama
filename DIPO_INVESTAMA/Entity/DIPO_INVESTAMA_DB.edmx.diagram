@@ -4,11 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="17dfe64e07314330b1a2087b48bf4409" Name="Diagram1">
-        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.Account" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.AccountDetail" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.Bank" Width="1.5" PointX="0.75" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.BankFacility" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
+      <Diagram DiagramId="1157bf4ac9394df49f125fe1c2969811" Name="Diagram1">
+        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.Account" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.AccountDetail" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.Bank" Width="1.5" PointX="0.75" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.BankFacility" Width="1.5" PointX="3" PointY="14.625" IsExpanded="true" />
         <EntityTypeShape EntityType="DIPO_INVESTAMAModel.Department" Width="1.5" PointX="3.75" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DIPO_INVESTAMAModel.Menu" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DIPO_INVESTAMAModel.MenuRestriction" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />

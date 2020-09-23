@@ -114,6 +114,8 @@
           <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
           <Property Name="UpdatedAt" Type="datetime" />
           <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="RejectedAt" Type="datetime" />
+          <Property Name="RejectedBy" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -159,6 +161,14 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           <Property Name="Description" Type="varchar" MaxLength="100" />
           <Property Name="Cash In" Type="money" />
           <Property Name="Cash Out" Type="money" />
+          <Property Name="Maker" Type="varchar" MaxLength="100" />
+          <Property Name="DepartmentName" Type="varchar" MaxLength="100" />
+          <Property Name="CheckedAt" Type="datetime" />
+          <Property Name="CheckedBy" Type="varchar" MaxLength="100" />
+          <Property Name="ApprovalAt" Type="datetime" />
+          <Property Name="ApprovalBy" Type="varchar" MaxLength="100" />
+          <Property Name="RejectedAt" Type="datetime" />
+          <Property Name="RejectedBy" Type="varchar" MaxLength="100" />
         </EntityType>
         <Association Name="FK_AccountDetail_Account">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
@@ -290,6 +300,10 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           <Parameter Name="AccountName" Type="varchar" Mode="In" />
           <Parameter Name="UpdatedBy" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="sp_ApprovedPettyCash" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PettyCashId" Type="varchar" Mode="In" />
+          <Parameter Name="UserId" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="sp_BankCreate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="bankName" Type="varchar" Mode="In" />
           <Parameter Name="accountNo" Type="varchar" Mode="In" />
@@ -328,6 +342,10 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           <Parameter Name="accountNo" Type="varchar" Mode="In" />
           <Parameter Name="userId" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="sp_CheckedPettyCash" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PettyCashId" Type="varchar" Mode="In" />
+          <Parameter Name="UserId" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="sp_DepartmentCreate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="DepartmentName" Type="varchar" Mode="In" />
           <Parameter Name="CreatedBy" Type="varchar" Mode="In" />
@@ -341,6 +359,14 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           <Parameter Name="DepartmentId" Type="varchar" Mode="In" />
           <Parameter Name="DepartmentName" Type="varchar" Mode="In" />
           <Parameter Name="UpdatedBy" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_HistoryJournal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userId" Type="varchar" Mode="In" />
+          <Parameter Name="startDate" Type="datetime" Mode="In" />
+          <Parameter Name="endDate" Type="datetime" Mode="In" />
+          <Parameter Name="accountDetailId" Type="varchar" Mode="In" />
+          <Parameter Name="bankFacilityId" Type="varchar" Mode="In" />
+          <Parameter Name="sortBy" Type="varchar" Mode="In" />
         </Function>
         <Function Name="sp_InputJournal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="date" Type="datetime" Mode="In" />
@@ -376,6 +402,10 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           <Parameter Name="accountDetailId" Type="varchar" Mode="In" />
           <Parameter Name="bankFacilityId" Type="varchar" Mode="In" />
           <Parameter Name="sortBy" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_RejectedPettyCash" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PettyCashId" Type="varchar" Mode="In" />
+          <Parameter Name="UserId" Type="varchar" Mode="In" />
         </Function>
         <Function Name="sp_RoleCreate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="RoleName" Type="varchar" Mode="In" />
@@ -445,7 +475,15 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
     [vw_PettyCash].[FacilityName] AS [FacilityName], 
     [vw_PettyCash].[Description] AS [Description], 
     [vw_PettyCash].[Cash In] AS [Cash In], 
-    [vw_PettyCash].[Cash Out] AS [Cash Out]
+    [vw_PettyCash].[Cash Out] AS [Cash Out], 
+    [vw_PettyCash].[Maker] AS [Maker], 
+    [vw_PettyCash].[DepartmentName] AS [DepartmentName], 
+    [vw_PettyCash].[CheckedAt] AS [CheckedAt], 
+    [vw_PettyCash].[CheckedBy] AS [CheckedBy], 
+    [vw_PettyCash].[ApprovalAt] AS [ApprovalAt], 
+    [vw_PettyCash].[ApprovalBy] AS [ApprovalBy], 
+    [vw_PettyCash].[RejectedAt] AS [RejectedAt], 
+    [vw_PettyCash].[RejectedBy] AS [RejectedBy]
     FROM [dbo].[vw_PettyCash] AS [vw_PettyCash]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_AccountDetail_Account" Association="Self.FK_AccountDetail_Account">
@@ -604,6 +642,8 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
           <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RejectedAt" Type="DateTime" Precision="3" />
+          <Property Name="RejectedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="AccountDetail" Relationship="Self.FK_PettyCash_AccountDetail" FromRole="PettyCash" ToRole="AccountDetail" />
           <NavigationProperty Name="BankFacility" Relationship="Self.FK_PettyCash_BankFacility" FromRole="PettyCash" ToRole="BankFacility" />
         </EntityType>
@@ -653,6 +693,14 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Cash_In" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="Cash_Out" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Maker" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DepartmentName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CheckedAt" Type="DateTime" Precision="3" />
+          <Property Name="CheckedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ApprovalAt" Type="DateTime" Precision="3" />
+          <Property Name="ApprovalBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RejectedAt" Type="DateTime" Precision="3" />
+          <Property Name="RejectedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_AccountDetail_Account">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
@@ -794,46 +842,49 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
             <End Role="Role" EntitySet="Roles" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
+          <FunctionImport Name="sp_AccountCreate">
+            <Parameter Name="AccountNo" Mode="In" Type="String" />
+            <Parameter Name="AccountName" Mode="In" Type="String" />
+            <Parameter Name="CreatedBy" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="sp_AccountDDL" ReturnType="Collection(DIPO_INVESTAMAModel.sp_AccountDDL_Result)" />
-          <FunctionImport Name="sp_BankFacilityDDL" ReturnType="Collection(DIPO_INVESTAMAModel.sp_BankFacilityDDL_Result)" />
-          <FunctionImport Name="sp_InputJournal">
-            <Parameter Name="date" Mode="In" Type="DateTime" />
-            <Parameter Name="account" Mode="In" Type="String" />
-            <Parameter Name="bankAccount" Mode="In" Type="String" />
-            <Parameter Name="Amount" Mode="In" Type="Decimal" />
-            <Parameter Name="description" Mode="In" Type="String" />
-            <Parameter Name="Origin" Mode="In" Type="String" />
-            <Parameter Name="userId" Mode="In" Type="String" />
+          <FunctionImport Name="sp_AccountDelete">
+          <Parameter Name="AccountId" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_OutputJournal" ReturnType="Collection(DIPO_INVESTAMAModel.sp_OutputJournal_Result)">
-            <Parameter Name="userId" Mode="In" Type="String" />
-            <Parameter Name="startDate" Mode="In" Type="DateTime" />
-            <Parameter Name="endDate" Mode="In" Type="DateTime" />
-            <Parameter Name="accountDetailId" Mode="In" Type="String" />
-            <Parameter Name="bankFacilityId" Mode="In" Type="String" />
-            <Parameter Name="sortBy" Mode="In" Type="String" />
+          <FunctionImport Name="sp_AccountDetailCreate">
+            <Parameter Name="No" Mode="In" Type="String" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="AccountId" Mode="In" Type="String" />
+            <Parameter Name="CreatedBy" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_TodaysJournal" ReturnType="Collection(DIPO_INVESTAMAModel.sp_TodaysJournal_Result)" />
-          <FunctionImport Name="sp_UserLogin" ReturnType="Collection(DIPO_INVESTAMAModel.sp_UserLogin_Result)">
-            <Parameter Name="username" Mode="In" Type="String" />
-            <Parameter Name="password" Mode="In" Type="String" />
+          <FunctionImport Name="sp_AccountDetailDelete">
+          <Parameter Name="AccountDetailId" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_BankSelect" ReturnType="Collection(DIPO_INVESTAMAModel.sp_BankSelect_Result)" />
-          <FunctionImport Name="sp_BankUpdate">
-            <Parameter Name="bankId" Mode="In" Type="String" />
-            <Parameter Name="bankName" Mode="In" Type="String" />
-            <Parameter Name="accountNo" Mode="In" Type="String" />
-            <Parameter Name="userId" Mode="In" Type="String" />
+          <FunctionImport Name="sp_AccountDetailsDDL" ReturnType="Collection(DIPO_INVESTAMAModel.sp_AccountDetailsDDL_Result)" />
+          <FunctionImport Name="sp_AccountDetailSelect" ReturnType="Collection(DIPO_INVESTAMAModel.sp_AccountDetailSelect_Result)" />
+          <FunctionImport Name="sp_AccountDetailUpdate">
+            <Parameter Name="AccountDetailId" Mode="In" Type="String" />
+            <Parameter Name="No" Mode="In" Type="String" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="AccountId" Mode="In" Type="String" />
+            <Parameter Name="UpdatedBy" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_AccountSelect" ReturnType="Collection(DIPO_INVESTAMAModel.sp_AccountSelect_Result)" />
+          <FunctionImport Name="sp_AccountUpdate">
+            <Parameter Name="AccountId" Mode="In" Type="String" />
+            <Parameter Name="AccountNo" Mode="In" Type="String" />
+            <Parameter Name="AccountName" Mode="In" Type="String" />
+            <Parameter Name="UpdatedBy" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_BankCreate">
             <Parameter Name="bankName" Mode="In" Type="String" />
             <Parameter Name="accountNo" Mode="In" Type="String" />
             <Parameter Name="userId" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_BankDDL" ReturnType="Collection(DIPO_INVESTAMAModel.sp_BankDDL_Result)" />
           <FunctionImport Name="sp_BankDelete">
           <Parameter Name="bankId" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_BankFacilitySelect" ReturnType="Collection(DIPO_INVESTAMAModel.sp_BankFacilitySelect_Result)" />
           <FunctionImport Name="sp_BankFacilityCreate">
             <Parameter Name="FacilityName" Mode="In" Type="String" />
             <Parameter Name="Celling" Mode="In" Type="Decimal" />
@@ -842,9 +893,11 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
             <Parameter Name="CreatedAt" Mode="In" Type="DateTime" />
             <Parameter Name="CreatedBy" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_BankFacilityDDL" ReturnType="Collection(DIPO_INVESTAMAModel.sp_BankFacilityDDL_Result)" />
           <FunctionImport Name="sp_BankFacilityDelete">
           <Parameter Name="BankFacilityId" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_BankFacilitySelect" ReturnType="Collection(DIPO_INVESTAMAModel.sp_BankFacilitySelect_Result)" />
           <FunctionImport Name="sp_BankFacilityUpdate">
             <Parameter Name="BankFacilityId" Mode="In" Type="String" />
             <Parameter Name="FacilityName" Mode="In" Type="String" />
@@ -854,44 +907,18 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
             <Parameter Name="UpdatedAt" Mode="In" Type="DateTime" />
             <Parameter Name="UpdatedBy" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_BankDDL" ReturnType="Collection(DIPO_INVESTAMAModel.sp_BankDDL_Result)" />
-          <FunctionImport Name="sp_AccountCreate">
-            <Parameter Name="AccountNo" Mode="In" Type="String" />
-            <Parameter Name="AccountName" Mode="In" Type="String" />
-            <Parameter Name="CreatedBy" Mode="In" Type="String" />
+          <FunctionImport Name="sp_BankSelect" ReturnType="Collection(DIPO_INVESTAMAModel.sp_BankSelect_Result)" />
+          <FunctionImport Name="sp_BankUpdate">
+            <Parameter Name="bankId" Mode="In" Type="String" />
+            <Parameter Name="bankName" Mode="In" Type="String" />
+            <Parameter Name="accountNo" Mode="In" Type="String" />
+            <Parameter Name="userId" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_AccountDelete">
-          <Parameter Name="AccountId" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_AccountSelect" ReturnType="Collection(DIPO_INVESTAMAModel.sp_AccountSelect_Result)" />
-          <FunctionImport Name="sp_AccountUpdate">
-            <Parameter Name="AccountId" Mode="In" Type="String" />
-            <Parameter Name="AccountNo" Mode="In" Type="String" />
-            <Parameter Name="AccountName" Mode="In" Type="String" />
-            <Parameter Name="UpdatedBy" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_AccountDetailCreate">
-            <Parameter Name="No" Mode="In" Type="String" />
-            <Parameter Name="Name" Mode="In" Type="String" />
-            <Parameter Name="AccountId" Mode="In" Type="String" />
-            <Parameter Name="CreatedBy" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_AccountDetailSelect" ReturnType="Collection(DIPO_INVESTAMAModel.sp_AccountDetailSelect_Result)" />
-          <FunctionImport Name="sp_AccountDetailUpdate">
-            <Parameter Name="AccountDetailId" Mode="In" Type="String" />
-            <Parameter Name="No" Mode="In" Type="String" />
-            <Parameter Name="Name" Mode="In" Type="String" />
-            <Parameter Name="AccountId" Mode="In" Type="String" />
-            <Parameter Name="UpdatedBy" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_AccountDetailDelete">
-          <Parameter Name="AccountDetailId" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_AccountDetailsDDL" ReturnType="Collection(DIPO_INVESTAMAModel.sp_AccountDetailsDDL_Result)" />
           <FunctionImport Name="sp_DepartmentCreate">
             <Parameter Name="DepartmentName" Mode="In" Type="String" />
             <Parameter Name="CreatedBy" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_DepartmentDDL" ReturnType="Collection(DIPO_INVESTAMAModel.sp_DepartmentDDL_Result)" />
           <FunctionImport Name="sp_DepartmentDelete">
           <Parameter Name="DepartmentId" Mode="In" Type="String" />
           </FunctionImport>
@@ -899,6 +926,33 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           <FunctionImport Name="sp_DepartmentUpdate">
             <Parameter Name="DepartmentId" Mode="In" Type="String" />
             <Parameter Name="DepartmentName" Mode="In" Type="String" />
+            <Parameter Name="UpdatedBy" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_InputJournal">
+            <Parameter Name="date" Mode="In" Type="DateTime" />
+            <Parameter Name="account" Mode="In" Type="String" />
+            <Parameter Name="bankAccount" Mode="In" Type="String" />
+            <Parameter Name="Amount" Mode="In" Type="Decimal" />
+            <Parameter Name="description" Mode="In" Type="String" />
+            <Parameter Name="Origin" Mode="In" Type="String" />
+            <Parameter Name="userId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_MenuCreate">
+            <Parameter Name="MenuId" Mode="In" Type="String" />
+            <Parameter Name="RoleId" Mode="In" Type="String" />
+            <Parameter Name="CreatedBy" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_MenuDDL" ReturnType="Collection(DIPO_INVESTAMAModel.sp_MenuDDL_Result)">
+          <Parameter Name="RoleId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_MenuDelete">
+          <Parameter Name="RestrictionId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_MenuRestrictionSelect" ReturnType="Collection(DIPO_INVESTAMAModel.sp_MenuRestrictionSelect_Result)" />
+          <FunctionImport Name="sp_MenuUpdate">
+            <Parameter Name="RestrictionId" Mode="In" Type="String" />
+            <Parameter Name="MenuId" Mode="In" Type="String" />
+            <Parameter Name="RoleId" Mode="In" Type="String" />
             <Parameter Name="UpdatedBy" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_RoleCreate">
@@ -909,6 +963,7 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
             <Parameter Name="SuperUser" Mode="In" Type="String" />
             <Parameter Name="CreatedBy" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_RoleDDL" ReturnType="Collection(DIPO_INVESTAMAModel.sp_RoleDDL_Result)" />
           <FunctionImport Name="sp_RoleDelete">
           <Parameter Name="RoleId" Mode="In" Type="String" />
           </FunctionImport>
@@ -922,6 +977,7 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
             <Parameter Name="SuperUser" Mode="In" Type="String" />
             <Parameter Name="UpdatedBy" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_TodaysJournal" ReturnType="Collection(DIPO_INVESTAMAModel.sp_TodaysJournal_Result)" />
           <FunctionImport Name="sp_UserCreate">
             <Parameter Name="UserName" Mode="In" Type="String" />
             <Parameter Name="Password" Mode="In" Type="String" />
@@ -933,6 +989,10 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           <FunctionImport Name="sp_UserDelete">
           <Parameter Name="UserId" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_UserLogin" ReturnType="Collection(DIPO_INVESTAMAModel.sp_UserLogin_Result)">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="sp_UserSelect" ReturnType="Collection(DIPO_INVESTAMAModel.sp_UserSelect_Result)" />
           <FunctionImport Name="sp_UserUpdate">
             <Parameter Name="UserId" Mode="In" Type="String" />
@@ -943,45 +1003,135 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
             <Parameter Name="DepartmentId" Mode="In" Type="String" />
             <Parameter Name="UpdatedBy" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_DepartmentDDL" ReturnType="Collection(DIPO_INVESTAMAModel.sp_DepartmentDDL_Result)" />
-          <FunctionImport Name="sp_RoleDDL" ReturnType="Collection(DIPO_INVESTAMAModel.sp_RoleDDL_Result)" />
-          <FunctionImport Name="sp_MenuCreate">
-            <Parameter Name="MenuId" Mode="In" Type="String" />
-            <Parameter Name="RoleId" Mode="In" Type="String" />
-            <Parameter Name="CreatedBy" Mode="In" Type="String" />
+          <FunctionImport Name="sp_OutputJournal" ReturnType="Collection(DIPO_INVESTAMAModel.sp_OutputJournal_Result)">
+            <Parameter Name="userId" Mode="In" Type="String" />
+            <Parameter Name="startDate" Mode="In" Type="DateTime" />
+            <Parameter Name="endDate" Mode="In" Type="DateTime" />
+            <Parameter Name="accountDetailId" Mode="In" Type="String" />
+            <Parameter Name="bankFacilityId" Mode="In" Type="String" />
+            <Parameter Name="sortBy" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_MenuDDL" ReturnType="Collection(DIPO_INVESTAMAModel.sp_MenuDDL_Result)">
-            <Parameter Name="RoleId" Mode="In" Type="String" />
+          <FunctionImport Name="sp_ApprovedPettyCash">
+            <Parameter Name="PettyCashId" Mode="In" Type="String" />
+            <Parameter Name="UserId" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_MenuDelete">
-            <Parameter Name="RestrictionId" Mode="In" Type="String" />
+          <FunctionImport Name="sp_CheckedPettyCash">
+            <Parameter Name="PettyCashId" Mode="In" Type="String" />
+            <Parameter Name="UserId" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_MenuRestrictionSelect" ReturnType="Collection(DIPO_INVESTAMAModel.sp_MenuRestrictionSelect_Result)" />
-          <FunctionImport Name="sp_MenuUpdate">
-            <Parameter Name="RestrictionId" Mode="In" Type="String" />
-            <Parameter Name="MenuId" Mode="In" Type="String" />
-            <Parameter Name="RoleId" Mode="In" Type="String" />
-            <Parameter Name="UpdatedBy" Mode="In" Type="String" />
+          <FunctionImport Name="sp_RejectedPettyCash">
+            <Parameter Name="PettyCashId" Mode="In" Type="String" />
+            <Parameter Name="UserId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_HistoryJournal" ReturnType="Collection(DIPO_INVESTAMAModel.sp_HistoryJournal_Result)">
+            <Parameter Name="userId" Mode="In" Type="String" />
+            <Parameter Name="startDate" Mode="In" Type="DateTime" />
+            <Parameter Name="endDate" Mode="In" Type="DateTime" />
+            <Parameter Name="accountDetailId" Mode="In" Type="String" />
+            <Parameter Name="bankFacilityId" Mode="In" Type="String" />
+            <Parameter Name="sortBy" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_AccountDDL_Result">
           <Property Type="String" Name="ID" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="NAME" Nullable="true" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="sp_AccountDetailsDDL_Result">
+          <Property Type="String" Name="ID" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="NAME" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_AccountDetailSelect_Result">
+          <Property Type="String" Name="AccountDetailId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="No" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="AccountId" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="UpdatedAt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="AccountNo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="AccountName" Nullable="true" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="sp_AccountSelect_Result">
+          <Property Type="String" Name="AccountId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="AccountNo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="AccountName" Nullable="true" MaxLength="150" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="UpdatedAt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_BankDDL_Result">
+          <Property Type="String" Name="ID" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="NAME" Nullable="true" MaxLength="1000" />
         </ComplexType>
         <ComplexType Name="sp_BankFacilityDDL_Result">
           <Property Type="String" Name="ID" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="NAME" Nullable="true" MaxLength="100" />
         </ComplexType>
-        <ComplexType Name="sp_OutputJournal_Result">
-          <Property Type="Int64" Name="No" Nullable="true" />
-          <Property Type="String" Name="PettyCashId" Nullable="false" MaxLength="50" />
-          <Property Type="DateTime" Name="TransactionDate" Nullable="true" Precision="23" />
-          <Property Type="String" Name="AccountName" Nullable="true" MaxLength="100" />
+        <ComplexType Name="sp_BankFacilitySelect_Result">
+          <Property Type="String" Name="BankFacilityId" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="FacilityName" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="Description" Nullable="true" MaxLength="100" />
-          <Property Type="Decimal" Name="Cash_In" Nullable="true" Precision="19" />
-          <Property Type="Decimal" Name="Cash_Out" Nullable="true" Precision="19" />
-          <Property Type="Decimal" Name="Balance" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="Celling" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="CostMoney" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="BankId" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="UpdatedAt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BankName" Nullable="true" MaxLength="1000" />
+        </ComplexType>
+        <ComplexType Name="sp_BankSelect_Result">
+          <Property Type="String" Name="BankId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="BankName" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="AccountNo" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="UpdatedAt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_DepartmentDDL_Result">
+          <Property Type="String" Name="ID" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="NAME" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_DepartmentSelect_Result">
+          <Property Type="String" Name="DepartmentId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="UpdatedAt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_MenuDDL_Result">
+          <Property Type="String" Name="ID" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="NAME" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_MenuRestrictionSelect_Result">
+          <Property Type="String" Name="RestrictionId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="MenuId" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="RoleId" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="UpdatedAt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MenuName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="RoleName" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_RoleDDL_Result">
+          <Property Type="String" Name="ID" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="NAME" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_RoleSelect_Result">
+          <Property Type="String" Name="RoleId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="RoleName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Maker" Nullable="false" MaxLength="3" />
+          <Property Type="String" Name="Checker" Nullable="false" MaxLength="3" />
+          <Property Type="String" Name="Approval" Nullable="false" MaxLength="3" />
+          <Property Type="String" Name="SuperUser" Nullable="false" MaxLength="3" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="UpdatedAt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="sp_TodaysJournal_Result">
           <Property Type="DateTime" Name="TransactionDate" Nullable="true" Precision="23" />
@@ -1005,76 +1155,6 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           <Property Type="DateTime" Name="UpdatedAt" Nullable="true" Precision="23" />
           <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
         </ComplexType>
-        <ComplexType Name="sp_BankSelect_Result">
-          <Property Type="String" Name="BankId" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="BankName" Nullable="true" MaxLength="1000" />
-          <Property Type="String" Name="AccountNo" Nullable="true" MaxLength="100" />
-          <Property Type="DateTime" Name="CreatedAt" Nullable="true" Precision="23" />
-          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
-          <Property Type="DateTime" Name="UpdatedAt" Nullable="true" Precision="23" />
-          <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
-        </ComplexType>
-        <ComplexType Name="sp_BankFacilitySelect_Result">
-          <Property Type="String" Name="BankFacilityId" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="FacilityName" Nullable="true" MaxLength="100" />
-          <Property Type="Decimal" Name="Celling" Nullable="true" Precision="19" />
-          <Property Type="Decimal" Name="CostMoney" Nullable="true" Precision="18" Scale="0" />
-          <Property Type="String" Name="BankId" Nullable="true" MaxLength="50" />
-          <Property Type="DateTime" Name="CreatedAt" Nullable="true" Precision="23" />
-          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
-          <Property Type="DateTime" Name="UpdatedAt" Nullable="true" Precision="23" />
-          <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="BankName" Nullable="true" MaxLength="1000" />
-        </ComplexType>
-        <ComplexType Name="sp_BankDDL_Result">
-          <Property Type="String" Name="ID" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="NAME" Nullable="true" MaxLength="1000" />
-        </ComplexType>
-        <ComplexType Name="sp_AccountSelect_Result">
-          <Property Type="String" Name="AccountId" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="AccountNo" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="AccountName" Nullable="true" MaxLength="150" />
-          <Property Type="DateTime" Name="CreatedAt" Nullable="true" Precision="23" />
-          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
-          <Property Type="DateTime" Name="UpdatedAt" Nullable="true" Precision="23" />
-          <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
-        </ComplexType>
-        <ComplexType Name="sp_AccountDetailSelect_Result">
-          <Property Type="String" Name="AccountDetailId" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="No" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="AccountId" Nullable="true" MaxLength="50" />
-          <Property Type="DateTime" Name="CreatedAt" Nullable="true" Precision="23" />
-          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
-          <Property Type="DateTime" Name="UpdatedAt" Nullable="true" Precision="23" />
-          <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="AccountNo" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="AccountName" Nullable="true" MaxLength="150" />
-        </ComplexType>
-        <ComplexType Name="sp_AccountDetailsDDL_Result">
-          <Property Type="String" Name="ID" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="NAME" Nullable="true" MaxLength="100" />
-        </ComplexType>
-        <ComplexType Name="sp_DepartmentSelect_Result">
-          <Property Type="String" Name="DepartmentId" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="100" />
-          <Property Type="DateTime" Name="CreatedAt" Nullable="true" Precision="23" />
-          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
-          <Property Type="DateTime" Name="UpdatedAt" Nullable="true" Precision="23" />
-          <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
-        </ComplexType>
-        <ComplexType Name="sp_RoleSelect_Result">
-          <Property Type="String" Name="RoleId" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="RoleName" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Maker" Nullable="true" MaxLength="1" />
-          <Property Type="String" Name="Checker" Nullable="true" MaxLength="1" />
-          <Property Type="String" Name="Approval" Nullable="true" MaxLength="1" />
-          <Property Type="String" Name="SuperUser" Nullable="true" MaxLength="1" />
-          <Property Type="DateTime" Name="CreatedAt" Nullable="true" Precision="23" />
-          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
-          <Property Type="DateTime" Name="UpdatedAt" Nullable="true" Precision="23" />
-          <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
-        </ComplexType>
         <ComplexType Name="sp_UserSelect_Result">
           <Property Type="String" Name="UserId" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
@@ -1089,28 +1169,43 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           <Property Type="String" Name="RoleName" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="100" />
         </ComplexType>
-        <ComplexType Name="sp_DepartmentDDL_Result">
-          <Property Type="String" Name="ID" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="NAME" Nullable="true" MaxLength="100" />
+        <ComplexType Name="sp_OutputJournal_Result">
+          <Property Type="Int64" Name="No" Nullable="true" />
+          <Property Type="String" Name="PettyCashId" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="TransactionDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="AccountName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="FacilityName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="Cash_In" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="Cash_Out" Nullable="true" Precision="19" />
+          <Property Type="String" Name="Maker" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="CheckedAt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CheckedBy" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="ApprovalAt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ApprovalBy" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="RejectedAt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="RejectedBy" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="Balance" Nullable="true" Precision="19" />
         </ComplexType>
-        <ComplexType Name="sp_RoleDDL_Result">
-          <Property Type="String" Name="ID" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="NAME" Nullable="true" MaxLength="50" />
-        </ComplexType>
-        <ComplexType Name="sp_MenuDDL_Result">
-          <Property Type="String" Name="ID" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="NAME" Nullable="true" MaxLength="50" />
-        </ComplexType>
-        <ComplexType Name="sp_MenuRestrictionSelect_Result">
-          <Property Type="String" Name="RestrictionId" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="MenuId" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="RoleId" Nullable="true" MaxLength="50" />
-          <Property Type="DateTime" Name="CreatedAt" Nullable="true" Precision="23" />
-          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
-          <Property Type="DateTime" Name="UpdatedAt" Nullable="true" Precision="23" />
-          <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="MenuName" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="RoleName" Nullable="true" MaxLength="50" />
+        <ComplexType Name="sp_HistoryJournal_Result">
+          <Property Type="Int64" Name="No" Nullable="true" />
+          <Property Type="String" Name="PettyCashId" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="TransactionDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="AccountName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="FacilityName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="Cash_In" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="Cash_Out" Nullable="true" Precision="19" />
+          <Property Type="String" Name="Maker" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="CheckedAt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CheckedBy" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="ApprovalAt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ApprovalBy" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="RejectedAt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="RejectedBy" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="Balance" Nullable="true" Precision="19" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1233,6 +1328,8 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="RejectedAt" ColumnName="RejectedAt" />
+                <ScalarProperty Name="RejectedBy" ColumnName="RejectedBy" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1279,9 +1376,18 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Cash_In" ColumnName="Cash In" />
                 <ScalarProperty Name="Cash_Out" ColumnName="Cash Out" />
+                <ScalarProperty Name="Maker" ColumnName="Maker" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="CheckedAt" ColumnName="CheckedAt" />
+                <ScalarProperty Name="CheckedBy" ColumnName="CheckedBy" />
+                <ScalarProperty Name="ApprovalAt" ColumnName="ApprovalAt" />
+                <ScalarProperty Name="ApprovalBy" ColumnName="ApprovalBy" />
+                <ScalarProperty Name="RejectedAt" ColumnName="RejectedAt" />
+                <ScalarProperty Name="RejectedBy" ColumnName="RejectedBy" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_AccountCreate" FunctionName="DIPO_INVESTAMAModel.Store.sp_AccountCreate" />
           <FunctionImportMapping FunctionImportName="sp_AccountDDL" FunctionName="DIPO_INVESTAMAModel.Store.sp_AccountDDL">
             <ResultMapping>
               <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_AccountDDL_Result">
@@ -1290,120 +1396,17 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_BankFacilityDDL" FunctionName="DIPO_INVESTAMAModel.Store.sp_BankFacilityDDL">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_BankFacilityDDL_Result">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="NAME" ColumnName="NAME" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_InputJournal" FunctionName="DIPO_INVESTAMAModel.Store.sp_InputJournal" />
-          <FunctionImportMapping FunctionImportName="sp_OutputJournal" FunctionName="DIPO_INVESTAMAModel.Store.sp_OutputJournal">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_OutputJournal_Result">
-                <ScalarProperty Name="No" ColumnName="No" />
-                <ScalarProperty Name="PettyCashId" ColumnName="PettyCashId" />
-                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
-                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
-                <ScalarProperty Name="FacilityName" ColumnName="FacilityName" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Cash_In" ColumnName="Cash In" />
-                <ScalarProperty Name="Cash_Out" ColumnName="Cash Out" />
-                <ScalarProperty Name="Balance" ColumnName="Balance" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_TodaysJournal" FunctionName="DIPO_INVESTAMAModel.Store.sp_TodaysJournal">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_TodaysJournal_Result">
-                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
-                <ScalarProperty Name="AccountDetailId" ColumnName="AccountDetailId" />
-                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
-                <ScalarProperty Name="BankFacilityId" ColumnName="BankFacilityId" />
-                <ScalarProperty Name="FacilityName" ColumnName="FacilityName" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Origin" ColumnName="Origin" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_UserLogin" FunctionName="DIPO_INVESTAMAModel.Store.sp_UserLogin">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_UserLogin_Result">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_BankSelect" FunctionName="DIPO_INVESTAMAModel.Store.sp_BankSelect">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_BankSelect_Result">
-                <ScalarProperty Name="BankId" ColumnName="BankId" />
-                <ScalarProperty Name="BankName" ColumnName="BankName" />
-                <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_BankUpdate" FunctionName="DIPO_INVESTAMAModel.Store.sp_BankUpdate" />
-          <FunctionImportMapping FunctionImportName="sp_BankCreate" FunctionName="DIPO_INVESTAMAModel.Store.sp_BankCreate" />
-          <FunctionImportMapping FunctionImportName="sp_BankDelete" FunctionName="DIPO_INVESTAMAModel.Store.sp_BankDelete" />
-          <FunctionImportMapping FunctionImportName="sp_BankFacilitySelect" FunctionName="DIPO_INVESTAMAModel.Store.sp_BankFacilitySelect">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_BankFacilitySelect_Result">
-                <ScalarProperty Name="BankFacilityId" ColumnName="BankFacilityId" />
-                <ScalarProperty Name="FacilityName" ColumnName="FacilityName" />
-                <ScalarProperty Name="Celling" ColumnName="Celling" />
-                <ScalarProperty Name="CostMoney" ColumnName="CostMoney" />
-                <ScalarProperty Name="BankId" ColumnName="BankId" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="BankName" ColumnName="BankName" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_BankFacilityCreate" FunctionName="DIPO_INVESTAMAModel.Store.sp_BankFacilityCreate" />
-          <FunctionImportMapping FunctionImportName="sp_BankFacilityDelete" FunctionName="DIPO_INVESTAMAModel.Store.sp_BankFacilityDelete" />
-          <FunctionImportMapping FunctionImportName="sp_BankFacilityUpdate" FunctionName="DIPO_INVESTAMAModel.Store.sp_BankFacilityUpdate" />
-          <FunctionImportMapping FunctionImportName="sp_BankDDL" FunctionName="DIPO_INVESTAMAModel.Store.sp_BankDDL">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_BankDDL_Result">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="NAME" ColumnName="NAME" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_AccountCreate" FunctionName="DIPO_INVESTAMAModel.Store.sp_AccountCreate" />
           <FunctionImportMapping FunctionImportName="sp_AccountDelete" FunctionName="DIPO_INVESTAMAModel.Store.sp_AccountDelete" />
-          <FunctionImportMapping FunctionImportName="sp_AccountSelect" FunctionName="DIPO_INVESTAMAModel.Store.sp_AccountSelect">
+          <FunctionImportMapping FunctionImportName="sp_AccountDetailCreate" FunctionName="DIPO_INVESTAMAModel.Store.sp_AccountDetailCreate" />
+          <FunctionImportMapping FunctionImportName="sp_AccountDetailDelete" FunctionName="DIPO_INVESTAMAModel.Store.sp_AccountDetailDelete" />
+          <FunctionImportMapping FunctionImportName="sp_AccountDetailsDDL" FunctionName="DIPO_INVESTAMAModel.Store.sp_AccountDetailsDDL">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_AccountSelect_Result">
-                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
-                <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
-                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_AccountDetailsDDL_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_AccountUpdate" FunctionName="DIPO_INVESTAMAModel.Store.sp_AccountUpdate" />
-          <FunctionImportMapping FunctionImportName="sp_AccountDetailCreate" FunctionName="DIPO_INVESTAMAModel.Store.sp_AccountDetailCreate" />
           <FunctionImportMapping FunctionImportName="sp_AccountDetailSelect" FunctionName="DIPO_INVESTAMAModel.Store.sp_AccountDetailSelect">
             <ResultMapping>
               <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_AccountDetailSelect_Result">
@@ -1421,16 +1424,80 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_AccountDetailUpdate" FunctionName="DIPO_INVESTAMAModel.Store.sp_AccountDetailUpdate" />
-          <FunctionImportMapping FunctionImportName="sp_AccountDetailDelete" FunctionName="DIPO_INVESTAMAModel.Store.sp_AccountDetailDelete" />
-          <FunctionImportMapping FunctionImportName="sp_AccountDetailsDDL" FunctionName="DIPO_INVESTAMAModel.Store.sp_AccountDetailsDDL">
+          <FunctionImportMapping FunctionImportName="sp_AccountSelect" FunctionName="DIPO_INVESTAMAModel.Store.sp_AccountSelect">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_AccountDetailsDDL_Result">
+              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_AccountSelect_Result">
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_AccountUpdate" FunctionName="DIPO_INVESTAMAModel.Store.sp_AccountUpdate" />
+          <FunctionImportMapping FunctionImportName="sp_BankCreate" FunctionName="DIPO_INVESTAMAModel.Store.sp_BankCreate" />
+          <FunctionImportMapping FunctionImportName="sp_BankDDL" FunctionName="DIPO_INVESTAMAModel.Store.sp_BankDDL">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_BankDDL_Result">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="NAME" ColumnName="NAME" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_BankDelete" FunctionName="DIPO_INVESTAMAModel.Store.sp_BankDelete" />
+          <FunctionImportMapping FunctionImportName="sp_BankFacilityCreate" FunctionName="DIPO_INVESTAMAModel.Store.sp_BankFacilityCreate" />
+          <FunctionImportMapping FunctionImportName="sp_BankFacilityDDL" FunctionName="DIPO_INVESTAMAModel.Store.sp_BankFacilityDDL">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_BankFacilityDDL_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_BankFacilityDelete" FunctionName="DIPO_INVESTAMAModel.Store.sp_BankFacilityDelete" />
+          <FunctionImportMapping FunctionImportName="sp_BankFacilitySelect" FunctionName="DIPO_INVESTAMAModel.Store.sp_BankFacilitySelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_BankFacilitySelect_Result">
+                <ScalarProperty Name="BankFacilityId" ColumnName="BankFacilityId" />
+                <ScalarProperty Name="FacilityName" ColumnName="FacilityName" />
+                <ScalarProperty Name="Celling" ColumnName="Celling" />
+                <ScalarProperty Name="CostMoney" ColumnName="CostMoney" />
+                <ScalarProperty Name="BankId" ColumnName="BankId" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_BankFacilityUpdate" FunctionName="DIPO_INVESTAMAModel.Store.sp_BankFacilityUpdate" />
+          <FunctionImportMapping FunctionImportName="sp_BankSelect" FunctionName="DIPO_INVESTAMAModel.Store.sp_BankSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_BankSelect_Result">
+                <ScalarProperty Name="BankId" ColumnName="BankId" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_BankUpdate" FunctionName="DIPO_INVESTAMAModel.Store.sp_BankUpdate" />
           <FunctionImportMapping FunctionImportName="sp_DepartmentCreate" FunctionName="DIPO_INVESTAMAModel.Store.sp_DepartmentCreate" />
+          <FunctionImportMapping FunctionImportName="sp_DepartmentDDL" FunctionName="DIPO_INVESTAMAModel.Store.sp_DepartmentDDL">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_DepartmentDDL_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_DepartmentDelete" FunctionName="DIPO_INVESTAMAModel.Store.sp_DepartmentDelete" />
           <FunctionImportMapping FunctionImportName="sp_DepartmentSelect" FunctionName="DIPO_INVESTAMAModel.Store.sp_DepartmentSelect">
             <ResultMapping>
@@ -1445,62 +1512,7 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_DepartmentUpdate" FunctionName="DIPO_INVESTAMAModel.Store.sp_DepartmentUpdate" />
-          <FunctionImportMapping FunctionImportName="sp_RoleCreate" FunctionName="DIPO_INVESTAMAModel.Store.sp_RoleCreate" />
-          <FunctionImportMapping FunctionImportName="sp_RoleDelete" FunctionName="DIPO_INVESTAMAModel.Store.sp_RoleDelete" />
-          <FunctionImportMapping FunctionImportName="sp_RoleSelect" FunctionName="DIPO_INVESTAMAModel.Store.sp_RoleSelect">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_RoleSelect_Result">
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-                <ScalarProperty Name="Maker" ColumnName="Maker" />
-                <ScalarProperty Name="Checker" ColumnName="Checker" />
-                <ScalarProperty Name="Approval" ColumnName="Approval" />
-                <ScalarProperty Name="SuperUser" ColumnName="SuperUser" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_RoleUpdate" FunctionName="DIPO_INVESTAMAModel.Store.sp_RoleUpdate" />
-          <FunctionImportMapping FunctionImportName="sp_UserCreate" FunctionName="DIPO_INVESTAMAModel.Store.sp_UserCreate" />
-          <FunctionImportMapping FunctionImportName="sp_UserDelete" FunctionName="DIPO_INVESTAMAModel.Store.sp_UserDelete" />
-          <FunctionImportMapping FunctionImportName="sp_UserSelect" FunctionName="DIPO_INVESTAMAModel.Store.sp_UserSelect">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_UserSelect_Result">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_UserUpdate" FunctionName="DIPO_INVESTAMAModel.Store.sp_UserUpdate" />
-          <FunctionImportMapping FunctionImportName="sp_DepartmentDDL" FunctionName="DIPO_INVESTAMAModel.Store.sp_DepartmentDDL">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_DepartmentDDL_Result">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="NAME" ColumnName="NAME" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_RoleDDL" FunctionName="DIPO_INVESTAMAModel.Store.sp_RoleDDL">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_RoleDDL_Result">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="NAME" ColumnName="NAME" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_InputJournal" FunctionName="DIPO_INVESTAMAModel.Store.sp_InputJournal" />
           <FunctionImportMapping FunctionImportName="sp_MenuCreate" FunctionName="DIPO_INVESTAMAModel.Store.sp_MenuCreate" />
           <FunctionImportMapping FunctionImportName="sp_MenuDDL" FunctionName="DIPO_INVESTAMAModel.Store.sp_MenuDDL">
             <ResultMapping>
@@ -1527,6 +1539,133 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_MenuUpdate" FunctionName="DIPO_INVESTAMAModel.Store.sp_MenuUpdate" />
+          <FunctionImportMapping FunctionImportName="sp_RoleCreate" FunctionName="DIPO_INVESTAMAModel.Store.sp_RoleCreate" />
+          <FunctionImportMapping FunctionImportName="sp_RoleDDL" FunctionName="DIPO_INVESTAMAModel.Store.sp_RoleDDL">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_RoleDDL_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_RoleDelete" FunctionName="DIPO_INVESTAMAModel.Store.sp_RoleDelete" />
+          <FunctionImportMapping FunctionImportName="sp_RoleSelect" FunctionName="DIPO_INVESTAMAModel.Store.sp_RoleSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_RoleSelect_Result">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="Maker" ColumnName="Maker" />
+                <ScalarProperty Name="Checker" ColumnName="Checker" />
+                <ScalarProperty Name="Approval" ColumnName="Approval" />
+                <ScalarProperty Name="SuperUser" ColumnName="SuperUser" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_RoleUpdate" FunctionName="DIPO_INVESTAMAModel.Store.sp_RoleUpdate" />
+          <FunctionImportMapping FunctionImportName="sp_TodaysJournal" FunctionName="DIPO_INVESTAMAModel.Store.sp_TodaysJournal">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_TodaysJournal_Result">
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="AccountDetailId" ColumnName="AccountDetailId" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="BankFacilityId" ColumnName="BankFacilityId" />
+                <ScalarProperty Name="FacilityName" ColumnName="FacilityName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Origin" ColumnName="Origin" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_UserCreate" FunctionName="DIPO_INVESTAMAModel.Store.sp_UserCreate" />
+          <FunctionImportMapping FunctionImportName="sp_UserDelete" FunctionName="DIPO_INVESTAMAModel.Store.sp_UserDelete" />
+          <FunctionImportMapping FunctionImportName="sp_UserLogin" FunctionName="DIPO_INVESTAMAModel.Store.sp_UserLogin">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_UserLogin_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_UserSelect" FunctionName="DIPO_INVESTAMAModel.Store.sp_UserSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_UserSelect_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_UserUpdate" FunctionName="DIPO_INVESTAMAModel.Store.sp_UserUpdate" />
+          <FunctionImportMapping FunctionImportName="sp_OutputJournal" FunctionName="DIPO_INVESTAMAModel.Store.sp_OutputJournal">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_OutputJournal_Result">
+                <ScalarProperty Name="No" ColumnName="No" />
+                <ScalarProperty Name="PettyCashId" ColumnName="PettyCashId" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="FacilityName" ColumnName="FacilityName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Cash_In" ColumnName="Cash In" />
+                <ScalarProperty Name="Cash_Out" ColumnName="Cash Out" />
+                <ScalarProperty Name="Maker" ColumnName="Maker" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="CheckedAt" ColumnName="CheckedAt" />
+                <ScalarProperty Name="CheckedBy" ColumnName="CheckedBy" />
+                <ScalarProperty Name="ApprovalAt" ColumnName="ApprovalAt" />
+                <ScalarProperty Name="ApprovalBy" ColumnName="ApprovalBy" />
+                <ScalarProperty Name="RejectedAt" ColumnName="RejectedAt" />
+                <ScalarProperty Name="RejectedBy" ColumnName="RejectedBy" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ApprovedPettyCash" FunctionName="DIPO_INVESTAMAModel.Store.sp_ApprovedPettyCash" />
+          <FunctionImportMapping FunctionImportName="sp_CheckedPettyCash" FunctionName="DIPO_INVESTAMAModel.Store.sp_CheckedPettyCash" />
+          <FunctionImportMapping FunctionImportName="sp_RejectedPettyCash" FunctionName="DIPO_INVESTAMAModel.Store.sp_RejectedPettyCash" />
+          <FunctionImportMapping FunctionImportName="sp_HistoryJournal" FunctionName="DIPO_INVESTAMAModel.Store.sp_HistoryJournal">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_HistoryJournal_Result">
+                <ScalarProperty Name="No" ColumnName="No" />
+                <ScalarProperty Name="PettyCashId" ColumnName="PettyCashId" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="FacilityName" ColumnName="FacilityName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Cash_In" ColumnName="Cash In" />
+                <ScalarProperty Name="Cash_Out" ColumnName="Cash Out" />
+                <ScalarProperty Name="Maker" ColumnName="Maker" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="CheckedAt" ColumnName="CheckedAt" />
+                <ScalarProperty Name="CheckedBy" ColumnName="CheckedBy" />
+                <ScalarProperty Name="ApprovalAt" ColumnName="ApprovalAt" />
+                <ScalarProperty Name="ApprovalBy" ColumnName="ApprovalBy" />
+                <ScalarProperty Name="RejectedAt" ColumnName="RejectedAt" />
+                <ScalarProperty Name="RejectedBy" ColumnName="RejectedBy" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

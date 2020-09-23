@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using DIPO_INVESTAMA.Models;
 using DIPO_INVESTAMA.Logic;
 using DIPO_INVESTAMA.Entity;
+using System.Web.Security;
 
 namespace DIPO_INVESTAMA.Controllers
 {
@@ -76,6 +77,7 @@ namespace DIPO_INVESTAMA.Controllers
                 if(userLogin != null)
                 {
                     Session["userid"] = userLogin.UserId;
+                    Session["name"] = userLogin.Name;
                     return RedirectToLocal(returnUrl);
                 }
                 else
@@ -387,11 +389,26 @@ namespace DIPO_INVESTAMA.Controllers
 
         //
         // POST: /Account/LogOff
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult LogOff()
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult LogOff()
+        //{
+        //    AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+        //    return RedirectToAction("Index", "Home");
+        //}
+
+        [AllowAnonymous]
+        public ActionResult Logout()
         {
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            try
+            {
+                FormsAuthentication.SignOut();
+                Session.RemoveAll();
+            }
+            catch (Exception e)
+            {
+                return View();
+            }
             return RedirectToAction("Index", "Home");
         }
 

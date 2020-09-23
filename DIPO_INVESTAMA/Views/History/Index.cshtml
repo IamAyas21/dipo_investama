@@ -1,9 +1,9 @@
-﻿@model DIPO_INVESTAMA.Models.OutputViewModels
+﻿@model DIPO_INVESTAMA.Models.HistoryViewModels
 @{
     ViewBag.Title = "Today's Journal";
 }
 
-@using (Html.BeginForm("Index", "Output"))
+@using (Html.BeginForm("Index", "History"))
 {
     if (TempData["Error"] != null)
     {

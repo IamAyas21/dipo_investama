@@ -5,7 +5,7 @@ using System.Web;
 
 namespace DIPO_INVESTAMA.Models
 {
-    public class OutputViewModels
+    public class HistoryViewModels
     {
         public string PettyCashId { get; set; }
         public string Date { get; set; }
@@ -23,6 +23,6 @@ namespace DIPO_INVESTAMA.Models
         public string CheckedBy { get; set; }
         public string ApprovalBy { get; set; }
         public string RejectedBy { get; set; }
-        public PagedList<OutputViewModels> TodaysJournal { get; set; }
+        public PagedList<HistoryViewModels> TodaysJournal { get; set; }
     }
 }

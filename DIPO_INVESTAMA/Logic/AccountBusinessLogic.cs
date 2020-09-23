@@ -3,6 +3,7 @@ using DIPO_INVESTAMA.Models;
 using DIPO_INVESTAMA.Utils;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -48,6 +49,22 @@ namespace DIPO_INVESTAMA.Logic
         public int DeleteAccount(string id)
         {
             return _db.sp_AccountDelete(id);
+        }
+
+        public DataTable getAccountDDL()
+        {
+            DataTable tbl = new DataTable();
+            tbl.Columns.Add("ID", typeof(string));
+            tbl.Columns.Add("NAME", typeof(string));
+            foreach (var item in _db.sp_AccountDDL())
+            {
+                DataRow row = tbl.NewRow();
+                row["ID"] = item.ID;
+                row["NAME"] = item.NAME;
+                tbl.Rows.Add(row);
+            }
+
+            return tbl;
         }
     }
 }

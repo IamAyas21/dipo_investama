@@ -15,5 +15,17 @@ namespace DIPO_INVESTAMA.Utils
 
             return value;
         }
+
+        public static string name()
+        {
+            string value = string.Empty;
+            try
+            {
+                value = HttpContext.Current.Session["name"].ToString();
+            }
+            catch { }
+
+            return value;
+        }
     }
 }

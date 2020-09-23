@@ -12,11 +12,11 @@
         <strong>Success!</strong> @TempData["Success"].ToString()
     </div>
 }
-<div class="box box-primary">
+<div class="box box-primary body-box-primary">
     <div class="box-header with-border">
         <div class="row">
             <div class="col-lg-6">
-                <h3 class="box-title">Menu Restrictions</h3>
+                <h3 class="box-title Poppins-Bold font-white">Menu Restrictions</h3>
             </div>
             <div class="col-lg-6" align="right">
                 <a style="cursor:pointer;" href="@Url.Action("Create","MenuRestriction")">
@@ -29,7 +29,7 @@
     <!-- form start -->
     <form role="form">
         <div class="box-body">
-            <table class="table table-bordered table-striped" id="example1">
+            <table class="table Poppins-Regular font-white" id="example1">
                 <thead>
                     <tr>
                         <th>
@@ -62,10 +62,10 @@
                                 </a>
                                 <div id="modal_@i" class="modal fade" tabindex="-1" data-keyboard="false" data-backdrop="static">
                                     <div class="modal-dialog">
-                                        <div class="modal-content" style="width:700px;">
+                                        <div class="modal-content body-modal-content" style="width:700px;">
                                             <div class="modal-header">
                                                 <h4 class="modal-title" style="float:left; width:100px; background-color:none"> <i class="fa fa-trash"></i> Delete</h4>
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <button type="button" class="close body-close" data-dismiss="modal">&times;</button>
                                             </div>
                                             <div class="modal-body">
                                                 Do you really to delete @Html.DisplayFor(modelItem => Model.Content[i].MenuName) for Role @Html.DisplayFor(modelItem => Model.Content[i].RoleName) ??

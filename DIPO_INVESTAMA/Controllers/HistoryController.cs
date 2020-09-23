@@ -17,14 +17,14 @@ using System.Web.Mvc;
 
 namespace DIPO_INVESTAMA.Controllers
 {
-    public class OutputController : Controller
+    public class HistoryController : Controller
     {
         private string fontPath = ConfigurationManager.AppSettings["FontPath"];
         // GET: Output
         [CheckAuthorizeAttribute()]
         public ActionResult Index()
         {
-            OutputViewModels model = new OutputViewModels();
+            HistoryViewModels model = new HistoryViewModels();
             model.TodaysJournal = Journals(model);
             ViewBag.AccountList = common.ToSelectList(AccountDetailsBusinessLogic.getInstance().getAccountDDL(), "ID", "NAME", string.Empty);
             ViewBag.BankFacilityList = common.ToSelectList(BankFacilityBusinessLogic.getInstance().getBankFacilityDDL(), "ID", "NAME", model.BankAccount);
@@ -33,7 +33,7 @@ namespace DIPO_INVESTAMA.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(string Submit, OutputViewModels model)
+        public ActionResult Index(string Submit, HistoryViewModels model)
         {
             model.TodaysJournal = Journals(model);
             ViewBag.AccountList = common.ToSelectList(AccountDetailsBusinessLogic.getInstance().getAccountDDL(), "ID", "NAME", model.Account);
@@ -59,53 +59,14 @@ namespace DIPO_INVESTAMA.Controllers
             return View(model);
         }
 
-        private PagedList<OutputViewModels> Journals(OutputViewModels model)
+        private PagedList<HistoryViewModels> Journals(HistoryViewModels model)
         {
-            var page = new PagedList<OutputViewModels>();
-            page.Content = OutputBusinessLogic.getInstance().TodaysJournal(model);
+            var page = new PagedList<HistoryViewModels>();
+            page.Content = HistoryBusinessLogic.getInstance().TodaysJournal(model);
             return page;
         }
 
-        public ActionResult Checked(string id)
-        {
-            if (OutputBusinessLogic.getInstance().Checked(id) == -1)
-            {
-                TempData["Success"] = "submission was successfully checked";
-            }
-            else
-            {
-                TempData["Error"] = "submission was unsuccessfully checked";
-            }
-            return RedirectToAction("Index");
-        }
-
-        public ActionResult Approved(string id)
-        {
-            if (OutputBusinessLogic.getInstance().Approved(id) == -1)
-            {
-                TempData["Success"] = "submission was successfully approved";
-            }
-            else
-            {
-                TempData["Error"] = "submission was unsuccessfully approved";
-            }
-            return RedirectToAction("Index");
-        }
-
-        public ActionResult Rejected(string id)
-        {
-            if (OutputBusinessLogic.getInstance().Rejected(id) == -1)
-            {
-                TempData["Success"] = "submission was successfully rejected";
-            }
-            else
-            {
-                TempData["Error"] = "submission was unsuccessfully rejected";
-            }
-            return RedirectToAction("Index");
-        }
-
-        private void GeneratePdf(OutputViewModels model)
+        private void GeneratePdf(HistoryViewModels model)
         {
             MemoryStream ms = new MemoryStream();
             iTextSharp.text.Rectangle rec = new iTextSharp.text.Rectangle(PageSize.A4);
@@ -247,7 +208,7 @@ namespace DIPO_INVESTAMA.Controllers
             response.End();
         }
 
-        private void GenerateExcel(OutputViewModels model)
+        private void GenerateExcel(HistoryViewModels model)
         {
             ExcelPackage Package = new ExcelPackage();
             ExcelWorksheet ws = Package.Workbook.Worksheets.Add("Data");

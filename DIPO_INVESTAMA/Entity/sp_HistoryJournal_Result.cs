@@ -10,9 +10,8 @@
 namespace DIPO_INVESTAMA.Entity
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class vw_PettyCash
+    public partial class sp_HistoryJournal_Result
     {
         public Nullable<long> No { get; set; }
         public string PettyCashId { get; set; }
@@ -30,5 +29,6 @@ namespace DIPO_INVESTAMA.Entity
         public string ApprovalBy { get; set; }
         public Nullable<System.DateTime> RejectedAt { get; set; }
         public string RejectedBy { get; set; }
+        public Nullable<decimal> Balance { get; set; }
     }
 }

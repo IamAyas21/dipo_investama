@@ -1,0 +1,89 @@
+﻿@model DIPO_INVESTAMA.Models.PagedList<DIPO_INVESTAMA.Models.HistoryViewModels>
+
+<div class="box box-primary body-box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title Poppins-Bold font-white">History Journal</h3>
+    </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+    <form role="form">
+        <div class="box-body">
+            <table class="table Poppins-Regular font-white" id="example1">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Date")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Maker")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Department")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Account")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Bank")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Description")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Cash Out")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Cash In")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Balance")
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Content.Count; i++)
+            {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.Content[i].Date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.Content[i].Maker)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.Content[i].Department)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.Content[i].Account)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.Content[i].BankAccount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.Content[i].Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.Content[i].CashIn)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.Content[i].CashOut)
+                            </td>
+                            <td>
+                                @if (Convert.ToDecimal(Model.Content[i].Balance) < 0)
+                                {
+                                   <span style="color:red;">@Convert.ToDecimal(Model.Content[i].Balance).ToString("#,##;[#,##];-")</span>
+                                }
+                                else
+                                {
+                                    <span>@Convert.ToDecimal(Model.Content[i].Balance).ToString("#,##;[#,##];-")</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </form>
+</div>
+
