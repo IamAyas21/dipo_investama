@@ -280,6 +280,18 @@
     <Compile Include="Entity\sp_OutputJournal_Result.cs">
       <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entity\sp_ReportOfAccountCashIn_Result.cs">
+      <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\sp_ReportOfAccountCashOut_Result.cs">
+      <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\sp_ReportOfAccount_Result.cs">
+      <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\sp_ReportOfBank_Result.cs">
+      <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entity\sp_RoleDDL_Result.cs">
       <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
     </Compile>
@@ -306,6 +318,7 @@
     </Compile>
     <Compile Include="Logic\AccountBusinessLogic.cs" />
     <Compile Include="Logic\AccountDetailsBusinessLogic.cs" />
+    <Compile Include="Logic\DashboardBusinessLogic.cs" />
     <Compile Include="Logic\MenuRestrictionBusinessLogic.cs" />
     <Compile Include="Logic\HistoryBusinessLogic.cs" />
     <Compile Include="Logic\RoleBusinessLogic.cs" />
