@@ -407,6 +407,30 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           <Parameter Name="PettyCashId" Type="varchar" Mode="In" />
           <Parameter Name="UserId" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="sp_ReportOfAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="bankFacilityId" Type="varchar" Mode="In" />
+          <Parameter Name="startDate" Type="varchar" Mode="In" />
+          <Parameter Name="endDate" Type="varchar" Mode="In" />
+          <Parameter Name="viewBy" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_ReportOfAccountCashIn" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="bankFacilityId" Type="varchar" Mode="In" />
+          <Parameter Name="startDate" Type="varchar" Mode="In" />
+          <Parameter Name="endDate" Type="varchar" Mode="In" />
+          <Parameter Name="viewBy" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_ReportOfAccountCashOut" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="bankFacilityId" Type="varchar" Mode="In" />
+          <Parameter Name="startDate" Type="varchar" Mode="In" />
+          <Parameter Name="endDate" Type="varchar" Mode="In" />
+          <Parameter Name="viewBy" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_ReportOfBank" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="bankFacilityId" Type="varchar" Mode="In" />
+          <Parameter Name="startDate" Type="varchar" Mode="In" />
+          <Parameter Name="endDate" Type="varchar" Mode="In" />
+          <Parameter Name="viewBy" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="sp_RoleCreate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="RoleName" Type="varchar" Mode="In" />
           <Parameter Name="Maker" Type="varchar" Mode="In" />
@@ -1031,6 +1055,30 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
             <Parameter Name="bankFacilityId" Mode="In" Type="String" />
             <Parameter Name="sortBy" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_ReportOfBank" ReturnType="Collection(DIPO_INVESTAMAModel.sp_ReportOfBank_Result)">
+            <Parameter Name="bankFacilityId" Mode="In" Type="String" />
+            <Parameter Name="startDate" Mode="In" Type="String" />
+            <Parameter Name="endDate" Mode="In" Type="String" />
+            <Parameter Name="viewBy" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ReportOfAccount" ReturnType="Collection(DIPO_INVESTAMAModel.sp_ReportOfAccount_Result)">
+            <Parameter Name="bankFacilityId" Mode="In" Type="String" />
+            <Parameter Name="startDate" Mode="In" Type="String" />
+            <Parameter Name="endDate" Mode="In" Type="String" />
+            <Parameter Name="viewBy" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ReportOfAccountCashIn" ReturnType="Collection(DIPO_INVESTAMAModel.sp_ReportOfAccountCashIn_Result)">
+            <Parameter Name="bankFacilityId" Mode="In" Type="String" />
+            <Parameter Name="startDate" Mode="In" Type="String" />
+            <Parameter Name="endDate" Mode="In" Type="String" />
+            <Parameter Name="viewBy" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ReportOfAccountCashOut" ReturnType="Collection(DIPO_INVESTAMAModel.sp_ReportOfAccountCashOut_Result)">
+            <Parameter Name="bankFacilityId" Mode="In" Type="String" />
+            <Parameter Name="startDate" Mode="In" Type="String" />
+            <Parameter Name="endDate" Mode="In" Type="String" />
+            <Parameter Name="viewBy" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_AccountDDL_Result">
           <Property Type="String" Name="ID" Nullable="false" MaxLength="50" />
@@ -1206,6 +1254,26 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           <Property Type="DateTime" Name="RejectedAt" Nullable="true" Precision="23" />
           <Property Type="String" Name="RejectedBy" Nullable="true" MaxLength="100" />
           <Property Type="Decimal" Name="Balance" Nullable="true" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="sp_ReportOfBank_Result">
+          <Property Type="String" Name="Month" Nullable="true" MaxLength="3" />
+          <Property Type="Decimal" Name="Cash_In" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="Cash_Out" Nullable="true" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="sp_ReportOfAccount_Result">
+          <Property Type="String" Name="Month" Nullable="true" MaxLength="3" />
+          <Property Type="Decimal" Name="Cash_In" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="Cash_Out" Nullable="true" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="sp_ReportOfAccountCashIn_Result">
+          <Property Type="String" Name="Month" Nullable="true" MaxLength="3" />
+          <Property Type="Decimal" Name="Cash_In" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="Cash_Out" Nullable="true" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="sp_ReportOfAccountCashOut_Result">
+          <Property Type="String" Name="Month" Nullable="true" MaxLength="3" />
+          <Property Type="Decimal" Name="Cash_In" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="Cash_Out" Nullable="true" Precision="19" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1663,6 +1731,42 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
                 <ScalarProperty Name="RejectedAt" ColumnName="RejectedAt" />
                 <ScalarProperty Name="RejectedBy" ColumnName="RejectedBy" />
                 <ScalarProperty Name="Balance" ColumnName="Balance" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ReportOfBank" FunctionName="DIPO_INVESTAMAModel.Store.sp_ReportOfBank">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_ReportOfBank_Result">
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Cash_In" ColumnName="Cash In" />
+                <ScalarProperty Name="Cash_Out" ColumnName="Cash Out" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ReportOfAccount" FunctionName="DIPO_INVESTAMAModel.Store.sp_ReportOfAccount">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_ReportOfAccount_Result">
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Cash_In" ColumnName="Cash In" />
+                <ScalarProperty Name="Cash_Out" ColumnName="Cash Out" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ReportOfAccountCashIn" FunctionName="DIPO_INVESTAMAModel.Store.sp_ReportOfAccountCashIn">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_ReportOfAccountCashIn_Result">
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Cash_In" ColumnName="Cash In" />
+                <ScalarProperty Name="Cash_Out" ColumnName="Cash Out" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ReportOfAccountCashOut" FunctionName="DIPO_INVESTAMAModel.Store.sp_ReportOfAccountCashOut">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_ReportOfAccountCashOut_Result">
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Cash_In" ColumnName="Cash In" />
+                <ScalarProperty Name="Cash_Out" ColumnName="Cash Out" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -246,12 +246,175 @@
         })
         $('#PeriodeReportBank').val("");
 
-        var areaChartCanvasBank = $('#areaChartBank').get(0).getContext('2d')
-        // This will get the first returned node in the jQuery collection.
-        var areaChartBank = new Chart(areaChartCanvasBank)
+        getReportOfBank();
+        getReportOfAccount();
+        getReportOfAccountCashIn();
+        getReportOfAccountCashOut();
 
+        $('#PeriodeReportAccount').daterangepicker({
+            autoclose: true
+        })
+        $('#PeriodeReportAccount').val("");
+
+        $('#PeriodeReportCashIn').daterangepicker({
+            autoclose: true
+        })
+        $('#PeriodeReportCashIn').val("");
+
+        $('#PeriodeReportCashOut').daterangepicker({
+            autoclose: true
+        })
+        $('#PeriodeReportCashOut').val("");
+    });
+
+    function getReportOfBank() {
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("ReportOfBank", "Home")",
+            success: function (response) {
+                var arrLabel = [];
+                var arrCashIn = [];
+                var arrCashOut = [];
+
+                $(response).each(function (idx, dt) {
+                    arrLabel.push(dt.Month);
+
+                    if (dt.Cash_In == null) {
+                        arrCashIn.push(0);
+                    }
+                    else {
+                        arrCashIn.push(dt.Cash_In);
+                    }
+
+                    if (dt.Cash_Out == null) {
+                        arrCashOut.push(0);
+                    }
+                    else {
+                        arrCashOut.push(dt.Cash_Out);
+                    }
+
+                });
+
+                areaChart("areaChartBank", arrLabel, arrCashIn, arrCashOut);
+            },
+            error: function (response) {
+                alert(response)
+            }
+        });
+    }
+
+    function getReportOfAccount() {
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("ReportOfAccount", "Home")",
+            success: function (response) {
+                var arrLabel = [];
+                var arrCashIn = [];
+                var arrCashOut = [];
+
+                $(response).each(function (idx, dt) {
+                    arrLabel.push(dt.Month);
+
+                    if (dt.Cash_In == null) {
+                        arrCashIn.push(0);
+                    }
+                    else {
+                        arrCashIn.push(dt.Cash_In);
+                    }
+
+                    if (dt.Cash_Out == null) {
+                        arrCashOut.push(0);
+                    }
+                    else {
+                        arrCashOut.push(dt.Cash_Out);
+                    }
+
+                });
+
+                areaChart("areaChartAccount", arrLabel, arrCashIn, arrCashOut);
+            },
+            error: function (response) {
+                alert(response)
+            }
+        });
+    }
+
+    function getReportOfAccountCashIn() {
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("ReportOfAccountCashIn", "Home")",
+            success: function (response) {
+                var arrLabel = [];
+                var arrCashIn = [];
+                var arrCashOut = [];
+
+                $(response).each(function (idx, dt) {
+                    arrLabel.push(dt.Month);
+
+                    if (dt.Cash_In == null) {
+                        arrCashIn.push(0);
+                    }
+                    else {
+                        arrCashIn.push(dt.Cash_In);
+                    }
+
+                    if (dt.Cash_Out == null) {
+                        arrCashOut.push(0);
+                    }
+                    else {
+                        arrCashOut.push(dt.Cash_Out);
+                    }
+
+                });
+
+                areaChart("areaChartCashIn", arrLabel, arrCashIn, arrCashOut);
+            },
+            error: function (response) {
+                alert(response)
+            }
+        });
+    }
+
+    function getReportOfAccountCashOut() {
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("ReportOfAccountCashOut", "Home")",
+            success: function (response) {
+                var arrLabel = [];
+                var arrCashIn = [];
+                var arrCashOut = [];
+
+                $(response).each(function (idx, dt) {
+                    arrLabel.push(dt.Month);
+
+                    if (dt.Cash_In == null) {
+                        arrCashIn.push(0);
+                    }
+                    else {
+                        arrCashIn.push(dt.Cash_In);
+                    }
+
+                    if (dt.Cash_Out == null) {
+                        arrCashOut.push(0);
+                    }
+                    else {
+                        arrCashOut.push(dt.Cash_Out);
+                    }
+
+                });
+
+                areaChart("areaChartCashOut", arrLabel, arrCashIn, arrCashOut);
+            },
+            error: function (response) {
+                alert(response)
+            }
+        });
+    }
+    function areaChart(id, label, cashIn, cashOut) {
+        var areaChartCanvasBank = $('#'+id).get(0).getContext('2d')
+        var areaChartBank = new Chart(areaChartCanvasBank)
         var areaChartData = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            labels: label,
             datasets: [
               {
                   label: 'Electronics',
@@ -261,7 +424,7 @@
                   pointStrokeColor: '#c1c7d1',
                   pointHighlightFill: '#fff',
                   pointHighlightStroke: 'rgba(220,220,220,1)',
-                  data: [65, 59, 80, 81, 56, 55, 40]
+                  data: cashIn
               },
               {
                   label: 'Digital Goods',
@@ -271,7 +434,7 @@
                   pointStrokeColor: 'rgba(60,141,188,1)',
                   pointHighlightFill: '#fff',
                   pointHighlightStroke: 'rgba(60,141,188,1)',
-                  data: [28, 48, 40, 19, 86, 27, 90]
+                  data: cashOut
               }
             ]
         }
@@ -314,86 +477,6 @@
             //Boolean - whether to make the chart responsive to window resizing
             responsive: true
         }
-
-        //Create the line chart
         areaChartBank.Line(areaChartData, areaChartOptions)
-
-        var areaChartCanvasAccount = $('#areaChartAccount').get(0).getContext('2d')
-        var areaChartAccount = new Chart(areaChartCanvasAccount)
-        areaChartAccount.Line(areaChartData, areaChartOptions)
-
-        var areaChartCanvasCashIn = $('#areaChartCashIn').get(0).getContext('2d')
-        var areaChartCashIn = new Chart(areaChartCanvasCashIn)
-        areaChartCashIn.Line(areaChartData, areaChartOptions)
-
-        var areaChartCanvasCashOut = $('#areaChartCashOut').get(0).getContext('2d')
-        var areaChartcashOut = new Chart(areaChartCanvasCashOut)
-        areaChartcashOut.Line(areaChartData, areaChartOptions)
-
-        @*$("#PeriodeReportAccount").on("change", function () {
-            var data = { PeriodeReportAccount: $("#PeriodeReportAccount").val(), FilterReportBank: $("#FilterReportBank").val(), ViewByReportBank: $("#ViewByReportBank").val(), SortBy: $("#SortBy").val() };
-
-            $.ajax(
-            {
-                url: "@Url.Action("Index", "Output")",
-                type: 'POST',
-                data: { model: data },
-                success: function (response) {
-
-                },
-                error: function () {
-                    alert("error");
-                }
-            });
-        });
-
-        $("#FilterReportBank").on("change", function () {
-            var data = { PeriodeReportAccount: $("#PeriodeReportAccount").val(), FilterReportBank: $("#FilterReportBank").val(), ViewByReportBank: $("#ViewByReportBank").val(), SortBy: $("#SortBy").val() };
-
-            $.ajax(
-            {
-                url: "@Url.Action("Index", "Output")",
-                type: 'POST',
-                data: { model: data },
-                success: function (response) {
-
-                },
-                error: function () {
-                    alert("error");
-                }
-            });
-        });
-
-        $("#ViewByReportBank").on("change", function () {
-            var data = { PeriodeReportAccount: $("#PeriodeReportAccount").val(), FilterReportBank: $("#FilterReportBank").val(), ViewByReportBank: $("#ViewByReportBank").val(), SortBy: $("#SortBy").val() };
-
-            $.ajax(
-            {
-                url: "@Url.Action("Index", "Output")",
-                type: 'POST',
-                data: { model: data },
-                success: function (response) {
-
-                },
-                error: function () {
-                    alert("error");
-                }
-            });
-        });*@
-
-        $('#PeriodeReportAccount').daterangepicker({
-            autoclose: true
-        })
-        $('#PeriodeReportAccount').val("");
-
-        $('#PeriodeReportCashIn').daterangepicker({
-            autoclose: true
-        })
-        $('#PeriodeReportCashIn').val("");
-
-        $('#PeriodeReportCashOut').daterangepicker({
-            autoclose: true
-        })
-        $('#PeriodeReportCashOut').val("");
-    });
+    }
 </script>

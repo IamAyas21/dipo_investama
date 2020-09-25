@@ -1,0 +1,9 @@
+Time: 25/09/2020 09:22:42 PM
+------------------------------------------------------------------------
+Message: Object reference not set to an instance of an object.
+StackTrace:    at DIPO_INVESTAMA.Logic.DashboardBusinessLogic.getReportOfBank(DashboardViewModels model) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Logic\DashboardBusinessLogic.cs:line 30
+   at DIPO_INVESTAMA.Controllers.HomeController.ReportOfBank() in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Controllers\HomeController.cs:line 41
+Source: DIPO_INVESTAMA
+TargetSite: System.Collections.Generic.List`1[DIPO_INVESTAMA.Entity.sp_ReportOfBank_Result] getReportOfBank(DIPO_INVESTAMA.Models.DashboardViewModels)
+------------------------------------------------------------------------
+

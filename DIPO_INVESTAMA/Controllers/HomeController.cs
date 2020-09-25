@@ -32,6 +32,65 @@ namespace DIPO_INVESTAMA.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        public ActionResult ReportOfBank()
+        {
+            try
+            {
+                DashboardViewModels model = new DashboardViewModels();
+                return Json(DashboardBusinessLogic.getInstance().getReportOfBank(model), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                Logging.getInstance().CreateLogError(e);
+                return Json(e.Message, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult ReportOfAccount()
+        {
+            try
+            {
+                DashboardViewModels model = new DashboardViewModels();
+                return Json(DashboardBusinessLogic.getInstance().getReportOfBank(model), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                Logging.getInstance().CreateLogError(e);
+                return Json(e.Message, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult ReportOfAccountCashIn()
+        {
+            try
+            {
+                DashboardViewModels model = new DashboardViewModels();
+                return Json(DashboardBusinessLogic.getInstance().getReportOfBank(model), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                Logging.getInstance().CreateLogError(e);
+                return Json(e.Message, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult ReportOfAccountCashOut()
+        {
+            try
+            {
+                DashboardViewModels model = new DashboardViewModels();
+                return Json(DashboardBusinessLogic.getInstance().getReportOfBank(model), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                Logging.getInstance().CreateLogError(e);
+                return Json(e.Message, JsonRequestBehavior.AllowGet);
+            }
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
