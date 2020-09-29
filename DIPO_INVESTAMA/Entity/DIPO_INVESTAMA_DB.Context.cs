@@ -161,6 +161,19 @@ namespace DIPO_INVESTAMA.Entity
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_AccountUpdate", accountIdParameter, accountNoParameter, accountNameParameter, updatedByParameter);
         }
     
+        public virtual int sp_ApprovedPettyCash(string pettyCashId, string userId)
+        {
+            var pettyCashIdParameter = pettyCashId != null ?
+                new ObjectParameter("PettyCashId", pettyCashId) :
+                new ObjectParameter("PettyCashId", typeof(string));
+    
+            var userIdParameter = userId != null ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ApprovedPettyCash", pettyCashIdParameter, userIdParameter);
+        }
+    
         public virtual int sp_BankCreate(string bankName, string accountNo, string userId)
         {
             var bankNameParameter = bankName != null ?
@@ -299,6 +312,19 @@ namespace DIPO_INVESTAMA.Entity
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_BankUpdate", bankIdParameter, bankNameParameter, accountNoParameter, userIdParameter);
         }
     
+        public virtual int sp_CheckedPettyCash(string pettyCashId, string userId)
+        {
+            var pettyCashIdParameter = pettyCashId != null ?
+                new ObjectParameter("PettyCashId", pettyCashId) :
+                new ObjectParameter("PettyCashId", typeof(string));
+    
+            var userIdParameter = userId != null ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_CheckedPettyCash", pettyCashIdParameter, userIdParameter);
+        }
+    
         public virtual int sp_DepartmentCreate(string departmentName, string createdBy)
         {
             var departmentNameParameter = departmentName != null ?
@@ -346,6 +372,35 @@ namespace DIPO_INVESTAMA.Entity
                 new ObjectParameter("UpdatedBy", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_DepartmentUpdate", departmentIdParameter, departmentNameParameter, updatedByParameter);
+        }
+    
+        public virtual ObjectResult<sp_HistoryJournal_Result> sp_HistoryJournal(string userId, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, string accountDetailId, string bankFacilityId, string sortBy)
+        {
+            var userIdParameter = userId != null ?
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(string));
+    
+            var startDateParameter = startDate.HasValue ?
+                new ObjectParameter("startDate", startDate) :
+                new ObjectParameter("startDate", typeof(System.DateTime));
+    
+            var endDateParameter = endDate.HasValue ?
+                new ObjectParameter("endDate", endDate) :
+                new ObjectParameter("endDate", typeof(System.DateTime));
+    
+            var accountDetailIdParameter = accountDetailId != null ?
+                new ObjectParameter("accountDetailId", accountDetailId) :
+                new ObjectParameter("accountDetailId", typeof(string));
+    
+            var bankFacilityIdParameter = bankFacilityId != null ?
+                new ObjectParameter("bankFacilityId", bankFacilityId) :
+                new ObjectParameter("bankFacilityId", typeof(string));
+    
+            var sortByParameter = sortBy != null ?
+                new ObjectParameter("sortBy", sortBy) :
+                new ObjectParameter("sortBy", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_HistoryJournal_Result>("sp_HistoryJournal", userIdParameter, startDateParameter, endDateParameter, accountDetailIdParameter, bankFacilityIdParameter, sortByParameter);
         }
     
         public virtual int sp_InputJournal(Nullable<System.DateTime> date, string account, string bankAccount, Nullable<decimal> amount, string description, string origin, string userId)
@@ -440,6 +495,132 @@ namespace DIPO_INVESTAMA.Entity
                 new ObjectParameter("UpdatedBy", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_MenuUpdate", restrictionIdParameter, menuIdParameter, roleIdParameter, updatedByParameter);
+        }
+    
+        public virtual ObjectResult<sp_OutputJournal_Result> sp_OutputJournal(string userId, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, string accountDetailId, string bankFacilityId, string sortBy)
+        {
+            var userIdParameter = userId != null ?
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(string));
+    
+            var startDateParameter = startDate.HasValue ?
+                new ObjectParameter("startDate", startDate) :
+                new ObjectParameter("startDate", typeof(System.DateTime));
+    
+            var endDateParameter = endDate.HasValue ?
+                new ObjectParameter("endDate", endDate) :
+                new ObjectParameter("endDate", typeof(System.DateTime));
+    
+            var accountDetailIdParameter = accountDetailId != null ?
+                new ObjectParameter("accountDetailId", accountDetailId) :
+                new ObjectParameter("accountDetailId", typeof(string));
+    
+            var bankFacilityIdParameter = bankFacilityId != null ?
+                new ObjectParameter("bankFacilityId", bankFacilityId) :
+                new ObjectParameter("bankFacilityId", typeof(string));
+    
+            var sortByParameter = sortBy != null ?
+                new ObjectParameter("sortBy", sortBy) :
+                new ObjectParameter("sortBy", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_OutputJournal_Result>("sp_OutputJournal", userIdParameter, startDateParameter, endDateParameter, accountDetailIdParameter, bankFacilityIdParameter, sortByParameter);
+        }
+    
+        public virtual int sp_RejectedPettyCash(string pettyCashId, string userId)
+        {
+            var pettyCashIdParameter = pettyCashId != null ?
+                new ObjectParameter("PettyCashId", pettyCashId) :
+                new ObjectParameter("PettyCashId", typeof(string));
+    
+            var userIdParameter = userId != null ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_RejectedPettyCash", pettyCashIdParameter, userIdParameter);
+        }
+    
+        public virtual ObjectResult<sp_ReportOfAccount_Result> sp_ReportOfAccount(string bankFacilityId, string startDate, string endDate, string viewBy)
+        {
+            var bankFacilityIdParameter = bankFacilityId != null ?
+                new ObjectParameter("bankFacilityId", bankFacilityId) :
+                new ObjectParameter("bankFacilityId", typeof(string));
+    
+            var startDateParameter = startDate != null ?
+                new ObjectParameter("startDate", startDate) :
+                new ObjectParameter("startDate", typeof(string));
+    
+            var endDateParameter = endDate != null ?
+                new ObjectParameter("endDate", endDate) :
+                new ObjectParameter("endDate", typeof(string));
+    
+            var viewByParameter = viewBy != null ?
+                new ObjectParameter("viewBy", viewBy) :
+                new ObjectParameter("viewBy", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ReportOfAccount_Result>("sp_ReportOfAccount", bankFacilityIdParameter, startDateParameter, endDateParameter, viewByParameter);
+        }
+    
+        public virtual ObjectResult<sp_ReportOfAccountCashIn_Result> sp_ReportOfAccountCashIn(string bankFacilityId, string startDate, string endDate, string viewBy)
+        {
+            var bankFacilityIdParameter = bankFacilityId != null ?
+                new ObjectParameter("bankFacilityId", bankFacilityId) :
+                new ObjectParameter("bankFacilityId", typeof(string));
+    
+            var startDateParameter = startDate != null ?
+                new ObjectParameter("startDate", startDate) :
+                new ObjectParameter("startDate", typeof(string));
+    
+            var endDateParameter = endDate != null ?
+                new ObjectParameter("endDate", endDate) :
+                new ObjectParameter("endDate", typeof(string));
+    
+            var viewByParameter = viewBy != null ?
+                new ObjectParameter("viewBy", viewBy) :
+                new ObjectParameter("viewBy", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ReportOfAccountCashIn_Result>("sp_ReportOfAccountCashIn", bankFacilityIdParameter, startDateParameter, endDateParameter, viewByParameter);
+        }
+    
+        public virtual ObjectResult<sp_ReportOfAccountCashOut_Result> sp_ReportOfAccountCashOut(string bankFacilityId, string startDate, string endDate, string viewBy)
+        {
+            var bankFacilityIdParameter = bankFacilityId != null ?
+                new ObjectParameter("bankFacilityId", bankFacilityId) :
+                new ObjectParameter("bankFacilityId", typeof(string));
+    
+            var startDateParameter = startDate != null ?
+                new ObjectParameter("startDate", startDate) :
+                new ObjectParameter("startDate", typeof(string));
+    
+            var endDateParameter = endDate != null ?
+                new ObjectParameter("endDate", endDate) :
+                new ObjectParameter("endDate", typeof(string));
+    
+            var viewByParameter = viewBy != null ?
+                new ObjectParameter("viewBy", viewBy) :
+                new ObjectParameter("viewBy", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ReportOfAccountCashOut_Result>("sp_ReportOfAccountCashOut", bankFacilityIdParameter, startDateParameter, endDateParameter, viewByParameter);
+        }
+    
+        public virtual ObjectResult<sp_ReportOfBank_Result> sp_ReportOfBank(string bankFacilityId, string startDate, string endDate, string viewBy)
+        {
+            var bankFacilityIdParameter = bankFacilityId != null ?
+                new ObjectParameter("bankFacilityId", bankFacilityId) :
+                new ObjectParameter("bankFacilityId", typeof(string));
+    
+            var startDateParameter = startDate != null ?
+                new ObjectParameter("startDate", startDate) :
+                new ObjectParameter("startDate", typeof(string));
+    
+            var endDateParameter = endDate != null ?
+                new ObjectParameter("endDate", endDate) :
+                new ObjectParameter("endDate", typeof(string));
+    
+            var viewByParameter = viewBy != null ?
+                new ObjectParameter("viewBy", viewBy) :
+                new ObjectParameter("viewBy", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ReportOfBank_Result>("sp_ReportOfBank", bankFacilityIdParameter, startDateParameter, endDateParameter, viewByParameter);
         }
     
         public virtual int sp_RoleCreate(string roleName, string maker, string checker, string approval, string superUser, string createdBy)
@@ -615,187 +796,6 @@ namespace DIPO_INVESTAMA.Entity
                 new ObjectParameter("UpdatedBy", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_UserUpdate", userIdParameter, userNameParameter, passwordParameter, nameParameter, roleIdParameter, departmentIdParameter, updatedByParameter);
-        }
-    
-        public virtual ObjectResult<sp_OutputJournal_Result> sp_OutputJournal(string userId, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, string accountDetailId, string bankFacilityId, string sortBy)
-        {
-            var userIdParameter = userId != null ?
-                new ObjectParameter("userId", userId) :
-                new ObjectParameter("userId", typeof(string));
-    
-            var startDateParameter = startDate.HasValue ?
-                new ObjectParameter("startDate", startDate) :
-                new ObjectParameter("startDate", typeof(System.DateTime));
-    
-            var endDateParameter = endDate.HasValue ?
-                new ObjectParameter("endDate", endDate) :
-                new ObjectParameter("endDate", typeof(System.DateTime));
-    
-            var accountDetailIdParameter = accountDetailId != null ?
-                new ObjectParameter("accountDetailId", accountDetailId) :
-                new ObjectParameter("accountDetailId", typeof(string));
-    
-            var bankFacilityIdParameter = bankFacilityId != null ?
-                new ObjectParameter("bankFacilityId", bankFacilityId) :
-                new ObjectParameter("bankFacilityId", typeof(string));
-    
-            var sortByParameter = sortBy != null ?
-                new ObjectParameter("sortBy", sortBy) :
-                new ObjectParameter("sortBy", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_OutputJournal_Result>("sp_OutputJournal", userIdParameter, startDateParameter, endDateParameter, accountDetailIdParameter, bankFacilityIdParameter, sortByParameter);
-        }
-    
-        public virtual int sp_ApprovedPettyCash(string pettyCashId, string userId)
-        {
-            var pettyCashIdParameter = pettyCashId != null ?
-                new ObjectParameter("PettyCashId", pettyCashId) :
-                new ObjectParameter("PettyCashId", typeof(string));
-    
-            var userIdParameter = userId != null ?
-                new ObjectParameter("UserId", userId) :
-                new ObjectParameter("UserId", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ApprovedPettyCash", pettyCashIdParameter, userIdParameter);
-        }
-    
-        public virtual int sp_CheckedPettyCash(string pettyCashId, string userId)
-        {
-            var pettyCashIdParameter = pettyCashId != null ?
-                new ObjectParameter("PettyCashId", pettyCashId) :
-                new ObjectParameter("PettyCashId", typeof(string));
-    
-            var userIdParameter = userId != null ?
-                new ObjectParameter("UserId", userId) :
-                new ObjectParameter("UserId", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_CheckedPettyCash", pettyCashIdParameter, userIdParameter);
-        }
-    
-        public virtual int sp_RejectedPettyCash(string pettyCashId, string userId)
-        {
-            var pettyCashIdParameter = pettyCashId != null ?
-                new ObjectParameter("PettyCashId", pettyCashId) :
-                new ObjectParameter("PettyCashId", typeof(string));
-    
-            var userIdParameter = userId != null ?
-                new ObjectParameter("UserId", userId) :
-                new ObjectParameter("UserId", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_RejectedPettyCash", pettyCashIdParameter, userIdParameter);
-        }
-    
-        public virtual ObjectResult<sp_HistoryJournal_Result> sp_HistoryJournal(string userId, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, string accountDetailId, string bankFacilityId, string sortBy)
-        {
-            var userIdParameter = userId != null ?
-                new ObjectParameter("userId", userId) :
-                new ObjectParameter("userId", typeof(string));
-    
-            var startDateParameter = startDate.HasValue ?
-                new ObjectParameter("startDate", startDate) :
-                new ObjectParameter("startDate", typeof(System.DateTime));
-    
-            var endDateParameter = endDate.HasValue ?
-                new ObjectParameter("endDate", endDate) :
-                new ObjectParameter("endDate", typeof(System.DateTime));
-    
-            var accountDetailIdParameter = accountDetailId != null ?
-                new ObjectParameter("accountDetailId", accountDetailId) :
-                new ObjectParameter("accountDetailId", typeof(string));
-    
-            var bankFacilityIdParameter = bankFacilityId != null ?
-                new ObjectParameter("bankFacilityId", bankFacilityId) :
-                new ObjectParameter("bankFacilityId", typeof(string));
-    
-            var sortByParameter = sortBy != null ?
-                new ObjectParameter("sortBy", sortBy) :
-                new ObjectParameter("sortBy", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_HistoryJournal_Result>("sp_HistoryJournal", userIdParameter, startDateParameter, endDateParameter, accountDetailIdParameter, bankFacilityIdParameter, sortByParameter);
-        }
-    
-        public virtual ObjectResult<sp_ReportOfBank_Result> sp_ReportOfBank(string bankFacilityId, string startDate, string endDate, string viewBy)
-        {
-            var bankFacilityIdParameter = bankFacilityId != null ?
-                new ObjectParameter("bankFacilityId", bankFacilityId) :
-                new ObjectParameter("bankFacilityId", typeof(string));
-    
-            var startDateParameter = startDate != null ?
-                new ObjectParameter("startDate", startDate) :
-                new ObjectParameter("startDate", typeof(string));
-    
-            var endDateParameter = endDate != null ?
-                new ObjectParameter("endDate", endDate) :
-                new ObjectParameter("endDate", typeof(string));
-    
-            var viewByParameter = viewBy != null ?
-                new ObjectParameter("viewBy", viewBy) :
-                new ObjectParameter("viewBy", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ReportOfBank_Result>("sp_ReportOfBank", bankFacilityIdParameter, startDateParameter, endDateParameter, viewByParameter);
-        }
-    
-        public virtual ObjectResult<sp_ReportOfAccount_Result> sp_ReportOfAccount(string bankFacilityId, string startDate, string endDate, string viewBy)
-        {
-            var bankFacilityIdParameter = bankFacilityId != null ?
-                new ObjectParameter("bankFacilityId", bankFacilityId) :
-                new ObjectParameter("bankFacilityId", typeof(string));
-    
-            var startDateParameter = startDate != null ?
-                new ObjectParameter("startDate", startDate) :
-                new ObjectParameter("startDate", typeof(string));
-    
-            var endDateParameter = endDate != null ?
-                new ObjectParameter("endDate", endDate) :
-                new ObjectParameter("endDate", typeof(string));
-    
-            var viewByParameter = viewBy != null ?
-                new ObjectParameter("viewBy", viewBy) :
-                new ObjectParameter("viewBy", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ReportOfAccount_Result>("sp_ReportOfAccount", bankFacilityIdParameter, startDateParameter, endDateParameter, viewByParameter);
-        }
-    
-        public virtual ObjectResult<sp_ReportOfAccountCashIn_Result> sp_ReportOfAccountCashIn(string bankFacilityId, string startDate, string endDate, string viewBy)
-        {
-            var bankFacilityIdParameter = bankFacilityId != null ?
-                new ObjectParameter("bankFacilityId", bankFacilityId) :
-                new ObjectParameter("bankFacilityId", typeof(string));
-    
-            var startDateParameter = startDate != null ?
-                new ObjectParameter("startDate", startDate) :
-                new ObjectParameter("startDate", typeof(string));
-    
-            var endDateParameter = endDate != null ?
-                new ObjectParameter("endDate", endDate) :
-                new ObjectParameter("endDate", typeof(string));
-    
-            var viewByParameter = viewBy != null ?
-                new ObjectParameter("viewBy", viewBy) :
-                new ObjectParameter("viewBy", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ReportOfAccountCashIn_Result>("sp_ReportOfAccountCashIn", bankFacilityIdParameter, startDateParameter, endDateParameter, viewByParameter);
-        }
-    
-        public virtual ObjectResult<sp_ReportOfAccountCashOut_Result> sp_ReportOfAccountCashOut(string bankFacilityId, string startDate, string endDate, string viewBy)
-        {
-            var bankFacilityIdParameter = bankFacilityId != null ?
-                new ObjectParameter("bankFacilityId", bankFacilityId) :
-                new ObjectParameter("bankFacilityId", typeof(string));
-    
-            var startDateParameter = startDate != null ?
-                new ObjectParameter("startDate", startDate) :
-                new ObjectParameter("startDate", typeof(string));
-    
-            var endDateParameter = endDate != null ?
-                new ObjectParameter("endDate", endDate) :
-                new ObjectParameter("endDate", typeof(string));
-    
-            var viewByParameter = viewBy != null ?
-                new ObjectParameter("viewBy", viewBy) :
-                new ObjectParameter("viewBy", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ReportOfAccountCashOut_Result>("sp_ReportOfAccountCashOut", bankFacilityIdParameter, startDateParameter, endDateParameter, viewByParameter);
         }
     }
 }

@@ -33,11 +33,10 @@ namespace DIPO_INVESTAMA.Controllers
         }
 
         [HttpPost]
-        public ActionResult ReportOfBank()
+        public ActionResult ReportOfBank(DashboardViewModels model)
         {
             try
             {
-                DashboardViewModels model = new DashboardViewModels();
                 return Json(DashboardBusinessLogic.getInstance().getReportOfBank(model), JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
@@ -48,12 +47,11 @@ namespace DIPO_INVESTAMA.Controllers
         }
 
         [HttpPost]
-        public ActionResult ReportOfAccount()
+        public ActionResult ReportOfAccount(DashboardViewModels model)
         {
             try
             {
-                DashboardViewModels model = new DashboardViewModels();
-                return Json(DashboardBusinessLogic.getInstance().getReportOfBank(model), JsonRequestBehavior.AllowGet);
+                return Json(DashboardBusinessLogic.getInstance().getReportOfAccount(model), JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
             {
@@ -63,12 +61,11 @@ namespace DIPO_INVESTAMA.Controllers
         }
 
         [HttpPost]
-        public ActionResult ReportOfAccountCashIn()
+        public ActionResult ReportOfAccountCashIn(DashboardViewModels model)
         {
             try
             {
-                DashboardViewModels model = new DashboardViewModels();
-                return Json(DashboardBusinessLogic.getInstance().getReportOfBank(model), JsonRequestBehavior.AllowGet);
+                return Json(DashboardBusinessLogic.getInstance().getReportOfAccountCashIn(model), JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
             {
@@ -78,12 +75,11 @@ namespace DIPO_INVESTAMA.Controllers
         }
 
         [HttpPost]
-        public ActionResult ReportOfAccountCashOut()
+        public ActionResult ReportOfAccountCashOut(DashboardViewModels model)
         {
             try
             {
-                DashboardViewModels model = new DashboardViewModels();
-                return Json(DashboardBusinessLogic.getInstance().getReportOfBank(model), JsonRequestBehavior.AllowGet);
+                return Json(DashboardBusinessLogic.getInstance().getReportOfCashOut(model), JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
             {

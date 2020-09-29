@@ -14,7 +14,7 @@ namespace DIPO_INVESTAMA.Entity
     public partial class sp_ReportOfAccountCashOut_Result
     {
         public string Month { get; set; }
-        public Nullable<decimal> Cash_In { get; set; }
-        public Nullable<decimal> Cash_Out { get; set; }
+        public Nullable<decimal> Operation { get; set; }
+        public Nullable<decimal> Accounting { get; set; }
     }
 }
