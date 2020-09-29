@@ -48,10 +48,31 @@
                                 @Html.DisplayFor(modelItem => Model.Content[i].Description)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => Model.Content[i].CashIn)
+                                @*@Html.DisplayFor(modelItem => Model.Content[i].CashIn)*@
+                                @if (Model.Content[i].CashIn != "")
+                                {
+                                    @Convert.ToDecimal(Model.Content[i].CashIn).ToString("#,##;[#,##];-")
+
+                                }
+                                else
+                                {
+                                    @Html.DisplayFor(modelItem => Model.Content[i].CashIn)
+
+                                }
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => Model.Content[i].CashOut)
+                                @*@Html.DisplayFor(modelItem => Model.Content[i].CashOut)*@
+                                @if (Model.Content[i].CashOut != "")
+                                {
+                                    @Convert.ToDecimal(Model.Content[i].CashOut).ToString("#,##;[#,##];-")
+
+                                }
+                                else
+                                {
+                                    @Html.DisplayFor(modelItem => Model.Content[i].CashOut)
+
+                                }
+
                             </td>
                         </tr>
                     }
