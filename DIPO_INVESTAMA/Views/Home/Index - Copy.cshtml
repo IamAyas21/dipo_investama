@@ -37,10 +37,8 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-12 chart-container">
-                            <div id="chart" >
-                                <canvas id="areaChartBank"></canvas>
-                            </div>
+                        <div class="col-xs-12">
+                            <div class="chart" id="areaChartBank"></div>
                         </div>
                     </div>
                     <div class="row">
@@ -282,56 +280,7 @@
             url: "@Url.Action("ReportOfBank", "Home")",
             data: { model: model() },
             success: function (response) {
-                var arrLabel = [];
-                var arrCashIn = [];
-                var arrCashOut = [];
-
-                $(response).each(function (idx, dt) {
-                    arrLabel.push(dt.Month);
-
-                    if (dt.Cash_In == null) {
-                        arrCashIn.push(0);
-                    }
-                    else {
-                        arrCashIn.push(dt.Cash_In);
-                    }
-
-                    if (dt.Cash_Out == null) {
-                        arrCashOut.push(0);
-                    }
-                    else {
-                        arrCashOut.push(dt.Cash_Out);
-                    }
-
-                });
-
-                var areaChartData = {
-                    labels: arrLabel,
-                    datasets: [
-                      {
-                          label: 'Cash In',
-                          fillColor: 'rgba(210, 214, 222, 1)',
-                          strokeColor: 'rgba(210, 214, 222, 1)',
-                          pointColor: 'rgba(210, 214, 222, 1)',
-                          pointStrokeColor: '#c1c7d1',
-                          pointHighlightFill: '#fff',
-                          pointHighlightStroke: 'rgba(220,220,220,1)',
-                          data: arrCashIn
-                      },
-                      {
-                          label: 'Cash Out',
-                          fillColor: 'rgba(60,141,188,0.9)',
-                          strokeColor: 'rgba(60,141,188,0.8)',
-                          pointColor: '#3b8bba',
-                          pointStrokeColor: 'rgba(60,141,188,1)',
-                          pointHighlightFill: '#fff',
-                          pointHighlightStroke: 'rgba(60,141,188,1)',
-                          data: arrCashOut
-                      }
-                    ]
-                }
-                barChart(areaChartData, "areaChartBank")
-                //Morris1("areaChartBank", response);
+                Morris1("areaChartBank", response);
             },
             error: function (response) {
                 alert(response)
@@ -344,7 +293,7 @@
             type: "POST",
             url: "@Url.Action("ReportOfAccount", "Home")",
             success: function (response) {
-                //Morris1("areaChartAccount", response);
+                Morris1("areaChartAccount", response);
             },
             error: function (response) {
                 alert(response)
@@ -357,7 +306,7 @@
             type: "POST",
             url: "@Url.Action("ReportOfAccountCashIn", "Home")",
             success: function (response) {
-                //Morris2("areaChartCashIn", response);
+                Morris2("areaChartCashIn", response);
             },
             error: function (response) {
                 alert(response)
@@ -370,7 +319,7 @@
             type: "POST",
             url: "@Url.Action("ReportOfAccountCashOut", "Home")",
             success: function (response) {
-                //Morris2("areaChartCashOut", response);
+                Morris2("areaChartCashOut", response);
             },
             error: function (response) {
                 alert(response)
@@ -439,118 +388,4 @@
         });
     }
 
-    function barChart(bardata, id) {
-        var Obj;
-        var barOptions = {
-            legend: {
-                display: false
-            },
-            showLines: false,
-            spanGaps: false,
-            maintainAspectRatio: false,
-            tooltips: {
-                enabled: false
-                //callbacks: {
-                //    label: function (tooltipItem, data) {
-                //        return (tooltipItem.yLabel / 1000000).toFixed(0).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-                //    },
-                //    title: function (tooltipItem, data) {
-                //        return (data.datasets[tooltipItem[0].datasetIndex].label);
-                //    }
-                //}
-            },
-            animation: {
-                duration: 500,
-                easing: "easeOutQuart",
-                onComplete: function () {
-                    // console.log(this);
-                    Obj = this;
-                    var ctx = this.chart.ctx;
-                    //ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontFamily, 'bold', Chart.defaults.global.defaultFontFamily);
-                    ctx.font = "16px Arial";
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'bottom';
-                    this.data.datasets.forEach(function (dataset) {
-                        for (var i = 0; i < dataset.data.length; i++) {
-                            var hidden = dataset._meta[Object.keys(dataset._meta)[0]].hidden;
-                            if (hidden == null) { hidden = false; }
-                            if (!hidden) {
-                                var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model,
-                                    scale_max = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._yScale.maxHeight;
-                                var y_pos = model.y - 5;
-                                if (dataset.data[i] != 0) {
-                                    if ((scale_max - model.y) / scale_max >= 0.50)
-                                        y_pos = model.y + 20;
-                                }
-
-                                if (dataset.label != "") {
-                                    //console.log(dataset);
-                                    ctx.fillStyle = dataset.borderColor[i];
-                                    ctx.fillText((dataset.data[i] / 1).toFixed(1).replace(/\d(?=(\d{3})+\.)/g, '$&,'), model.x, y_pos);
-                                }
-                                else {
-                                    var per = dataset.addData[i];
-                                    var sym = "▲";
-                                    var fx = 1;
-                                    var perColor = "#00f";
-
-                                    if (per == 0) {
-                                        sym = "•";
-                                        fx = 0;
-                                        perColor = "#444";
-                                    }
-                                    else if (per < 0) {
-                                        sym = "▼";
-                                        perColor = "#f00";
-                                    }
-                                    ctx.fillStyle = perColor;
-
-                                    if (isNaN(per)) {
-                                        ctx.fillText('', model.x, y_pos);
-                                    }
-                                    else if (per.toString() == "Infinity") {
-                                        ctx.fillText('▲100%', model.x, y_pos);
-                                    }
-                                    else {
-
-                                        ctx.fillText(sym + per.toFixed(0) + '%', model.x, y_pos);
-                                    }
-                                }
-                            }
-                        }
-                    });
-                }
-            },
-            responsive: true,
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        callback: function (label, index, labels) {
-                            var rtn;
-                            if ((label / 1) < 1) {
-                                rtn = (label / 1).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');// / 1000 + 'k';
-                            }
-                            else {
-                                rtn = (label / 1).toFixed(1).replace(/\d(?=(\d{3})+\.)/g, '$&,');// / 1000 + 'k';
-                            }
-
-                            return rtn;
-                        },
-                        beginAtZero: true
-
-                    },
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Month'
-                    }
-                }]
-            }
-        };
-        console.log(bardata);
-        new Chart(document.getElementById(id).getContext('2d'), {
-            type: 'bar',
-            data: bardata,
-            options: barOptions
-        });
-    }
 </script>
