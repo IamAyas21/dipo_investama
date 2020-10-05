@@ -22,8 +22,8 @@ namespace DIPO_INVESTAMA.Controllers
         {
             ViewBag.FilterBankList = common.ToSelectList(BankFacilityBusinessLogic.getInstance().getBankFacilityDDL(), "ID", "NAME", string.Empty);
             ViewBag.FilterAccountList = common.ToSelectList(BankFacilityBusinessLogic.getInstance().getBankFacilityDDL(), "ID", "NAME", string.Empty);
-            ViewBag.FilterCashInList = common.ToSelectList(BankFacilityBusinessLogic.getInstance().getBankFacilityDDL(), "ID", "NAME", string.Empty);
-            ViewBag.FilterCashOutList = common.ToSelectList(BankFacilityBusinessLogic.getInstance().getBankFacilityDDL(), "ID", "NAME", string.Empty);
+            ViewBag.FilterCashInList = common.ToSelectList(AccountDetailsBusinessLogic.getInstance().getAccountDDL(), "ID", "NAME", string.Empty);
+            ViewBag.FilterCashOutList = common.ToSelectList(AccountDetailsBusinessLogic.getInstance().getAccountDDL(), "ID", "NAME", string.Empty);
             return View();
         }
 
@@ -52,8 +52,8 @@ namespace DIPO_INVESTAMA.Controllers
 
             ViewBag.FilterBankList = common.ToSelectList(BankFacilityBusinessLogic.getInstance().getBankFacilityDDL(), "ID", "NAME", model.FilterReportBank);
             ViewBag.FilterAccountList = common.ToSelectList(BankFacilityBusinessLogic.getInstance().getBankFacilityDDL(), "ID", "NAME", model.FilterReportAccount);
-            ViewBag.FilterCashInList = common.ToSelectList(BankFacilityBusinessLogic.getInstance().getBankFacilityDDL(), "ID", "NAME", model.FilterReportCashIn);
-            ViewBag.FilterCashOutList = common.ToSelectList(BankFacilityBusinessLogic.getInstance().getBankFacilityDDL(), "ID", "NAME", model.FilterReportCashOut);
+            ViewBag.FilterCashInList = common.ToSelectList(AccountDetailsBusinessLogic.getInstance().getAccountDDL(), "ID", "NAME", model.FilterReportCashIn);
+            ViewBag.FilterCashOutList = common.ToSelectList(AccountDetailsBusinessLogic.getInstance().getAccountDDL(), "ID", "NAME", model.FilterReportCashOut);
             return View(model);
         }
 
@@ -315,7 +315,7 @@ namespace DIPO_INVESTAMA.Controllers
             SeriesList.Add(new DataSerie() { name = "CashIn", Series = ws.Cells["B" + (idx - 1) + ":B" + idx], xSeries = ws.Cells["B" + (idx - 1) + ":C" + idx] });
             SeriesList.Add(new DataSerie() { name = "CashOut", Series = ws.Cells["C" + (idx - 1) + ":C" + idx], xSeries = ws.Cells["B" + (idx - 1) + ":C" + idx] });
 
-            ExcelChart chart = AddBarChart(wsComChart, "ReportOfAccount", OfficeOpenXml.Drawing.Chart.eChartType.ColumnClustered, SeriesList);
+            ExcelChart chart = AddBarChart(wsComChart, "ReportOfAccount", OfficeOpenXml.Drawing.Chart.eChartType.Line, SeriesList);
             chart.Title.Text = "Report Of Account";
             chart.SetPosition(0, 0, 0, 0);
             chart.SetSize(BarOptions.width, BarOptions.Height);
