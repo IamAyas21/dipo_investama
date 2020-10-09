@@ -1,4 +1,5 @@
-﻿using DIPO_INVESTAMA.Entity;
+﻿using DIPO_INVESTAMA.App_Start;
+using DIPO_INVESTAMA.Entity;
 using DIPO_INVESTAMA.Logic;
 using DIPO_INVESTAMA.Utils;
 using System;
@@ -11,7 +12,7 @@ namespace DIPO_INVESTAMA.Controllers
 {
     public class MenuRestrictionController : Controller
     {
-        // GET: Users
+        //[CheckAuthorize(Roles = "Menu Restriction")]
         public ActionResult Index()
         {
             return View(MenuRestrictionBusinessLogic.getInstance().ListMenuRestriction());

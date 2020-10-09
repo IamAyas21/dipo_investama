@@ -21,12 +21,12 @@ namespace DIPO_INVESTAMA.Controllers
     {
         private string fontPath = ConfigurationManager.AppSettings["FontPath"];
         // GET: Output
-        [CheckAuthorizeAttribute()]
+        [CheckAuthorize(Roles = "Output")]
         public ActionResult Index()
         {
             OutputViewModels model = new OutputViewModels();
             model.TodaysJournal = Journals(model);
-            ViewBag.AccountList = common.ToSelectList(AccountDetailsBusinessLogic.getInstance().getAccountDDL(), "ID", "NAME", string.Empty);
+            ViewBag.AccountList = common.ToSelectList(AccountDetailsBusinessLogic.getInstance().getAccountDetailDDL(), "ID", "NAME", string.Empty);
             ViewBag.BankFacilityList = common.ToSelectList(BankFacilityBusinessLogic.getInstance().getBankFacilityDDL(), "ID", "NAME", model.BankAccount);
             ViewBag.SortByList = common.ToSelectList(OutputBusinessLogic.getInstance().getSortByDDL(), "ID", "NAME", string.Empty);
             return View(model);
@@ -36,7 +36,7 @@ namespace DIPO_INVESTAMA.Controllers
         public ActionResult Index(string Submit, OutputViewModels model)
         {
             model.TodaysJournal = Journals(model);
-            ViewBag.AccountList = common.ToSelectList(AccountDetailsBusinessLogic.getInstance().getAccountDDL(), "ID", "NAME", model.Account);
+            ViewBag.AccountList = common.ToSelectList(AccountDetailsBusinessLogic.getInstance().getAccountDetailDDL(), "ID", "NAME", model.Account);
             ViewBag.BankFacilityList = common.ToSelectList(BankFacilityBusinessLogic.getInstance().getBankFacilityDDL(), "ID", "NAME", model.BankAccount);
             ViewBag.SortByList = common.ToSelectList(OutputBusinessLogic.getInstance().getSortByDDL(), "ID", "NAME", model.SortBy);
 

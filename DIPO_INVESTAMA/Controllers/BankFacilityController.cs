@@ -1,5 +1,7 @@
-﻿using DIPO_INVESTAMA.Entity;
+﻿using DIPO_INVESTAMA.App_Start;
+using DIPO_INVESTAMA.Entity;
 using DIPO_INVESTAMA.Logic;
+using DIPO_INVESTAMA.Models;
 using DIPO_INVESTAMA.Utils;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,7 @@ namespace DIPO_INVESTAMA.Controllers
     public class BankFacilityController : Controller
     {
         // GET: BankFacility
+        [CheckAuthorize(Roles = "Bank Facility")]
         public ActionResult Index()
         {
             return View(BankFacilityBusinessLogic.getInstance().ListBank());
@@ -24,7 +27,7 @@ namespace DIPO_INVESTAMA.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(sp_BankFacilitySelect_Result model)
+        public ActionResult Create(BankFacilityViewModels model)
         {
             if (BankFacilityBusinessLogic.getInstance().CreateBank(model) == -1)
             {
@@ -39,11 +42,11 @@ namespace DIPO_INVESTAMA.Controllers
 
         public ActionResult Edit(string id)
         {
-            sp_BankFacilitySelect_Result model = new sp_BankFacilitySelect_Result();
+            BankFacilityViewModels model = new BankFacilityViewModels();
             var bankData = BankFacilityBusinessLogic.getInstance().getBankById(id);
             model.BankId = bankData.BankId;
             model.BankFacilityId = bankData.BankFacilityId;
-            model.Celling = bankData.Celling;
+            model.Celling = bankData.Celling.ToString();
             model.CostMoney = bankData.CostMoney;
             model.FacilityName = bankData.FacilityName;
             ViewBag.BankAccountList = common.ToSelectList(BankFacilityBusinessLogic.getInstance().getBankDDL(), "ID", "NAME", model.BankId);
@@ -51,7 +54,7 @@ namespace DIPO_INVESTAMA.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(sp_BankFacilitySelect_Result model)
+        public ActionResult Edit(BankFacilityViewModels model)
         {
             if (BankFacilityBusinessLogic.getInstance().UpdateBank(model) == -1)
             {

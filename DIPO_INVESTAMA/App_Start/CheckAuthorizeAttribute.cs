@@ -1,4 +1,5 @@
-﻿using DIPO_INVESTAMA.Utils;
+﻿using DIPO_INVESTAMA.Entity;
+using DIPO_INVESTAMA.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace DIPO_INVESTAMA.App_Start
     {
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
-
+            DIPO_INVESTAMAEntities _db = new DIPO_INVESTAMAEntities();
             //skip if AllowAnonymous
             if (filterContext.ActionDescriptor.IsDefined(typeof(AllowAnonymousAttribute), true) || filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(typeof(AllowAnonymousAttribute), true)) return;
 
@@ -24,36 +25,18 @@ namespace DIPO_INVESTAMA.App_Start
                 }
                 else
                 {
-                    //if (this.Roles != "")
-                    //{
-                    //    bool retval = false;
-
-                    //    if (SessionManager.IsAdministrator())
-                    //    {
-                    //        retval = true;
-                    //    }
-                    //    else
-                    //    {
-                    //        int privilegeId = SessionManager.PrivilegeId();
-                    //        var dtPrivilege = Common.ExecuteQuery(String.Format("dbo.PRIVILEGE_MENU_SELECT_SP {0},'{1}'", privilegeId, this.Roles));// _db.sp_PrivilegeMenuSelect(privilegeId, this.Roles).ToList();
-                    //        if (dtPrivilege.Rows.Count > 0)
-                    //        {
-                    //            retval = Convert.ToBoolean(dtPrivilege.Rows[0]["Permission"].ToString());
-                    //        }
-                    //    }
-
-                    //    if (!retval)
-                    //    {
-
-                    //        filterContext.Result = new RedirectToRouteResult(
-                    //                                new RouteValueDictionary
-                    //                                {
-                    //                                    { "controller", "Home" },
-                    //                                    { "action", "Error403" }
-                    //                                });
-                    //    }
-
-                    //}
+                    if (!string.IsNullOrEmpty(this.Roles))
+                    {
+                        if (_db.sp_MenuRestrictionByUserId(SessionManager.userId(), this.Roles).ToList().Count == 0)
+                        {
+                            filterContext.Result = new RedirectToRouteResult(
+                                                    new RouteValueDictionary
+                                                    {
+                                                        { "controller", "Home" },
+                                                        { "action", "Error403" }
+                                                    });
+                        }
+                    }
                 }
 
             }

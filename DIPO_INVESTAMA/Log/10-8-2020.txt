@@ -1,0 +1,26 @@
+Time: 08/10/2020 07:24:17 PM
+------------------------------------------------------------------------
+Message: The context cannot be used while the model is being created. This exception may be thrown if the context is used inside the OnModelCreating method or if the same context instance is accessed by multiple threads concurrently. Note that instance members of DbContext and related classes are not guaranteed to be thread safe.
+StackTrace:    at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.LazyInternalContext.get_ObjectContext()
+   at System.Data.Entity.DbContext.System.Data.Entity.Infrastructure.IObjectContextAdapter.get_ObjectContext()
+   at DIPO_INVESTAMA.Entity.DIPO_INVESTAMAEntities.sp_ReportOfAccountCashOut(String bankFacilityId, String startDate, String endDate, String viewBy) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Entity\DIPO_INVESTAMA_DB.Context.cs:line 602
+   at DIPO_INVESTAMA.Logic.DashboardBusinessLogic.getReportOfCashOut(DashboardViewModels model) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Logic\DashboardBusinessLogic.cs:line 53
+   at DIPO_INVESTAMA.Controllers.HomeController.ReportOfAccountCashOut(DashboardViewModels model) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Controllers\HomeController.cs:line 107
+Source: EntityFramework
+TargetSite: Void InitializeContext()
+------------------------------------------------------------------------
+
+Time: 08/10/2020 07:24:17 PM
+------------------------------------------------------------------------
+Message: The context cannot be used while the model is being created. This exception may be thrown if the context is used inside the OnModelCreating method or if the same context instance is accessed by multiple threads concurrently. Note that instance members of DbContext and related classes are not guaranteed to be thread safe.
+StackTrace:    at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.LazyInternalContext.get_ObjectContext()
+   at System.Data.Entity.DbContext.System.Data.Entity.Infrastructure.IObjectContextAdapter.get_ObjectContext()
+   at DIPO_INVESTAMA.Entity.DIPO_INVESTAMAEntities.sp_ReportOfBank(String bankFacilityId, String startDate, String endDate, String viewBy) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Entity\DIPO_INVESTAMA_DB.Context.cs:line 623
+   at DIPO_INVESTAMA.Logic.DashboardBusinessLogic.getReportOfBank(DashboardViewModels model) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Logic\DashboardBusinessLogic.cs:line 32
+   at DIPO_INVESTAMA.Controllers.HomeController.ReportOfBank(DashboardViewModels model) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Controllers\HomeController.cs:line 65
+Source: EntityFramework
+TargetSite: Void InitializeContext()
+------------------------------------------------------------------------
+

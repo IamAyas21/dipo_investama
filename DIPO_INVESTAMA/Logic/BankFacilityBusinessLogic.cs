@@ -32,13 +32,17 @@ namespace DIPO_INVESTAMA.Logic
             page.Content = _db.sp_BankFacilitySelect().ToList();
             return page;
         }
-        public int CreateBank(sp_BankFacilitySelect_Result model)
+        public int CreateBank(BankFacilityViewModels model)
         {
-            return _db.sp_BankFacilityCreate(model.FacilityName, model.Celling,model.CostMoney,model.BankId,DateTime.Now, SessionManager.userId());
+            decimal celling = Convert.ToDecimal(model.Celling.Replace(".", ""));
+            decimal? costMoney = model.CostMoney == null?0:model.CostMoney * Convert.ToDecimal(100);
+            return _db.sp_BankFacilityCreate(model.FacilityName, celling,costMoney,model.BankId,DateTime.Now, SessionManager.userId());
         }
-        public int UpdateBank(sp_BankFacilitySelect_Result model)
+        public int UpdateBank(BankFacilityViewModels model)
         {
-            return _db.sp_BankFacilityUpdate(model.BankFacilityId, model.FacilityName, model.Celling, model.CostMoney, model.BankId, DateTime.Now, SessionManager.userId());
+            decimal celling = Convert.ToDecimal(model.Celling.Replace(".", ""));
+            decimal? costMoney = model.CostMoney == null ? 0 : model.CostMoney * Convert.ToDecimal(100);
+            return _db.sp_BankFacilityUpdate(model.BankFacilityId, model.FacilityName, celling, costMoney, model.BankId, DateTime.Now, SessionManager.userId());
         }
 
         public BankFacility getBankById(string id)

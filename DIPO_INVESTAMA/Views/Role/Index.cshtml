@@ -58,23 +58,51 @@
                                 @Html.DisplayFor(modelItem => Model.Content[i].RoleName)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => Model.Content[i].Maker)
+                                @if (Model.Content[i].Maker.Equals("Yes"))
+                                {
+                                    <i class="glyphicon glyphicon-ok" style="color:green"></i>
+                                }
+                                else
+                                {
+                                    <i class="glyphicon glyphicon-remove" style="color:red"></i>
+                                }
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => Model.Content[i].Checker)
+                                @if (Model.Content[i].Checker.Equals("Yes"))
+                                {
+                                    <i class="glyphicon glyphicon-ok" style="color:green"></i>
+                                }
+                                else
+                                {
+                                    <i class="glyphicon glyphicon-remove" style="color:red"></i>
+                                }
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => Model.Content[i].Approval)
+                                @if (Model.Content[i].Approval.Equals("Yes"))
+                                {
+                                    <i class="glyphicon glyphicon-ok" style="color:green"></i>
+                                }
+                                else
+                                {
+                                    <i class="glyphicon glyphicon-remove" style="color:red"></i>
+                                }
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => Model.Content[i].SuperUser)
+                                @if (Model.Content[i].SuperUser.Equals("Yes"))
+                                {
+                                    <i class="glyphicon glyphicon-ok" style="color:green"></i>
+                                }
+                                else
+                                {
+                                    <i class="glyphicon glyphicon-remove" style="color:red"></i>
+                                }
                             </td>
                             <td>
                                 <a style="cursor:pointer" href="@Url.Action("Edit","Role", new { id = Model.Content[i].RoleId})">
-                                    <i class="glyphicon glyphicon-pencil"></i>
+                                    <i class="glyphicon glyphicon-pencil" style="color:green"></i>
                                 </a>
                                 <a style="cursor:pointer" value="loop" onclick="ShowModal(@i)">
-                                    <i class="glyphicon glyphicon-trash"></i>
+                                    <i class="glyphicon glyphicon-trash" style="color:red"></i>
                                 </a>
                                 <div id="modal_@i" class="modal fade" tabindex="-1" data-keyboard="false" data-backdrop="static">
                                     <div class="modal-dialog">

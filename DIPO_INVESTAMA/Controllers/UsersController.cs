@@ -1,4 +1,5 @@
-﻿using DIPO_INVESTAMA.Entity;
+﻿using DIPO_INVESTAMA.App_Start;
+using DIPO_INVESTAMA.Entity;
 using DIPO_INVESTAMA.Logic;
 using DIPO_INVESTAMA.Utils;
 using System;
@@ -12,6 +13,7 @@ namespace DIPO_INVESTAMA.Controllers
     public class UsersController : Controller
     {
         // GET: Users
+        [CheckAuthorize(Roles = "Users")]
         public ActionResult Index()
         {
             return View(UserBusinessLogic.getInstance().ListUsers());

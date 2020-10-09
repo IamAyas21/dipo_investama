@@ -15,8 +15,8 @@ namespace DIPO_INVESTAMA.Entity
     {
         public string BankFacilityId { get; set; }
         public string FacilityName { get; set; }
-        public Nullable<decimal> Celling { get; set; }
-        public Nullable<decimal> CostMoney { get; set; }
+        public string Celling { get; set; }
+        public string CostMoney { get; set; }
         public string BankId { get; set; }
         public Nullable<System.DateTime> CreatedAt { get; set; }
         public string CreatedBy { get; set; }

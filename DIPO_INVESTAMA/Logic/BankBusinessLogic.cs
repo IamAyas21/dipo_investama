@@ -31,6 +31,11 @@ namespace DIPO_INVESTAMA.Logic
             page.Content = _db.sp_BankSelect().ToList();
             return page;
         }
+        public int GetCountBank(string bankName)
+        {
+            return _db.Banks.Where(tb => tb.BankName.Equals(bankName)).Count();
+        }
+
         public int CreateBank(sp_BankSelect_Result model)
         {
             return _db.sp_BankCreate(model.BankName, model.AccountNo, SessionManager.userId());

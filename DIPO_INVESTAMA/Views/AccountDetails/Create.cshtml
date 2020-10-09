@@ -11,16 +11,16 @@
             <div class="">
                 <div class="row">
                     <div class="col-md-4">
+                        <label>Account No</label>
+                        @Html.DropDownListFor(model => model.AccountId, ViewBag.AccountList as SelectList, new { @class = "form-control" })
+                    </div>
+                    @*<div class="col-md-4">
                         <label>No</label>
                         @Html.TextBoxFor(model => model.No, new { @class = "form-control", @placeholder = "No", autocomplete = "off", required = "required" })
-                    </div>
+                    </div>*@
                     <div class="col-md-4">
                         <label>Name</label>
                         @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Name", autocomplete = "off", required = "required" })
-                    </div>
-                    <div class="col-md-4">
-                        <label>Account No</label>
-                        @Html.DropDownListFor(model => model.AccountId, ViewBag.AccountList as SelectList, new { @class = "form-control" })
                     </div>
                 </div>
             </div>

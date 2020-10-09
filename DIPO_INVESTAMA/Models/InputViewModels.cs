@@ -10,7 +10,7 @@ namespace DIPO_INVESTAMA.Models
         public string Date { get; set; }
         public string Account { get; set; }
         public string BankAccount { get; set; }
-        public decimal Amount { get; set; }
+        public string Amount { get; set; }
         public string Description { get; set; }
         public string Origin { get; set; }
         public string CashIn { get; set; }

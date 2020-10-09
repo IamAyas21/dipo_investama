@@ -274,6 +274,9 @@
     <Compile Include="Entity\sp_MenuDDL_Result.cs">
       <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entity\sp_MenuRestrictionByUserId_Result.cs">
+      <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entity\sp_MenuRestrictionSelect_Result.cs">
       <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
     </Compile>
@@ -330,6 +333,7 @@
     <Compile Include="Logic\OutputBusinessLogic.cs" />
     <Compile Include="Logic\UserBusinessLogic.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BankFacilityViewModels.cs" />
     <Compile Include="Models\DashboardViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\HistoryViewModels.cs" />
@@ -343,6 +347,7 @@
     <Compile Include="Utils\SessionManager.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\403.jpg" />
     <Content Include="Assets\background_login.png" />
     <Content Include="Assets\background_login_dipo.png" />
     <Content Include="Assets\icon\print.png" />
@@ -522,7 +527,7 @@
     <Content Include="Views\MenuRestriction\Index.cshtml" />
     <Content Include="Views\History\Index.cshtml" />
     <Content Include="Views\History\PartialViews\Journals.cshtml" />
-    <Content Include="Views\Home\Index - Copy.cshtml" />
+    <Content Include="Views\Home\Error403.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

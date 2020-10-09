@@ -31,7 +31,8 @@ namespace DIPO_INVESTAMA.Logic
         {
             try
             {
-                return _db.sp_InputJournal(model.Date == string.Empty?DateTime.Now:Convert.ToDateTime(model.Date), model.Account, model.BankAccount, model.Amount, model.Description, model.Origin, SessionManager.userId());
+                decimal amt = Convert.ToDecimal(model.Amount.Replace(".", ""));
+                return _db.sp_InputJournal(model.Date == string.Empty?DateTime.Now:Convert.ToDateTime(model.Date), model.Account, model.BankAccount, amt, model.Description, model.Origin, SessionManager.userId());
             }
             catch (Exception e)
             {

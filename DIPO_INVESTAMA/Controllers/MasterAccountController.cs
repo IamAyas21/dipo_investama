@@ -1,4 +1,5 @@
-﻿using DIPO_INVESTAMA.Entity;
+﻿using DIPO_INVESTAMA.App_Start;
+using DIPO_INVESTAMA.Entity;
 using DIPO_INVESTAMA.Logic;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace DIPO_INVESTAMA.Controllers
     public class MasterAccountController : Controller
     {
         // GET: MasterAccount
+        [CheckAuthorize(Roles = "Account")]
         public ActionResult Index()
         {
             return View(AccountBusinessLogic.getInstance().ListMasterAccount());
@@ -61,13 +63,21 @@ namespace DIPO_INVESTAMA.Controllers
 
         public ActionResult Delete(string id)
         {
-            if (AccountBusinessLogic.getInstance().DeleteAccount(id) == -1)
+            try
             {
-                TempData["Success"] = "Account was successfully deleted";
+                if (AccountBusinessLogic.getInstance().DeleteAccount(id) == -1)
+                {
+                    TempData["Success"] = "Account was successfully deleted";
+                }
+                else
+                {
+                    TempData["Error"] = "Account was unsuccessfully deleted";
+                }
             }
-            else
+            catch (Exception e)
             {
                 TempData["Error"] = "Account was unsuccessfully deleted";
+                Logging.getInstance().CreateLogError(e);
             }
             return RedirectToAction("Index");
         }

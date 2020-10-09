@@ -1,4 +1,5 @@
-﻿using DIPO_INVESTAMA.Entity;
+﻿using DIPO_INVESTAMA.App_Start;
+using DIPO_INVESTAMA.Entity;
 using DIPO_INVESTAMA.Logic;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace DIPO_INVESTAMA.Controllers
     public class BankController : Controller
     {
         // GET: Bank
+        [CheckAuthorize(Roles = "Bank")]
         public ActionResult Index()
         {
             return View(BankBusinessLogic.getInstance().ListBank());
@@ -24,13 +26,20 @@ namespace DIPO_INVESTAMA.Controllers
         [HttpPost]
         public ActionResult Create(sp_BankSelect_Result model)
         {
-            if (BankBusinessLogic.getInstance().CreateBank(model) == -1)
+            if(BankBusinessLogic.getInstance().GetCountBank(model.BankName) == 0)
             {
-                TempData["Success"] = "Bank was successfully inserted";
+                if (BankBusinessLogic.getInstance().CreateBank(model) == -1)
+                {
+                    TempData["Success"] = "Bank was successfully inserted";
+                }
+                else
+                {
+                    TempData["Error"] = "Bank was unsuccessfully inserted";
+                }
             }
             else
             {
-                TempData["Error"] = "Bank was unsuccessfully inserted";
+                TempData["Error"] = "Bank already exist";
             }
             return RedirectToAction("Index");
         }

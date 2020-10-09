@@ -1,4 +1,5 @@
-﻿using DIPO_INVESTAMA.Entity;
+﻿using DIPO_INVESTAMA.App_Start;
+using DIPO_INVESTAMA.Entity;
 using DIPO_INVESTAMA.Logic;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace DIPO_INVESTAMA.Controllers
 {
     public class RoleController : Controller
     {
-        // GET: Department
+        [CheckAuthorize(Roles = "Role")]
         public ActionResult Index()
         {
             return View(RoleBusinessLogic.getInstance().ListRole());

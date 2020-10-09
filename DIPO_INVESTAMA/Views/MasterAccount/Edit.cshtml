@@ -13,7 +13,8 @@
                 <div class="row">
                     <div class="col-md-4">
                         <label>Account No</label>
-                        @Html.TextBoxFor(model => model.AccountNo, new { @class = "form-control", @placeholder = "Account No", autocomplete = "off", required = "required" })
+                        @Html.TextBoxFor(model => model.AccountNo, new { @class = "form-control", @placeholder = "Account No", autocomplete = "off", required = "required", @disabled="disabled" })
+                        @Html.HiddenFor(model => model.AccountNo)
                     </div>
                     <div class="col-md-4">
                         <label>Account Name</label>

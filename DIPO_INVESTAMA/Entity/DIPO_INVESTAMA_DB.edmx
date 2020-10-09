@@ -388,6 +388,10 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
         <Function Name="sp_MenuDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="RestrictionId" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="sp_MenuRestrictionByUserId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userId" Type="varchar" Mode="In" />
+          <Parameter Name="menuName" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="sp_MenuRestrictionSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_MenuUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="RestrictionId" Type="varchar" Mode="In" />
@@ -989,6 +993,10 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           <FunctionImport Name="sp_MenuDelete">
             <Parameter Name="RestrictionId" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_MenuRestrictionByUserId" ReturnType="Collection(DIPO_INVESTAMAModel.sp_MenuRestrictionByUserId_Result)">
+            <Parameter Name="userId" Mode="In" Type="String" />
+            <Parameter Name="menuName" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="sp_MenuRestrictionSelect" ReturnType="Collection(DIPO_INVESTAMAModel.sp_MenuRestrictionSelect_Result)" />
           <FunctionImport Name="sp_MenuUpdate">
             <Parameter Name="RestrictionId" Mode="In" Type="String" />
@@ -1121,8 +1129,8 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
         <ComplexType Name="sp_BankFacilitySelect_Result">
           <Property Type="String" Name="BankFacilityId" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="FacilityName" Nullable="true" MaxLength="100" />
-          <Property Type="Decimal" Name="Celling" Nullable="true" Precision="19" />
-          <Property Type="Decimal" Name="CostMoney" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="Celling" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="CostMoney" Nullable="true" MaxLength="4000" />
           <Property Type="String" Name="BankId" Nullable="true" MaxLength="50" />
           <Property Type="DateTime" Name="CreatedAt" Nullable="true" Precision="23" />
           <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
@@ -1173,6 +1181,25 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
         <ComplexType Name="sp_MenuDDL_Result">
           <Property Type="String" Name="ID" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="NAME" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_MenuRestrictionByUserId_Result">
+          <Property Type="String" Name="MenuId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="MenuName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Action" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Controller" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="RestrictionId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="RoleId" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="RoleName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Maker" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="Checker" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="Approval" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="SuperUser" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="UserId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DepartmentId" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="100" />
         </ComplexType>
         <ComplexType Name="sp_MenuRestrictionSelect_Result">
           <Property Type="String" Name="RestrictionId" Nullable="false" MaxLength="50" />
@@ -1617,6 +1644,29 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_MenuDelete" FunctionName="DIPO_INVESTAMAModel.Store.sp_MenuDelete" />
+          <FunctionImportMapping FunctionImportName="sp_MenuRestrictionByUserId" FunctionName="DIPO_INVESTAMAModel.Store.sp_MenuRestrictionByUserId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_MenuRestrictionByUserId_Result">
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="RestrictionId" ColumnName="RestrictionId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="Maker" ColumnName="Maker" />
+                <ScalarProperty Name="Checker" ColumnName="Checker" />
+                <ScalarProperty Name="Approval" ColumnName="Approval" />
+                <ScalarProperty Name="SuperUser" ColumnName="SuperUser" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_MenuRestrictionSelect" FunctionName="DIPO_INVESTAMAModel.Store.sp_MenuRestrictionSelect">
             <ResultMapping>
               <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_MenuRestrictionSelect_Result">

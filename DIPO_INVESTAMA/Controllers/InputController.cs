@@ -13,12 +13,12 @@ namespace DIPO_INVESTAMA.Controllers
     public class InputController : Controller
     {
         // GET: Input
-        [CheckAuthorizeAttribute()]
+        [CheckAuthorize(Roles = "Input")]
         public ActionResult Index()
         {
             InputViewModels model = new InputViewModels();
             model.TodaysJournal = Journals();
-            ViewBag.AccountList = common.ToSelectList(AccountDetailsBusinessLogic.getInstance().getAccountDDL(),"ID", "NAME",string.Empty);
+            ViewBag.AccountList = common.ToSelectList(AccountDetailsBusinessLogic.getInstance().getAccountDetailDDL(),"ID", "NAME",string.Empty);
             ViewBag.BankAccountList = common.ToSelectList(BankFacilityBusinessLogic.getInstance().getBankFacilityDDL(), "ID", "NAME",string.Empty);
             return View(model);
         }
@@ -35,7 +35,7 @@ namespace DIPO_INVESTAMA.Controllers
                 TempData["Error"] = "Unsuccessfully was inserted";
             }
 
-            ViewBag.AccountList = common.ToSelectList(AccountDetailsBusinessLogic.getInstance().getAccountDDL(), "ID", "NAME", model.Account);
+            ViewBag.AccountList = common.ToSelectList(AccountDetailsBusinessLogic.getInstance().getAccountDetailDDL(), "ID", "NAME", model.Account);
             ViewBag.BankAccountList = common.ToSelectList(BankFacilityBusinessLogic.getInstance().getBankFacilityDDL(), "ID", "NAME", model.BankAccount);
             return View(model);
         }

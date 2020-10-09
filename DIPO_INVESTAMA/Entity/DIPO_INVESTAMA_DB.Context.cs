@@ -471,6 +471,19 @@ namespace DIPO_INVESTAMA.Entity
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_MenuDelete", restrictionIdParameter);
         }
     
+        public virtual ObjectResult<sp_MenuRestrictionByUserId_Result> sp_MenuRestrictionByUserId(string userId, string menuName)
+        {
+            var userIdParameter = userId != null ?
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(string));
+    
+            var menuNameParameter = menuName != null ?
+                new ObjectParameter("menuName", menuName) :
+                new ObjectParameter("menuName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MenuRestrictionByUserId_Result>("sp_MenuRestrictionByUserId", userIdParameter, menuNameParameter);
+        }
+    
         public virtual ObjectResult<sp_MenuRestrictionSelect_Result> sp_MenuRestrictionSelect()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MenuRestrictionSelect_Result>("sp_MenuRestrictionSelect");
