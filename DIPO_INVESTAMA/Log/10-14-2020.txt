@@ -1,0 +1,133 @@
+Time: 14/10/2020 11:00:21 PM
+------------------------------------------------------------------------
+Message: An error occurred while executing the command definition. See the inner exception for details.
+StackTrace:    at System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   at System.Data.Entity.Core.Objects.ObjectContext.CreateFunctionObjectResult[TElement](EntityCommand entityCommand, ReadOnlyCollection`1 entitySets, EdmType[] edmTypes, ExecutionOptions executionOptions)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass47`1.<ExecuteFunction>b__46()
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass47`1.<ExecuteFunction>b__45()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ExecutionOptions executionOptions, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, MergeOption mergeOption, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ObjectParameter[] parameters)
+   at DIPO_INVESTAMA.Entity.DIPO_INVESTAMAEntities.sp_ReportOfAccount(String bankFacilityId, String startDate, String endDate, String viewBy) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Entity\DIPO_INVESTAMA_DB.Context.cs:line 573
+   at DIPO_INVESTAMA.Logic.DashboardBusinessLogic.getReportOfAccount(DashboardViewModels model) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Logic\DashboardBusinessLogic.cs:line 45
+   at DIPO_INVESTAMA.Controllers.HomeController.ReportOfAccount(DashboardViewModels model) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Controllers\HomeController.cs:line 79
+Source: EntityFramework
+TargetSite: System.Data.Common.DbDataReader ExecuteStoreCommands(System.Data.Entity.Core.EntityClient.EntityCommand, System.Data.CommandBehavior)
+------------------------------------------------------------------------
+
+Time: 14/10/2020 11:03:54 PM
+------------------------------------------------------------------------
+Message: An error occurred while executing the command definition. See the inner exception for details.
+StackTrace:    at System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   at System.Data.Entity.Core.Objects.ObjectContext.CreateFunctionObjectResult[TElement](EntityCommand entityCommand, ReadOnlyCollection`1 entitySets, EdmType[] edmTypes, ExecutionOptions executionOptions)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass47`1.<ExecuteFunction>b__46()
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass47`1.<ExecuteFunction>b__45()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ExecutionOptions executionOptions, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, MergeOption mergeOption, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ObjectParameter[] parameters)
+   at DIPO_INVESTAMA.Entity.DIPO_INVESTAMAEntities.sp_ReportOfAccount(String bankFacilityId, String startDate, String endDate, String viewBy)
+   at DIPO_INVESTAMA.Logic.DashboardBusinessLogic.getReportOfAccount(DashboardViewModels model)
+   at DIPO_INVESTAMA.Controllers.HomeController.ReportOfAccount(DashboardViewModels model)
+Source: EntityFramework
+TargetSite: System.Data.Common.DbDataReader ExecuteStoreCommands(System.Data.Entity.Core.EntityClient.EntityCommand, System.Data.CommandBehavior)
+------------------------------------------------------------------------
+
+Time: 14/10/2020 11:09:19 PM
+------------------------------------------------------------------------
+Message: An error occurred while executing the command definition. See the inner exception for details.
+StackTrace:    at System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   at System.Data.Entity.Core.Objects.ObjectContext.CreateFunctionObjectResult[TElement](EntityCommand entityCommand, ReadOnlyCollection`1 entitySets, EdmType[] edmTypes, ExecutionOptions executionOptions)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass47`1.<ExecuteFunction>b__46()
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass47`1.<ExecuteFunction>b__45()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ExecutionOptions executionOptions, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, MergeOption mergeOption, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ObjectParameter[] parameters)
+   at DIPO_INVESTAMA.Entity.DIPO_INVESTAMAEntities.sp_ReportOfAccount(String bankFacilityId, String startDate, String endDate, String viewBy) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Entity\DIPO_INVESTAMA_DB.Context.cs:line 573
+   at DIPO_INVESTAMA.Logic.DashboardBusinessLogic.getReportOfAccount(DashboardViewModels model) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Logic\DashboardBusinessLogic.cs:line 50
+   at DIPO_INVESTAMA.Controllers.HomeController.ReportOfAccount(DashboardViewModels model) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Controllers\HomeController.cs:line 79
+Source: EntityFramework
+TargetSite: System.Data.Common.DbDataReader ExecuteStoreCommands(System.Data.Entity.Core.EntityClient.EntityCommand, System.Data.CommandBehavior)
+------------------------------------------------------------------------
+
+Time: 14/10/2020 11:11:45 PM
+------------------------------------------------------------------------
+Message: An error occurred while executing the command definition. See the inner exception for details.
+StackTrace:    at System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   at System.Data.Entity.Core.Objects.ObjectContext.CreateFunctionObjectResult[TElement](EntityCommand entityCommand, ReadOnlyCollection`1 entitySets, EdmType[] edmTypes, ExecutionOptions executionOptions)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass47`1.<ExecuteFunction>b__46()
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass47`1.<ExecuteFunction>b__45()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ExecutionOptions executionOptions, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, MergeOption mergeOption, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ObjectParameter[] parameters)
+   at DIPO_INVESTAMA.Entity.DIPO_INVESTAMAEntities.sp_ReportOfAccount(String bankFacilityId, String startDate, String endDate, String viewBy) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Entity\DIPO_INVESTAMA_DB.Context.cs:line 573
+   at DIPO_INVESTAMA.Logic.DashboardBusinessLogic.getReportOfAccount(DashboardViewModels model) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Logic\DashboardBusinessLogic.cs:line 50
+   at DIPO_INVESTAMA.Controllers.HomeController.ReportOfAccount(DashboardViewModels model) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Controllers\HomeController.cs:line 79
+Source: EntityFramework
+TargetSite: System.Data.Common.DbDataReader ExecuteStoreCommands(System.Data.Entity.Core.EntityClient.EntityCommand, System.Data.CommandBehavior)
+------------------------------------------------------------------------
+
+Time: 14/10/2020 11:14:37 PM
+------------------------------------------------------------------------
+Message: An error occurred while executing the command definition. See the inner exception for details.
+StackTrace:    at System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   at System.Data.Entity.Core.Objects.ObjectContext.CreateFunctionObjectResult[TElement](EntityCommand entityCommand, ReadOnlyCollection`1 entitySets, EdmType[] edmTypes, ExecutionOptions executionOptions)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass47`1.<ExecuteFunction>b__46()
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass47`1.<ExecuteFunction>b__45()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ExecutionOptions executionOptions, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, MergeOption mergeOption, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ObjectParameter[] parameters)
+   at DIPO_INVESTAMA.Entity.DIPO_INVESTAMAEntities.sp_ReportOfAccount(String bankFacilityId, String startDate, String endDate, String viewBy) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Entity\DIPO_INVESTAMA_DB.Context.cs:line 573
+   at DIPO_INVESTAMA.Logic.DashboardBusinessLogic.getReportOfAccount(DashboardViewModels model) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Logic\DashboardBusinessLogic.cs:line 50
+   at DIPO_INVESTAMA.Controllers.HomeController.ReportOfAccount(DashboardViewModels model) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Controllers\HomeController.cs:line 79
+Source: EntityFramework
+TargetSite: System.Data.Common.DbDataReader ExecuteStoreCommands(System.Data.Entity.Core.EntityClient.EntityCommand, System.Data.CommandBehavior)
+------------------------------------------------------------------------
+
+Time: 14/10/2020 11:18:28 PM
+------------------------------------------------------------------------
+Message: An error occurred while executing the command definition. See the inner exception for details.
+StackTrace:    at System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   at System.Data.Entity.Core.Objects.ObjectContext.CreateFunctionObjectResult[TElement](EntityCommand entityCommand, ReadOnlyCollection`1 entitySets, EdmType[] edmTypes, ExecutionOptions executionOptions)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass47`1.<ExecuteFunction>b__46()
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass47`1.<ExecuteFunction>b__45()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ExecutionOptions executionOptions, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, MergeOption mergeOption, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ObjectParameter[] parameters)
+   at DIPO_INVESTAMA.Entity.DIPO_INVESTAMAEntities.sp_ReportOfAccount(String bankFacilityId, String startDate, String endDate, String viewBy) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Entity\DIPO_INVESTAMA_DB.Context.cs:line 573
+   at DIPO_INVESTAMA.Logic.DashboardBusinessLogic.getReportOfAccount(DashboardViewModels model) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Logic\DashboardBusinessLogic.cs:line 50
+   at DIPO_INVESTAMA.Controllers.HomeController.ReportOfAccount(DashboardViewModels model) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Controllers\HomeController.cs:line 79
+Source: EntityFramework
+TargetSite: System.Data.Common.DbDataReader ExecuteStoreCommands(System.Data.Entity.Core.EntityClient.EntityCommand, System.Data.CommandBehavior)
+------------------------------------------------------------------------
+
+Time: 14/10/2020 11:20:25 PM
+------------------------------------------------------------------------
+Message: An error occurred while executing the command definition. See the inner exception for details.
+StackTrace:    at System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   at System.Data.Entity.Core.Objects.ObjectContext.CreateFunctionObjectResult[TElement](EntityCommand entityCommand, ReadOnlyCollection`1 entitySets, EdmType[] edmTypes, ExecutionOptions executionOptions)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass47`1.<ExecuteFunction>b__46()
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass47`1.<ExecuteFunction>b__45()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ExecutionOptions executionOptions, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, MergeOption mergeOption, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ObjectParameter[] parameters)
+   at DIPO_INVESTAMA.Entity.DIPO_INVESTAMAEntities.sp_ReportOfAccount(String bankFacilityId, String startDate, String endDate, String viewBy) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Entity\DIPO_INVESTAMA_DB.Context.cs:line 573
+   at DIPO_INVESTAMA.Logic.DashboardBusinessLogic.getReportOfAccount(DashboardViewModels model) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Logic\DashboardBusinessLogic.cs:line 50
+   at DIPO_INVESTAMA.Controllers.HomeController.ReportOfAccount(DashboardViewModels model) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Controllers\HomeController.cs:line 79
+Source: EntityFramework
+TargetSite: System.Data.Common.DbDataReader ExecuteStoreCommands(System.Data.Entity.Core.EntityClient.EntityCommand, System.Data.CommandBehavior)
+------------------------------------------------------------------------
+

@@ -1,0 +1,133 @@
+﻿@model DIPO_INVESTAMA.Models.PrivilegeViewModels
+@{
+    ViewBag.Title = "Create";
+}
+<script src="~/Scripts/three-menu.js"></script>
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-warning">
+        <p><strong>Error:</strong> @TempData["Error"].ToString()</p>
+    </div>
+}
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">
+        <strong>Success!</strong> @TempData["Success"].ToString()
+    </div>
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-lg-6"> Add Privilge</div>
+                <div class="col-lg-6" style="text-align:right">
+                    <a data-toggle="modal" href="@Url.Action("Index","MenuResctrictions")" class="btn btn-primary"><i class="fa fa-backward"></i> Back </a>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="form-horizontal box-body">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Parent.RoleName, "Privilege", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.Parent.RoleName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Parent.RoleName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Access Menu*</label>
+                    <div class="col-md-10">
+                        <ul class="treeview col-lg-12" style="padding-left: 0px;">
+                            @for (int i = 0; i < Model.Menu.Count(); i++)
+                            {
+                                <div class="col-lg-4" style="padding-left: 0px;">
+                                    <div class="panel panel-default col-lg-12">
+                                        <div class="panel-body">
+                                            <li>
+                                                @Html.CheckBoxFor(model => model.Menu[i].Checked, new { @class = "tree-checkbox parent", @id = @Model.Menu[i].Parent.MenuId })
+                                                <i class="@Model.Menu[i].Parent.Icon"></i> @Html.DisplayFor(model => model.Menu[i].Parent.MenuName)
+                                                @Html.HiddenFor(model => model.Menu[i].Parent.MenuId)
+                                                @Html.HiddenFor(model => model.Menu[i].Parent.MenuName)
+                                                <ul>
+                                                    @{
+                                                        int Level1 = Model.Menu[i].Child == null ? 0 : Model.Menu[i].Child.Count();
+                                                    }
+                                                    @for (int j = 0; j < @Level1; j++)
+                                                    {
+                                                        <li>
+                                                            @Html.HiddenFor(model => model.Menu[i].Child[j].Parent.MenuId)
+                                                            @Html.CheckBoxFor(model => model.Menu[i].Child[j].Checked, new { @class = "tree-checkbox node-item", @iid = i + "" + j })
+                                                            <i class="@Model.Menu[i].Child[j].Parent.Icon"></i> @Html.DisplayFor(model => model.Menu[i].Child[j].Parent.MenuName)
+                                                            @Html.HiddenFor(model => model.Menu[i].Child[j].Parent.MenuName)
+                                                            <ul>
+                                                                @{
+                                                                    int Level2 = Model.Menu[i].Child[j].Child == null ? 0 : Model.Menu[i].Child[j].Child.Count();
+                                                                }
+                                                                @for (int k = 0; k < @Level2; k++)
+                                                                {
+                                                                    <li>
+                                                                        @Html.HiddenFor(model => model.Menu[i].Child[j].Child[k].Parent.MenuId)
+                                                                        @Html.CheckBoxFor(model => model.Menu[i].Child[j].Child[k].Checked, new { @class = "tree-checkbox node-item", @iid = j + "" + k })
+                                                                        <i class="@Model.Menu[i].Child[j].Child[k].Parent.Icon"></i> @Html.DisplayFor(model => model.Menu[i].Child[j].Child[k].Parent.MenuName)
+                                                                        @Html.HiddenFor(model => model.Menu[i].Child[j].Child[k].Parent.MenuName)
+                                                                        <ul>
+                                                                            @{
+                                                                                int Level3 = Model.Menu[i].Child[j].Child[k].Child == null ? 0 : Model.Menu[i].Child[j].Child[k].Child.Count();
+                                                                            }
+                                                                            @for (int l = 0; l < @Level3; l++)
+                                                                            {
+                                                                                <li>
+                                                                                    @Html.HiddenFor(model => Model.Menu[i].Child[j].Child[k].Child[l].Parent.MenuId)
+                                                                                    @Html.CheckBoxFor(model => Model.Menu[i].Child[j].Child[k].Child[l].Checked, new { @class = "tree-checkbox node-item", @iiiid = k + "" + l })
+                                                                                    <i class="@Model.Menu[i].Child[j].Child[k].Child[l].Parent.Icon"></i>  @Html.DisplayFor(model => Model.Menu[i].Child[j].Child[k].Child[l].Parent.MenuName)
+                                                                                    @Html.HiddenFor(model => Model.Menu[i].Child[j].Child[k].Child[l].Parent.MenuName)
+                                                                                    <ul>
+                                                                                        @{
+                                                                                            int Level4 = Model.Menu[i].Child[j].Child[k].Child[l].Child == null ? 0 : Model.Menu[i].Child[j].Child[k].Child[l].Child.Count();
+                                                                                        }
+                                                                                        @for (int m = 0; m < @Level4; m++)
+                                                                                        {
+                                                                                            <li>
+                                                                                                @Html.HiddenFor(model => Model.Menu[i].Child[j].Child[k].Child[l].Child[m].Parent.MenuId)
+                                                                                                @Html.CheckBoxFor(model => Model.Menu[i].Child[j].Child[k].Child[l].Child[m].Checked, new { @class = "tree-checkbox node-item", @iiiid = k + "" + m })
+                                                                                                <i class="@Model.Menu[i].Child[j].Child[k].Child[l].Child[m].Parent.Icon"></i> @Html.DisplayFor(model => Model.Menu[i].Child[j].Child[k].Child[l].Child[m].Parent.MenuName)
+                                                                                                @Html.HiddenFor(model => Model.Menu[i].Child[j].Child[k].Child[l].Child[m].Parent.MenuName)
+                                                                                            </li>
+
+                                                                                        }
+                                                                                    </ul>
+                                                                                </li>
+
+                                                                                            }
+                                                                        </ul>
+                                                                    </li>
+                                                                                            }
+                                                            </ul>
+                                                        </li>
+                                                                                            }
+                                                </ul>
+                                            </li>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                                                                            }
+
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Submit" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.panel-body -->
+    </div>
+
+                                                                                            }

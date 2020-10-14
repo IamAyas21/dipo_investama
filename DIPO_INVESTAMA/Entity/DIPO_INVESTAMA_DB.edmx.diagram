@@ -4,18 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3add08f268c747e19c9ac9aa7e673e09" Name="Diagram1">
-        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.Account" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
-        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.AccountDetail" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.Bank" Width="1.5" PointX="0.75" PointY="15" IsExpanded="true" />
-        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.BankFacility" Width="1.5" PointX="3" PointY="14.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.Department" Width="1.5" PointX="3.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.Menu" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.MenuRestriction" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.PettyCash" Width="1.5" PointX="5.25" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.Role" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.User" Width="1.5" PointX="6" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.vw_PettyCash" Width="1.5" PointX="7.75" PointY="9.5" IsExpanded="true" />
+      <Diagram DiagramId="154f136c1afa48038322a53c86cf0dbb" Name="Diagram1">
+        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.Account" Width="1.5" PointX="2.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.AccountDetail" Width="1.5" PointX="5" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.Bank" Width="1.5" PointX="2.75" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.BankFacility" Width="1.5" PointX="5" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.Department" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.Menu" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.MenuRestriction" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.PettyCash" Width="1.5" PointX="7.25" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.Role" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.User" Width="1.5" PointX="6" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DIPO_INVESTAMAModel.vw_PettyCash" Width="1.5" PointX="8.75" PointY="2.125" IsExpanded="true" />
         <AssociationConnector Association="DIPO_INVESTAMAModel.FK_AccountDetail_Account" ManuallyRouted="false" />
         <AssociationConnector Association="DIPO_INVESTAMAModel.FK_PettyCash_AccountDetail" ManuallyRouted="false" />
         <AssociationConnector Association="DIPO_INVESTAMAModel.FK_BankFacility_Bank" ManuallyRouted="false" />

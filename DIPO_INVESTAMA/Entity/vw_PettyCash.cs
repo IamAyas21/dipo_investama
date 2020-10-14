@@ -30,5 +30,7 @@ namespace DIPO_INVESTAMA.Entity
         public string ApprovalBy { get; set; }
         public Nullable<System.DateTime> RejectedAt { get; set; }
         public string RejectedBy { get; set; }
+        public string BankFacilityId { get; set; }
+        public Nullable<decimal> Celling { get; set; }
     }
 }

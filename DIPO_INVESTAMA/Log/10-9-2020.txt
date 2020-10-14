@@ -1,0 +1,34 @@
+Time: 09/10/2020 09:10:25 PM
+------------------------------------------------------------------------
+Message: The underlying provider failed on Open.
+StackTrace:    at System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+   at System.Data.Entity.Core.Objects.ObjectContext.EnsureConnection(Boolean shouldMonitorTransactions)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass47`1.<ExecuteFunction>b__45()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ExecutionOptions executionOptions, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, MergeOption mergeOption, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ObjectParameter[] parameters)
+   at DIPO_INVESTAMA.Entity.DIPO_INVESTAMAEntities.sp_TodaysJournal() in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Entity\DIPO_INVESTAMA_DB.Context.cs:line 722
+   at DIPO_INVESTAMA.Logic.InputBusinessLogic.TodaysJournal() in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Logic\InputBusinessLogic.cs:line 51
+Source: EntityFramework
+TargetSite: Void Open()
+------------------------------------------------------------------------
+
+Time: 09/10/2020 09:10:36 PM
+------------------------------------------------------------------------
+Message: The underlying provider failed on Open.
+StackTrace:    at System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+   at System.Data.Entity.Core.Objects.ObjectContext.EnsureConnection(Boolean shouldMonitorTransactions)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass47`1.<ExecuteFunction>b__45()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ExecutionOptions executionOptions, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, MergeOption mergeOption, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ObjectParameter[] parameters)
+   at DIPO_INVESTAMA.Entity.DIPO_INVESTAMAEntities.sp_TodaysJournal() in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Entity\DIPO_INVESTAMA_DB.Context.cs:line 722
+   at DIPO_INVESTAMA.Logic.InputBusinessLogic.TodaysJournal() in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Logic\InputBusinessLogic.cs:line 51
+Source: EntityFramework
+TargetSite: Void Open()
+------------------------------------------------------------------------
+

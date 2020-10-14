@@ -13,7 +13,7 @@ namespace DIPO_INVESTAMA.Controllers
     public class InputController : Controller
     {
         // GET: Input
-        [CheckAuthorize(Roles = "Input")]
+        //[CheckAuthorize(Roles = "Input")]
         public ActionResult Index()
         {
             InputViewModels model = new InputViewModels();

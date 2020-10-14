@@ -110,7 +110,7 @@
                                 @if (Model.Content[i].CheckedBy == null && Model.Content[i].RejectedBy == null)
                                 {
                                     <a style="cursor:pointer" value="loop" onclick="ShowModalCheck(@i)">
-                                        <i class="glyphicon glyphicon-ok"></i>
+                                        <i class="glyphicon glyphicon-ok" style="color:green"></i>
                                     </a>
                                     <div id="modalCheck_@i" class="modal fade" tabindex="-1" data-keyboard="false" data-backdrop="static">
                                         <div class="modal-dialog">
@@ -132,7 +132,7 @@
                                 else if (Model.Content[i].ApprovalBy == null && Model.Content[i].CheckedBy != null && Model.Content[i].RejectedBy == null)
                                 {
                                     <a style="cursor:pointer" value="loop" onclick="ShowModalApprove(@i)">
-                                        <i class="glyphicon glyphicon-ok"></i>
+                                        <i class="glyphicon glyphicon-ok" style="color:green"></i>
                                     </a>
                                     <div id="modalApprove_@i" class="modal fade" tabindex="-1" data-keyboard="false" data-backdrop="static">
                                         <div class="modal-dialog">
@@ -155,7 +155,7 @@
                                 @if ((Model.Content[i].ApprovalBy == null || Model.Content[i].CheckedBy == null) && Model.Content[i].RejectedBy == null)
                                 {
                                     <a style="cursor:pointer" value="loop" onclick="ShowModalApprove(@i)">
-                                        <i class="glyphicon glyphicon-remove"></i>
+                                        <i class="glyphicon glyphicon-remove" style="color:red"></i>
                                     </a>
                                     <div id="modalApprove_@i" class="modal fade" tabindex="-1" data-keyboard="false" data-backdrop="static">
                                         <div class="modal-dialog">

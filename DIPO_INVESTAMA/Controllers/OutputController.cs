@@ -21,7 +21,7 @@ namespace DIPO_INVESTAMA.Controllers
     {
         private string fontPath = ConfigurationManager.AppSettings["FontPath"];
         // GET: Output
-        [CheckAuthorize(Roles = "Output")]
+        //[CheckAuthorize(Roles = "Output")]
         public ActionResult Index()
         {
             OutputViewModels model = new OutputViewModels();

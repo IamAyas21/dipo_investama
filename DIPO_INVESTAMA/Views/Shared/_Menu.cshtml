@@ -1,0 +1,62 @@
+﻿@model DIPO_INVESTAMA.Models.MenuModels
+
+<aside class="main-sidebar body-sidebar">
+    <section class="sidebar" style="height: auto;">
+        <ul class="sidebar-menu tree" data-widget="tree">
+            @for (int i = 0; i < Model.Menu.Count(); i++)
+            {
+                <li class="active">
+                    <a href="@Url.Action(Model.Menu[i].Parent.Action,Model.Menu[i].Parent.Controller)" class="@Model.Menu[i].Parent.Descriptions">
+                        <i class="@Model.Menu[i].Parent.Icon"></i> @Model.Menu[i].Parent.MenuName
+                        @{ string arrow = Model.Menu[i].Child.Count() != 0 ? "fa arrow active" : "";}
+                        <span class="@arrow"></span>
+                    </a>
+                    @if (Model.Menu[i].Child.Count() != 0)
+                    {
+                        for (int j = 0; j < Model.Menu[i].Child.Count(); j++)
+                        {
+                            <ul class="nav nav-second-level">
+                                <li class="@Model.Menu[i].Child[j].Parent.Descriptions">
+                                    <a href="@Url.Action(Model.Menu[i].Child[j].Parent.Action, Model.Menu[i].Child[j].Parent.Controller)" class="@Model.Menu[i].Child[j].Parent.Descriptions">
+                                        <i class="@Model.Menu[i].Child[j].Parent.Icon"></i> @Model.Menu[i].Child[j].Parent.MenuName
+                                        @{ string tes = Model.Menu[i].Child[j].Child.Count != 0 ? "fa arrow active" : ""; }
+                                        <span class="@tes"></span>
+                                    </a>
+                                    @if (Model.Menu[i].Child[j].Child.Count() != 0)
+                                    {
+                                        for (int k = 0; k < Model.Menu[i].Child[j].Child.Count(); k++)
+                                        {
+                                            <ul class="nav nav-third-level">
+                                                <li class="@Model.Menu[i].Child[j].Child[k].Parent.Descriptions">
+                                                    <a href="@Url.Action(Model.Menu[i].Child[j].Child[k].Parent.Action,Model.Menu[i].Child[j].Child[k].Parent.Controller)" class="@Model.Menu[i].Child[j].Child[k].Parent.Descriptions">
+                                                        <i class="@Model.Menu[i].Child[j].Child[k].Parent.Icon"></i> @Model.Menu[i].Child[j].Child[k].Parent.MenuName
+                                                        @{ string tes1 = Model.Menu[i].Child[j].Child[k].Child.Count != 0 ? "fa arrow active" : ""; }
+                                                        <span class="@tes1"></span>
+                                                    </a>
+
+                                                    @if (Model.Menu[i].Child[j].Child[k].Child.Count() != 0)
+                                                    {
+                                                        for (int l = 0; l < Model.Menu[i].Child[j].Child[k].Child.Count(); l++)
+                                                        {
+                                                            <ul class="nav nav-fourth-level">
+                                                                <li class="@Model.Menu[i].Child[j].Child[k].Child[l].Parent.Descriptions">
+                                                                    <a href="@Url.Action(Model.Menu[i].Child[j].Child[k].Child[l].Parent.Action,Model.Menu[i].Child[j].Child[k].Child[l].Parent.Controller)" class="@Model.Menu[i].Child[j].Child[k].Child[l].Parent.Descriptions">&nbsp;&nbsp;&nbsp;<i class="@Model.Menu[i].Child[j].Child[k].Child[l].Parent.Icon"></i> @Model.Menu[i].Child[j].Child[k].Child[l].Parent.MenuName</a>
+                                                                </li>
+
+                                                            </ul>
+                                                        }
+                                                    }
+
+                                                </li>
+                                            </ul>
+                                                                }
+                                                            }
+                                </li>
+                            </ul>
+                                                                }
+                                                            }
+                </li>
+                                                            }
+        </ul>
+    </section>
+</aside>

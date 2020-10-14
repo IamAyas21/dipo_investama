@@ -25,11 +25,14 @@ namespace DIPO_INVESTAMA.Entity
         public string Icon { get; set; }
         public string Action { get; set; }
         public string Controller { get; set; }
-        public Nullable<int> Opt { get; set; }
+        public string Opt { get; set; }
         public Nullable<System.DateTime> CreatedAt { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedAt { get; set; }
         public string UpdatedBy { get; set; }
+        public string ParentId { get; set; }
+        public Nullable<bool> ShowMenu { get; set; }
+        public string Descriptions { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MenuRestriction> MenuRestrictions { get; set; }

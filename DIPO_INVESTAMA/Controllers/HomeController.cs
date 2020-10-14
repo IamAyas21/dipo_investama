@@ -21,7 +21,7 @@ namespace DIPO_INVESTAMA.Controllers
         public ActionResult Index()
         {
             ViewBag.FilterBankList = common.ToSelectList(BankFacilityBusinessLogic.getInstance().getBankFacilityDDL(), "ID", "NAME", string.Empty);
-            ViewBag.FilterAccountList = common.ToSelectList(BankFacilityBusinessLogic.getInstance().getBankFacilityDDL(), "ID", "NAME", string.Empty);
+            ViewBag.FilterAccountList = common.ToSelectList(AccountDetailsBusinessLogic.getInstance().getAccountDetailDDL(), "ID", "NAME", string.Empty);
             ViewBag.FilterCashInList = common.ToSelectList(AccountDetailsBusinessLogic.getInstance().getAccountDetailDDL(), "ID", "NAME", string.Empty);
             ViewBag.FilterCashOutList = common.ToSelectList(AccountDetailsBusinessLogic.getInstance().getAccountDetailDDL(), "ID", "NAME", string.Empty);
             return View();
@@ -51,7 +51,7 @@ namespace DIPO_INVESTAMA.Controllers
             }
 
             ViewBag.FilterBankList = common.ToSelectList(BankFacilityBusinessLogic.getInstance().getBankFacilityDDL(), "ID", "NAME", model.FilterReportBank);
-            ViewBag.FilterAccountList = common.ToSelectList(BankFacilityBusinessLogic.getInstance().getBankFacilityDDL(), "ID", "NAME", model.FilterReportAccount);
+            ViewBag.FilterAccountList = common.ToSelectList(AccountDetailsBusinessLogic.getInstance().getAccountDetailDDL(), "ID", "NAME", model.FilterReportAccount);
             ViewBag.FilterCashInList = common.ToSelectList(AccountDetailsBusinessLogic.getInstance().getAccountDetailDDL(), "ID", "NAME", model.FilterReportCashIn);
             ViewBag.FilterCashOutList = common.ToSelectList(AccountDetailsBusinessLogic.getInstance().getAccountDetailDDL(), "ID", "NAME", model.FilterReportCashOut);
             return View(model);

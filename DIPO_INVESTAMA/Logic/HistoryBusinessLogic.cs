@@ -55,6 +55,9 @@ namespace DIPO_INVESTAMA.Logic
                     model.CashOut = item.Cash_Out.ToString();
                     model.Balance = item.Balance.ToString();
                     model.Maker = item.Maker;
+                    model.CheckedBy = item.CheckedBy;
+                    model.ApprovalBy = item.ApprovalBy;
+                    model.RejectedBy = item.RejectedBy;
                     model.Department = item.DepartmentName;
                     list.Add(model);
                 }

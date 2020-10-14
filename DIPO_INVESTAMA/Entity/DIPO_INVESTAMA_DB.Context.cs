@@ -539,6 +539,11 @@ namespace DIPO_INVESTAMA.Entity
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_OutputJournal_Result>("sp_OutputJournal", userIdParameter, startDateParameter, endDateParameter, accountDetailIdParameter, bankFacilityIdParameter, sortByParameter);
         }
     
+        public virtual ObjectResult<sp_PrivilegeSelect_Result> sp_PrivilegeSelect()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_PrivilegeSelect_Result>("sp_PrivilegeSelect");
+        }
+    
         public virtual int sp_RejectedPettyCash(string pettyCashId, string userId)
         {
             var pettyCashIdParameter = pettyCashId != null ?
@@ -552,11 +557,11 @@ namespace DIPO_INVESTAMA.Entity
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_RejectedPettyCash", pettyCashIdParameter, userIdParameter);
         }
     
-        public virtual ObjectResult<sp_ReportOfAccount_Result> sp_ReportOfAccount(string bankFacilityId, string startDate, string endDate, string viewBy)
+        public virtual ObjectResult<sp_ReportOfAccount_Result> sp_ReportOfAccount(string accountId, string startDate, string endDate, string viewBy)
         {
-            var bankFacilityIdParameter = bankFacilityId != null ?
-                new ObjectParameter("bankFacilityId", bankFacilityId) :
-                new ObjectParameter("bankFacilityId", typeof(string));
+            var accountIdParameter = accountId != null ?
+                new ObjectParameter("accountId", accountId) :
+                new ObjectParameter("accountId", typeof(string));
     
             var startDateParameter = startDate != null ?
                 new ObjectParameter("startDate", startDate) :
@@ -570,14 +575,14 @@ namespace DIPO_INVESTAMA.Entity
                 new ObjectParameter("viewBy", viewBy) :
                 new ObjectParameter("viewBy", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ReportOfAccount_Result>("sp_ReportOfAccount", bankFacilityIdParameter, startDateParameter, endDateParameter, viewByParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ReportOfAccount_Result>("sp_ReportOfAccount", accountIdParameter, startDateParameter, endDateParameter, viewByParameter);
         }
     
-        public virtual ObjectResult<sp_ReportOfAccountCashIn_Result> sp_ReportOfAccountCashIn(string bankFacilityId, string startDate, string endDate, string viewBy)
+        public virtual ObjectResult<sp_ReportOfAccountCashIn_Result> sp_ReportOfAccountCashIn(string accountId, string startDate, string endDate, string viewBy)
         {
-            var bankFacilityIdParameter = bankFacilityId != null ?
-                new ObjectParameter("bankFacilityId", bankFacilityId) :
-                new ObjectParameter("bankFacilityId", typeof(string));
+            var accountIdParameter = accountId != null ?
+                new ObjectParameter("accountId", accountId) :
+                new ObjectParameter("accountId", typeof(string));
     
             var startDateParameter = startDate != null ?
                 new ObjectParameter("startDate", startDate) :
@@ -591,14 +596,14 @@ namespace DIPO_INVESTAMA.Entity
                 new ObjectParameter("viewBy", viewBy) :
                 new ObjectParameter("viewBy", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ReportOfAccountCashIn_Result>("sp_ReportOfAccountCashIn", bankFacilityIdParameter, startDateParameter, endDateParameter, viewByParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ReportOfAccountCashIn_Result>("sp_ReportOfAccountCashIn", accountIdParameter, startDateParameter, endDateParameter, viewByParameter);
         }
     
-        public virtual ObjectResult<sp_ReportOfAccountCashOut_Result> sp_ReportOfAccountCashOut(string bankFacilityId, string startDate, string endDate, string viewBy)
+        public virtual ObjectResult<sp_ReportOfAccountCashOut_Result> sp_ReportOfAccountCashOut(string accountId, string startDate, string endDate, string viewBy)
         {
-            var bankFacilityIdParameter = bankFacilityId != null ?
-                new ObjectParameter("bankFacilityId", bankFacilityId) :
-                new ObjectParameter("bankFacilityId", typeof(string));
+            var accountIdParameter = accountId != null ?
+                new ObjectParameter("accountId", accountId) :
+                new ObjectParameter("accountId", typeof(string));
     
             var startDateParameter = startDate != null ?
                 new ObjectParameter("startDate", startDate) :
@@ -612,7 +617,7 @@ namespace DIPO_INVESTAMA.Entity
                 new ObjectParameter("viewBy", viewBy) :
                 new ObjectParameter("viewBy", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ReportOfAccountCashOut_Result>("sp_ReportOfAccountCashOut", bankFacilityIdParameter, startDateParameter, endDateParameter, viewByParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ReportOfAccountCashOut_Result>("sp_ReportOfAccountCashOut", accountIdParameter, startDateParameter, endDateParameter, viewByParameter);
         }
     
         public virtual ObjectResult<sp_ReportOfBank_Result> sp_ReportOfBank(string bankFacilityId, string startDate, string endDate, string viewBy)

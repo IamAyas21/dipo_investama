@@ -60,8 +60,14 @@
     }
 
     function Decimal(Num) {
-        Num = Num / 100;
-        return Num.toFixed(2);
+        debugger
+        if (Num.includes("%")) {
+            Num = Num / 100;
+            return Num.toFixed(2);
+        }
+        else {
+            return Num;
+        }
     }
 
     function isNumberKey(evt) {

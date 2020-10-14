@@ -1,0 +1,86 @@
+﻿@model DIPO_INVESTAMA.Models.PagedList<DIPO_INVESTAMA.Entity.sp_PrivilegeSelect_Result>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-warning" style="margin:10px">
+        <p><i class="fa fa-warning"></i> @TempData["Error"].ToString()</p>
+    </div>
+}
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success" style="margin:10px">
+        <strong>Success!</strong> @TempData["Success"].ToString()
+    </div>
+}
+<div class="box box-primary body-box-primary">
+    <div class="box-header with-border">
+        <div class="row">
+            <div class="col-lg-6">
+                <h3 class="box-title Poppins-Bold font-white">Menu Restrictions</h3>
+            </div>
+            <div class="col-lg-6" align="right">
+                <a style="cursor:pointer;" href="@Url.Action("Create","MenuRestrictions")">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+    <form role="form">
+        <div class="box-body">
+            <table class="table Poppins-Regular font-white" id="example1">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Role Name")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Created By")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Created Date")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Updated By")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Updated Date")
+                        </th>
+                        <th>
+
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Content.Count; i++)
+            {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.Content[i].RoleName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.Content[i].CreatedBy)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.Content[i].CreatedAt)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.Content[i].UpdatedBy)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.Content[i].UpdatedAt)
+                            </td>
+                            <td>
+                                @*<a style="cursor:pointer" href="@Url.Action("Edit","MenuRestriction", new { id = Model.Content[i].RestrictionId})">
+                                        <i class="glyphicon glyphicon-pencil"></i>
+                                    </a>*@
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </form>
+</div>

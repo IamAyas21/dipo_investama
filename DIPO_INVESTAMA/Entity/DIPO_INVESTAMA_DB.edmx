@@ -76,11 +76,14 @@
           <Property Name="Icon" Type="varchar" MaxLength="25" />
           <Property Name="Action" Type="varchar" MaxLength="50" />
           <Property Name="Controller" Type="varchar" MaxLength="50" />
-          <Property Name="Opt" Type="int" />
+          <Property Name="Opt" Type="varchar" MaxLength="25" />
           <Property Name="CreatedAt" Type="datetime" />
           <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
           <Property Name="UpdatedAt" Type="datetime" />
           <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="ParentId" Type="varchar" MaxLength="50" />
+          <Property Name="ShowMenu" Type="bit" />
+          <Property Name="Descriptions" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="MenuRestriction">
           <Key>
@@ -169,6 +172,8 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           <Property Name="ApprovalBy" Type="varchar" MaxLength="100" />
           <Property Name="RejectedAt" Type="datetime" />
           <Property Name="RejectedBy" Type="varchar" MaxLength="100" />
+          <Property Name="BankFacilityId" Type="varchar" MaxLength="50" />
+          <Property Name="Celling" Type="money" />
         </EntityType>
         <Association Name="FK_AccountDetail_Account">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
@@ -407,24 +412,25 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           <Parameter Name="bankFacilityId" Type="varchar" Mode="In" />
           <Parameter Name="sortBy" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="sp_PrivilegeSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_RejectedPettyCash" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PettyCashId" Type="varchar" Mode="In" />
           <Parameter Name="UserId" Type="varchar" Mode="In" />
         </Function>
         <Function Name="sp_ReportOfAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="bankFacilityId" Type="varchar" Mode="In" />
+          <Parameter Name="accountId" Type="varchar" Mode="In" />
           <Parameter Name="startDate" Type="varchar" Mode="In" />
           <Parameter Name="endDate" Type="varchar" Mode="In" />
           <Parameter Name="viewBy" Type="varchar" Mode="In" />
         </Function>
         <Function Name="sp_ReportOfAccountCashIn" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="bankFacilityId" Type="varchar" Mode="In" />
+          <Parameter Name="accountId" Type="varchar" Mode="In" />
           <Parameter Name="startDate" Type="varchar" Mode="In" />
           <Parameter Name="endDate" Type="varchar" Mode="In" />
           <Parameter Name="viewBy" Type="varchar" Mode="In" />
         </Function>
         <Function Name="sp_ReportOfAccountCashOut" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="bankFacilityId" Type="varchar" Mode="In" />
+          <Parameter Name="accountId" Type="varchar" Mode="In" />
           <Parameter Name="startDate" Type="varchar" Mode="In" />
           <Parameter Name="endDate" Type="varchar" Mode="In" />
           <Parameter Name="viewBy" Type="varchar" Mode="In" />
@@ -511,7 +517,9 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
     [vw_PettyCash].[ApprovalAt] AS [ApprovalAt], 
     [vw_PettyCash].[ApprovalBy] AS [ApprovalBy], 
     [vw_PettyCash].[RejectedAt] AS [RejectedAt], 
-    [vw_PettyCash].[RejectedBy] AS [RejectedBy]
+    [vw_PettyCash].[RejectedBy] AS [RejectedBy], 
+    [vw_PettyCash].[BankFacilityId] AS [BankFacilityId], 
+    [vw_PettyCash].[Celling] AS [Celling]
     FROM [dbo].[vw_PettyCash] AS [vw_PettyCash]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_AccountDetail_Account" Association="Self.FK_AccountDetail_Account">
@@ -630,11 +638,14 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           <Property Name="Icon" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="Action" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Controller" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Opt" Type="Int32" />
+          <Property Name="Opt" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
           <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
           <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ParentId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShowMenu" Type="Boolean" />
+          <Property Name="Descriptions" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="MenuRestrictions" Relationship="Self.FK_MenuRestriction_Menu" FromRole="Menu" ToRole="MenuRestriction" />
         </EntityType>
         <EntityType Name="MenuRestriction">
@@ -730,6 +741,8 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           <Property Name="ApprovalBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="RejectedAt" Type="DateTime" Precision="3" />
           <Property Name="RejectedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BankFacilityId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Celling" Type="Decimal" Precision="19" Scale="4" />
         </EntityType>
         <Association Name="FK_AccountDetail_Account">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
@@ -1012,24 +1025,25 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
             <Parameter Name="bankFacilityId" Mode="In" Type="String" />
             <Parameter Name="sortBy" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_PrivilegeSelect" ReturnType="Collection(DIPO_INVESTAMAModel.sp_PrivilegeSelect_Result)" />
           <FunctionImport Name="sp_RejectedPettyCash">
             <Parameter Name="PettyCashId" Mode="In" Type="String" />
             <Parameter Name="UserId" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_ReportOfAccount" ReturnType="Collection(DIPO_INVESTAMAModel.sp_ReportOfAccount_Result)">
-            <Parameter Name="bankFacilityId" Mode="In" Type="String" />
+            <Parameter Name="accountId" Mode="In" Type="String" />
             <Parameter Name="startDate" Mode="In" Type="String" />
             <Parameter Name="endDate" Mode="In" Type="String" />
             <Parameter Name="viewBy" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_ReportOfAccountCashIn" ReturnType="Collection(DIPO_INVESTAMAModel.sp_ReportOfAccountCashIn_Result)">
-            <Parameter Name="bankFacilityId" Mode="In" Type="String" />
+            <Parameter Name="accountId" Mode="In" Type="String" />
             <Parameter Name="startDate" Mode="In" Type="String" />
             <Parameter Name="endDate" Mode="In" Type="String" />
             <Parameter Name="viewBy" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_ReportOfAccountCashOut" ReturnType="Collection(DIPO_INVESTAMAModel.sp_ReportOfAccountCashOut_Result)">
-            <Parameter Name="bankFacilityId" Mode="In" Type="String" />
+            <Parameter Name="accountId" Mode="In" Type="String" />
             <Parameter Name="startDate" Mode="In" Type="String" />
             <Parameter Name="endDate" Mode="In" Type="String" />
             <Parameter Name="viewBy" Mode="In" Type="String" />
@@ -1124,7 +1138,7 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
         </ComplexType>
         <ComplexType Name="sp_BankFacilityDDL_Result">
           <Property Type="String" Name="ID" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="NAME" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="NAME" Nullable="true" MaxLength="4000" />
         </ComplexType>
         <ComplexType Name="sp_BankFacilitySelect_Result">
           <Property Type="String" Name="BankFacilityId" Nullable="false" MaxLength="50" />
@@ -1217,7 +1231,7 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           <Property Type="String" Name="PettyCashId" Nullable="false" MaxLength="50" />
           <Property Type="DateTime" Name="TransactionDate" Nullable="true" Precision="23" />
           <Property Type="String" Name="AccountName" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="FacilityName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="FacilityName" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Description" Nullable="true" MaxLength="100" />
           <Property Type="Decimal" Name="Cash_In" Nullable="true" Precision="19" />
           <Property Type="Decimal" Name="Cash_Out" Nullable="true" Precision="19" />
@@ -1230,6 +1244,13 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           <Property Type="DateTime" Name="RejectedAt" Nullable="true" Precision="23" />
           <Property Type="String" Name="RejectedBy" Nullable="true" MaxLength="100" />
           <Property Type="Decimal" Name="Balance" Nullable="true" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="sp_PrivilegeSelect_Result">
+          <Property Type="String" Name="RoleName" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="UpdatedAt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="100" />
         </ComplexType>
         <ComplexType Name="sp_ReportOfAccount_Result">
           <Property Type="String" Name="Month" Nullable="true" MaxLength="3" />
@@ -1247,7 +1268,7 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           <Property Type="Decimal" Name="Accounting" Nullable="true" Precision="19" />
         </ComplexType>
         <ComplexType Name="sp_ReportOfBank_Result">
-          <Property Type="String" Name="Month" Nullable="true" MaxLength="3" />
+          <Property Type="String" Name="Month" Nullable="true" MaxLength="4000" />
           <Property Type="Decimal" Name="Cash_In" Nullable="true" Precision="19" />
           <Property Type="Decimal" Name="Cash_Out" Nullable="true" Precision="19" />
         </ComplexType>
@@ -1389,6 +1410,9 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="ShowMenu" ColumnName="ShowMenu" />
+                <ScalarProperty Name="Descriptions" ColumnName="Descriptions" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1480,6 +1504,8 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
                 <ScalarProperty Name="ApprovalBy" ColumnName="ApprovalBy" />
                 <ScalarProperty Name="RejectedAt" ColumnName="RejectedAt" />
                 <ScalarProperty Name="RejectedBy" ColumnName="RejectedBy" />
+                <ScalarProperty Name="BankFacilityId" ColumnName="BankFacilityId" />
+                <ScalarProperty Name="Celling" ColumnName="Celling" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1703,6 +1729,17 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
                 <ScalarProperty Name="RejectedAt" ColumnName="RejectedAt" />
                 <ScalarProperty Name="RejectedBy" ColumnName="RejectedBy" />
                 <ScalarProperty Name="Balance" ColumnName="Balance" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_PrivilegeSelect" FunctionName="DIPO_INVESTAMAModel.Store.sp_PrivilegeSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_PrivilegeSelect_Result">
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

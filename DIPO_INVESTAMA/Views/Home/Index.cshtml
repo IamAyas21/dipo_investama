@@ -241,6 +241,11 @@
 }
 <script>
     $(function () {
+        var chartOfBank;
+        var chartOfAccount;
+        var chartOfCashIn;
+        var chartOfCashOut;
+
         $('#PeriodeReportBank').daterangepicker({
             autoclose: true
         })
@@ -266,83 +271,90 @@
         getReportOfAccountCashIn();
         getReportOfAccountCashOut();
 
-        ChangeMethod("FilterReportBank", "change", "ReportOfBank", "Home", "POST");
-        ChangeMethod("PeriodeReportBank", "change", "ReportOfBank", "Home", "POST");
-        ChangeMethod("ViewByReportBank", "change", "ReportOfBank", "Home", "POST");
+        ChangeMethod("FilterReportBank", "change", "ReportOfBank", "Home", "POST", "Bank");
+        ChangeMethod("PeriodeReportBank", "change", "ReportOfBank", "Home", "POST", "Bank");
+        ChangeMethod("ViewByReportBank", "change", "ReportOfBank", "Home", "POST", "Bank");
 
-        ChangeMethod("FilterReportAccount", "change", "ReportOfAccount", "Home", "POST");
-        ChangeMethod("PeriodeReportAccount", "change", "ReportOfAccount", "Home", "POST");
-        ChangeMethod("ViewByReportAccount", "change", "ReportOfAccount", "Home", "POST");
+        ChangeMethod("FilterReportAccount", "change", "ReportOfAccount", "Home", "POST", "Account");
+        ChangeMethod("PeriodeReportAccount", "change", "ReportOfAccount", "Home", "POST", "Account");
+        ChangeMethod("ViewByReportAccount", "change", "ReportOfAccount", "Home", "POST", "Account");
 
-        ChangeMethod("FilterReportCashIn", "change", "ReportOfAccountCashIn", "Home", "POST");
-        ChangeMethod("PeriodeReportCashIn", "change", "ReportOfAccountCashIn", "Home", "POST");
-        ChangeMethod("ViewByReportCashIn", "change", "ReportOfAccountCashIn", "Home", "POST");
+        ChangeMethod("FilterReportCashIn", "change", "ReportOfAccountCashIn", "Home", "POST", "Cash In");
+        ChangeMethod("PeriodeReportCashIn", "change", "ReportOfAccountCashIn", "Home", "POST", "Cash In");
+        ChangeMethod("ViewByReportCashIn", "change", "ReportOfAccountCashIn", "Home", "POST", "Cash In");
 
-        ChangeMethod("FilterReportCashOut", "change", "ReportOfAccountCashOut", "Home", "POST");
-        ChangeMethod("PeriodeReportCashOut", "change", "ReportOfAccountCashOut", "Home", "POST");
-        ChangeMethod("ViewByReportCashOut", "change", "ReportOfAccountCashOut", "Home", "POST");
+        ChangeMethod("FilterReportCashOut", "change", "ReportOfAccountCashOut", "Home", "POST", "Cash Out");
+        ChangeMethod("PeriodeReportCashOut", "change", "ReportOfAccountCashOut", "Home", "POST", "Cash Out");
+        ChangeMethod("ViewByReportCashOut", "change", "ReportOfAccountCashOut", "Home", "POST", "Cash Out");
     });
-    function getReportOfBank() {
+
+    function getReportOfBank(response) {
         $.ajax({
             type: "POST",
             url: "@Url.Action("ReportOfBank", "Home")",
             data: { model: model() },
             success: function (response) {
-                var arrLabel = [];
-                var arrCashIn = [];
-                var arrCashOut = [];
-
-                $(response).each(function (idx, dt) {
-                    arrLabel.push(dt.Month);
-
-                    if (dt.Cash_In == null) {
-                        arrCashIn.push(0);
-                    }
-                    else {
-                        arrCashIn.push(dt.Cash_In);
-                    }
-
-                    if (dt.Cash_Out == null) {
-                        arrCashOut.push(0);
-                    }
-                    else {
-                        arrCashOut.push(dt.Cash_Out);
-                    }
-
-                });
-
-                var areaChartData = {
-                    labels: arrLabel,
-                    datasets: [
-                      {
-                          label: 'Cash In',
-                          fillColor: 'rgba(210, 214, 222, 1)',
-                          strokeColor: 'rgba(210, 214, 222, 1)',
-                          pointColor: 'rgba(210, 214, 222, 1)',
-                          pointStrokeColor: '#c1c7d1',
-                          pointHighlightFill: '#fff',
-                          pointHighlightStroke: 'rgba(220,220,220,1)',
-                          data: arrCashIn
-                      },
-                      {
-                          label: 'Cash Out',
-                          fillColor: 'rgba(60,141,188,0.9)',
-                          strokeColor: 'rgba(60,141,188,0.8)',
-                          pointColor: '#3b8bba',
-                          pointStrokeColor: 'rgba(60,141,188,1)',
-                          pointHighlightFill: '#fff',
-                          pointHighlightStroke: 'rgba(60,141,188,1)',
-                          data: arrCashOut
-                      }
-                    ]
-                }
-                barChart(areaChartData, "areaChartBank")
-                //Morris1("areaChartBank", response);
+                ChartOfBank(response);
             },
             error: function (response) {
                 alert(response)
             }
         });
+    }
+
+    function ChartOfBank(response) {
+        try {
+            chartOfBank.destroy();
+        }
+        catch (err) {
+
+        }
+
+        var arrLabel = [];
+        var arrCashIn = [];
+        var arrCashOut = [];
+
+        $(response).each(function (idx, dt) {
+            arrLabel.push(dt.Month);
+
+            if (dt.Cash_In == null) {
+                arrCashIn.push(0);
+            }
+            else {
+                arrCashIn.push(dt.Cash_In);
+            }
+
+            if (dt.Cash_Out == null) {
+                arrCashOut.push(0);
+            }
+            else {
+                arrCashOut.push(dt.Cash_Out);
+            }
+
+        });
+
+        var areaChartData = {
+            labels: arrLabel,
+            datasets: [
+              {
+                  label: 'Cash In',
+                  backgroundColor: 'rgba(54, 162, 235, 0.3)',
+                  borderColor: 'rgba(54, 162, 235, 0.3)',
+                  borderWidth: 2,
+                  fill: true,
+                  data: arrCashIn
+              },
+              {
+                  label: 'Cash Out',
+                  backgroundColor: 'rgba(255, 99, 132, 0.3)',
+                  borderColor: 'rgba(255, 99, 132, 0.3)',
+                  borderWidth: 2,
+                  fill: true,
+                  data: arrCashOut
+              }
+            ]
+        }
+        barChart(areaChartData, "areaChartBank", "Bank")
     }
 
     function getReportOfAccount() {
@@ -350,61 +362,69 @@
             type: "POST",
             url: "@Url.Action("ReportOfAccount", "Home")",
             success: function (response) {
-                var arrLabel = [];
-                var arrCashIn = [];
-                var arrCashOut = [];
-
-                $(response).each(function (idx, dt) {
-                    arrLabel.push(dt.Month);
-
-                    if (dt.Cash_In == null) {
-                        arrCashIn.push(0);
-                    }
-                    else {
-                        arrCashIn.push(dt.Cash_In);
-                    }
-
-                    if (dt.Cash_Out == null) {
-                        arrCashOut.push(0);
-                    }
-                    else {
-                        arrCashOut.push(dt.Cash_Out);
-                    }
-
-                });
-
-                var areaChartData = {
-                    labels: arrLabel,
-                    datasets: [
-                      {
-                          label: 'Cash In',
-                          fillColor: 'rgba(210, 214, 222, 1)',
-                          strokeColor: 'rgba(210, 214, 222, 1)',
-                          pointColor: 'rgba(210, 214, 222, 1)',
-                          pointStrokeColor: '#c1c7d1',
-                          pointHighlightFill: '#fff',
-                          pointHighlightStroke: 'rgba(220,220,220,1)',
-                          data: arrCashIn
-                      },
-                      {
-                          label: 'Cash Out',
-                          fillColor: 'rgba(60,141,188,0.9)',
-                          strokeColor: 'rgba(60,141,188,0.8)',
-                          pointColor: '#3b8bba',
-                          pointStrokeColor: 'rgba(60,141,188,1)',
-                          pointHighlightFill: '#fff',
-                          pointHighlightStroke: 'rgba(60,141,188,1)',
-                          data: arrCashOut
-                      }
-                    ]
-                }
-
-                barChart(areaChartData, "areaChartAccount")
+                ChartOfAccount(response);
             },
             error: function (response) {
                 alert(response)
             }
         });
+    }
+
+    function ChartOfAccount(response)
+    {
+        try {
+            chartOfAccount.destroy();
+        }
+        catch (err) {
+
+        }
+
+        var arrLabel = [];
+        var arrCashIn = [];
+        var arrCashOut = [];
+
+        $(response).each(function (idx, dt) {
+            arrLabel.push(dt.Month);
+
+            if (dt.Cash_In == null) {
+                arrCashIn.push(0);
+            }
+            else {
+                arrCashIn.push(dt.Cash_In);
+            }
+
+            if (dt.Cash_Out == null) {
+                arrCashOut.push(0);
+            }
+            else {
+                arrCashOut.push(dt.Cash_Out);
+            }
+
+        });
+
+        var areaChartData = {
+            labels: arrLabel,
+            datasets: [
+              {
+                  label: 'Cash In',
+                  backgroundColor: 'rgba(54, 162, 235, 0.3)',
+                  borderColor: 'rgba(54, 162, 235, 0.3)',
+                  borderWidth: 2,
+                  fill: true,
+                  data: arrCashIn
+              },
+              {
+                  label: 'Cash Out',
+                  backgroundColor: 'rgba(255, 99, 132, 0.3)',
+                  borderColor: 'rgba(255, 99, 132, 0.3)',
+                  borderWidth: 2,
+                  fill: true,
+                  data: arrCashOut
+              }
+            ]
+        }
+
+        barChart(areaChartData, "areaChartAccount", "Account")
     }
 
     function getReportOfAccountCashIn() {
@@ -412,62 +432,70 @@
             type: "POST",
             url: "@Url.Action("ReportOfAccountCashIn", "Home")",
             success: function (response) {
-                var arrLabel = [];
-                var arrOpt = [];
-                var arrAcc = [];
-
-                $(response).each(function (idx, dt) {
-
-                    arrLabel.push(dt.Month);
-
-                    if (dt.Operation == null) {
-                        arrOpt.push(0);
-                    }
-                    else {
-                        arrOpt.push(dt.Operation);
-                    }
-
-                    if (dt.Accounting == null) {
-                        arrAcc.push(0);
-                    }
-                    else {
-                        arrAcc.push(dt.Accounting);
-                    }
-
-                });
-
-                var areaChartData = {
-                    labels: arrLabel,
-                    datasets: [
-                      {
-                          label: 'Operation',
-                          fillColor: 'rgba(210, 214, 222, 1)',
-                          strokeColor: 'rgba(210, 214, 222, 1)',
-                          pointColor: 'rgba(210, 214, 222, 1)',
-                          pointStrokeColor: '#c1c7d1',
-                          pointHighlightFill: '#fff',
-                          pointHighlightStroke: 'rgba(220,220,220,1)',
-                          data: arrOpt
-                      },
-                      {
-                          label: 'Accounting',
-                          fillColor: 'rgba(60,141,188,0.9)',
-                          strokeColor: 'rgba(60,141,188,0.8)',
-                          pointColor: '#3b8bba',
-                          pointStrokeColor: 'rgba(60,141,188,1)',
-                          pointHighlightFill: '#fff',
-                          pointHighlightStroke: 'rgba(60,141,188,1)',
-                          data: arrAcc
-                      }
-                    ]
-                }
-
-                barChart(areaChartData, "areaChartCashIn")
+                ChartOfCashIn(response);
             },
             error: function (response) {
                 alert(response)
             }
         });
+    }
+
+    function ChartOfCashIn(response)
+    {
+        try {
+            chartOfCashIn.destroy();
+        }
+        catch (err) {
+
+        }
+
+        var arrLabel = [];
+        var arrOpt = [];
+        var arrAcc = [];
+
+        $(response).each(function (idx, dt) {
+
+            arrLabel.push(dt.Month);
+
+            if (dt.Operation == null) {
+                arrOpt.push(0);
+            }
+            else {
+                arrOpt.push(dt.Operation);
+            }
+
+            if (dt.Accounting == null) {
+                arrAcc.push(0);
+            }
+            else {
+                arrAcc.push(dt.Accounting);
+            }
+
+        });
+
+        var areaChartData = {
+            labels: arrLabel,
+            datasets: [
+              {
+                  label: 'Operation',
+                  backgroundColor: 'rgba(54, 162, 235, 0.3)',
+                  borderColor: 'rgba(54, 162, 235, 0.3)',
+                  borderWidth: 2,
+                  fill: true,
+                  data: arrOpt
+              },
+              {
+                  label: 'Accounting',
+                  backgroundColor: 'rgba(255, 99, 132, 0.3)',
+                  borderColor: 'rgba(255, 99, 132, 0.3)',
+                  borderWidth: 2,
+                  fill: true,
+                  data: arrAcc
+              }
+            ]
+        }
+
+        barChart(areaChartData, "areaChartCashIn", "Cash In")
     }
 
     function getReportOfAccountCashOut() {
@@ -475,57 +503,7 @@
             type: "POST",
             url: "@Url.Action("ReportOfAccountCashOut", "Home")",
             success: function (response) {
-                var arrLabel = [];
-                var arrOpt = [];
-                var arrAcc = [];
-
-                $(response).each(function (idx, dt) {
-
-                    arrLabel.push(dt.Month);
-
-                    if (dt.Operation == null) {
-                        arrOpt.push(0);
-                    }
-                    else {
-                        arrOpt.push(dt.Operation);
-                    }
-
-                    if (dt.Accounting == null) {
-                        arrAcc.push(0);
-                    }
-                    else {
-                        arrAcc.push(dt.Accounting);
-                    }
-
-                });
-
-                var areaChartData = {
-                    labels: arrLabel,
-                    datasets: [
-                      {
-                          label: 'Operation',
-                          fillColor: 'rgba(210, 214, 222, 1)',
-                          strokeColor: 'rgba(210, 214, 222, 1)',
-                          pointColor: 'rgba(210, 214, 222, 1)',
-                          pointStrokeColor: '#c1c7d1',
-                          pointHighlightFill: '#fff',
-                          pointHighlightStroke: 'rgba(220,220,220,1)',
-                          data: arrOpt
-                      },
-                      {
-                          label: 'Accounting',
-                          fillColor: 'rgba(60,141,188,0.9)',
-                          strokeColor: 'rgba(60,141,188,0.8)',
-                          pointColor: '#3b8bba',
-                          pointStrokeColor: 'rgba(60,141,188,1)',
-                          pointHighlightFill: '#fff',
-                          pointHighlightStroke: 'rgba(60,141,188,1)',
-                          data: arrAcc
-                      }
-                    ]
-                }
-
-                barChart(areaChartData, "areaChartCashOut")
+                ChartOfCashOut(response);
             },
             error: function (response) {
                 alert(response)
@@ -533,30 +511,62 @@
         });
     }
 
-    function Morris1(id, model) {
-        var area = new Morris.Area({
-            element: id,
-            resize: true,
-            data: model,
-            xkey: 'Month',
-            ykeys: ['Cash_In', 'Cash_Out'],
-            labels: ['Cash In', 'Cash Out'],
-            lineColors: ['#a0d0e0', '#3c8dbc'],
-            hideHover: 'auto'
-        });
-    }
+    function ChartOfCashOut(response)
+    {
+        try {
+            chartOfCashOut.destroy();
+        }
+        catch (err) {
 
-    function Morris2(id, model) {
-        var area = new Morris.Area({
-            element: id,
-            resize: true,
-            data: model,
-            xkey: 'Month',
-            ykeys: ['Operation', 'Accounting'],
-            labels: ['Operation', 'Accounting'],
-            lineColors: ['#a0d0e0', '#3c8dbc'],
-            hideHover: 'auto'
+        }
+
+        var arrLabel = [];
+        var arrOpt = [];
+        var arrAcc = [];
+
+        $(response).each(function (idx, dt) {
+
+            arrLabel.push(dt.Month);
+
+            if (dt.Operation == null) {
+                arrOpt.push(0);
+            }
+            else {
+                arrOpt.push(dt.Operation);
+            }
+
+            if (dt.Accounting == null) {
+                arrAcc.push(0);
+            }
+            else {
+                arrAcc.push(dt.Accounting);
+            }
+
         });
+
+        var areaChartData = {
+            labels: arrLabel,
+            datasets: [
+              {
+                  label: 'Operation',
+                  backgroundColor: 'rgba(54, 162, 235, 0.3)',
+                  borderColor: 'rgba(54, 162, 235, 0.3)',
+                  borderWidth: 2,
+                  fill: true,
+                  data: arrOpt
+              },
+              {
+                  label: 'Accounting',
+                  backgroundColor: 'rgba(255, 99, 132, 0.3)',
+                  borderColor: 'rgba(255, 99, 132, 0.3)',
+                  borderWidth: 2,
+                  fill: true,
+                  data: arrAcc
+              }
+            ]
+        }
+
+        barChart(areaChartData, "areaChartCashOut", "Cash Out")
     }
 
     function model() {
@@ -587,17 +597,17 @@
                 success: function (response) {
                     if(report == "Bank")
                     {
-                        getReportOfBank();
+                        ChartOfBank(response);
                     }
                     else if(report == "Account")
                     {
-                        getReportOfAccount();
+                        ChartOfAccount(response);
                     }
                     else if (report == "Cash In") {
-                        getReportOfAccountCashIn();
+                        ChartOfCashIn(response);
                     }
                     else if (report == "Cash Out") {
-                        getReportOfAccountCashOut();
+                        ChartOfCashOut(response);
                     }
                 },
                 error: function () {
@@ -607,7 +617,7 @@
         });
     }
 
-    function barChart(bardata, id) {
+    function barChart(bardata, id, report) {
         var Obj;    
         var chartOptions = {
             legend: {
@@ -617,14 +627,135 @@
                     boxWidth: 80,
                     fontColor: 'black'
                 }
+            },
+            showLines: true,
+            spanGaps: false,
+            maintainAspectRatio: false,
+            tooltips: {
+                enabled: true,
+                callbacks: {
+                    label: function (tooltipItem, data) {
+                        return (tooltipItem.yLabel / 1).toFixed(0).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+                    },
+                    title: function (tooltipItem, data) {
+                        return (data.datasets[tooltipItem[0].datasetIndex].label);
+                    }
+                }
+            },
+            animation: {
+                duration: 500,
+                easing: "easeOutQuart",
+                onComplete: function () {
+                    // console.log(this);
+                    Obj = this;
+                    var ctx = this.chart.ctx;
+                    //ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontFamily, 'bold', Chart.defaults.global.defaultFontFamily);
+                    ctx.font = "16px Arial";
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'bottom';
+                    this.data.datasets.forEach(function (dataset) {
+                        for (var i = 0; i < dataset.data.length; i++) {
+                            var hidden = dataset._meta[Object.keys(dataset._meta)[0]].hidden;
+                            if (hidden == null) { hidden = false; }
+                            if (!hidden) {
+                                var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model,
+                                    scale_max = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._yScale.maxHeight;
+                                var y_pos = model.y - 5;
+                                if (dataset.data[i] != 0) {
+                                    if ((scale_max - model.y) / scale_max >= 0.50)
+                                        y_pos = model.y + 20;
+                                }
+
+                                if (dataset.label != "") {
+                                    //ctx.fillStyle = dataset.borderColor[rgba(0, 0, 0, 0.1)];
+                                    ctx.fillText((dataset.data[i] / 1).toFixed(1).replace(/\d(?=(\d{3})+\.)/g, '$&,').replace('.0', ''), model.x, y_pos);
+                                }
+                                else {
+                                    var per = dataset.addData[i];
+                                    var sym = "▲";
+                                    var fx = 1;
+                                    var perColor = "#00f";
+
+                                    if (per == 0) {
+                                        sym = "•";
+                                        fx = 0;
+                                        perColor = "#444";
+                                    }
+                                    else if (per < 0) {
+                                        sym = "▼";
+                                        perColor = "#f00";
+                                    }
+                                    ctx.fillStyle = perColor;
+
+                                    if (isNaN(per)) {
+                                        ctx.fillText('', model.x, y_pos);
+                                    }
+                                    else if (per.toString() == "Infinity") {
+                                        ctx.fillText('▲100%', model.x, y_pos);
+                                    }
+                                    else {
+
+                                        ctx.fillText(sym + per.toFixed(0) + '%', model.x, y_pos);
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            },
+            responsive: true,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        callback: function (label, index, labels) {
+                            var rtn;
+                            if ((label / 1) < 1) {
+                                rtn = (label / 1000000).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');// / 1000 + 'k';
+                            }
+                            else {
+                                rtn = (label / 1000000).toFixed(1).replace(/\d(?=(\d{3})+\.)/g, '$&,').replace(".0", "");// / 1000 + 'k';
+                            }
+
+                            return rtn;
+                        },
+                        beginAtZero: true
+
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Mio'
+                    }
+                }]
             }
         };
 
-
-        new Chart(document.getElementById(id).getContext('2d'), {
-            type: 'line',
-            data: bardata,
-            options: chartOptions
-        });
+        if (report == "Bank") {
+            chartOfBank = new Chart(document.getElementById(id).getContext('2d'), {
+                type: 'line',
+                data: bardata,
+                options: chartOptions
+            });
+        }
+        else if (report == "Account") {
+            chartOfAccount = new Chart(document.getElementById(id).getContext('2d'), {
+                type: 'line',
+                data: bardata,
+                options: chartOptions
+            });
+        }
+        else if (report == "Cash In") {
+            chartOfCashIn = new Chart(document.getElementById(id).getContext('2d'), {
+                type: 'line',
+                data: bardata,
+                options: chartOptions
+            });
+        }
+        else if (report == "Cash Out") {
+            chartOfCashOut = new Chart(document.getElementById(id).getContext('2d'), {
+                type: 'line',
+                data: bardata,
+                options: chartOptions
+            });
+        }
     }
 </script>
