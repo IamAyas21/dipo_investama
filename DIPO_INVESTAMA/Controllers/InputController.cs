@@ -25,6 +25,26 @@ namespace DIPO_INVESTAMA.Controllers
         [HttpPost]
         public ActionResult Index(InputViewModels model)
         {
+            int _out;
+            int year = 2020;
+            int month = 1;
+            int day = 1;
+            if(Int32.TryParse(model.Date.Substring(6, 4), out _out))
+            {
+                year = _out;
+            }
+
+            if (Int32.TryParse(model.Date.Substring(0, 2), out _out))
+            {
+                month = _out;
+            }
+
+            if (Int32.TryParse(model.Date.Substring(3, 2), out _out))
+            {
+                day = _out;
+            }
+            DateTime tmpDate = new DateTime(year, month, day);
+            model.Date = tmpDate.ToString("yyyy-MMM-dd");
             if(InputBusinessLogic.getInstance().InputJournal(model)  == -1)
             {
                 TempData["Success"] = "Successfully was inserted";
