@@ -55,7 +55,7 @@
     {
         if (Num.includes("%"))
         {
-            Num = Num / 100;
+            Num = Num.replace("%","") / 100;
             return Num.toFixed(2);
         }
         else {
@@ -66,8 +66,12 @@
     function isNumberKey(evt) {
         var charCode = (evt.which) ? evt.which : event.keyCode
         if (charCode > 31 && (charCode < 48 || charCode > 57))
-            return false;
-
+        {
+            if(charCode != 37)
+            {
+                return false;
+            }
+        }
         return true;
     }
 </script>
