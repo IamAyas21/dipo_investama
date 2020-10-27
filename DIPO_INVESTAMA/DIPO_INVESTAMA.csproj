@@ -292,6 +292,9 @@
     <Compile Include="Entity\sp_PrivilegeSelect_Result.cs">
       <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entity\sp_PrivilegeTree_Result.cs">
+      <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entity\sp_ReportOfAccountCashIn_Result.cs">
       <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
     </Compile>
@@ -544,6 +547,7 @@
     <Content Include="Views\Shared\_Menu.cshtml" />
     <Content Include="Views\MenuRestrictions\Index.cshtml" />
     <Content Include="Views\MenuRestrictions\Create.cshtml" />
+    <Content Include="Views\MenuRestrictions\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

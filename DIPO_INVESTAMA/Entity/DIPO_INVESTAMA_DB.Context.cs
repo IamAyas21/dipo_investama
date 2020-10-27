@@ -539,11 +539,6 @@ namespace DIPO_INVESTAMA.Entity
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_OutputJournal_Result>("sp_OutputJournal", userIdParameter, startDateParameter, endDateParameter, accountDetailIdParameter, bankFacilityIdParameter, sortByParameter);
         }
     
-        public virtual ObjectResult<sp_PrivilegeSelect_Result> sp_PrivilegeSelect()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_PrivilegeSelect_Result>("sp_PrivilegeSelect");
-        }
-    
         public virtual int sp_RejectedPettyCash(string pettyCashId, string userId)
         {
             var pettyCashIdParameter = pettyCashId != null ?
@@ -814,6 +809,53 @@ namespace DIPO_INVESTAMA.Entity
                 new ObjectParameter("UpdatedBy", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_UserUpdate", userIdParameter, userNameParameter, passwordParameter, nameParameter, roleIdParameter, departmentIdParameter, updatedByParameter);
+        }
+    
+        public virtual ObjectResult<sp_PrivilegeSelect_Result> sp_PrivilegeSelect()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_PrivilegeSelect_Result>("sp_PrivilegeSelect");
+        }
+    
+        public virtual ObjectResult<sp_PrivilegeTree_Result> sp_PrivilegeTree(string userId, string privilegeId, string parentId)
+        {
+            var userIdParameter = userId != null ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(string));
+    
+            var privilegeIdParameter = privilegeId != null ?
+                new ObjectParameter("PrivilegeId", privilegeId) :
+                new ObjectParameter("PrivilegeId", typeof(string));
+    
+            var parentIdParameter = parentId != null ?
+                new ObjectParameter("ParentId", parentId) :
+                new ObjectParameter("ParentId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_PrivilegeTree_Result>("sp_PrivilegeTree", userIdParameter, privilegeIdParameter, parentIdParameter);
+        }
+    
+        public virtual int sp_PrivilegeUpdate(string restrictionId, string userId, string privilegeId, string menuId, Nullable<bool> isRead)
+        {
+            var restrictionIdParameter = restrictionId != null ?
+                new ObjectParameter("RestrictionId", restrictionId) :
+                new ObjectParameter("RestrictionId", typeof(string));
+    
+            var userIdParameter = userId != null ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(string));
+    
+            var privilegeIdParameter = privilegeId != null ?
+                new ObjectParameter("PrivilegeId", privilegeId) :
+                new ObjectParameter("PrivilegeId", typeof(string));
+    
+            var menuIdParameter = menuId != null ?
+                new ObjectParameter("MenuId", menuId) :
+                new ObjectParameter("MenuId", typeof(string));
+    
+            var isReadParameter = isRead.HasValue ?
+                new ObjectParameter("IsRead", isRead) :
+                new ObjectParameter("IsRead", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_PrivilegeUpdate", restrictionIdParameter, userIdParameter, privilegeIdParameter, menuIdParameter, isReadParameter);
         }
     }
 }

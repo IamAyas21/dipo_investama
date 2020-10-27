@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="154f136c1afa48038322a53c86cf0dbb" Name="Diagram1">
+      <Diagram DiagramId="154f136c1afa48038322a53c86cf0dbb" Name="Diagram1" ZoomLevel="47">
         <EntityTypeShape EntityType="DIPO_INVESTAMAModel.Account" Width="1.5" PointX="2.75" PointY="10.625" IsExpanded="true" />
         <EntityTypeShape EntityType="DIPO_INVESTAMAModel.AccountDetail" Width="1.5" PointX="5" PointY="10.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DIPO_INVESTAMAModel.Bank" Width="1.5" PointX="2.75" PointY="15.625" IsExpanded="true" />

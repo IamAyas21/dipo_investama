@@ -11,13 +11,21 @@ namespace DIPO_INVESTAMA.Entity
 {
     using System;
     
-    public partial class sp_PrivilegeSelect_Result
+    public partial class sp_PrivilegeTree_Result
     {
-        public string RoleId { get; set; }
-        public string RoleName { get; set; }
+        public string MenuId { get; set; }
+        public string ParentId { get; set; }
+        public string MenuName { get; set; }
+        public string Controller { get; set; }
+        public string Action { get; set; }
+        public string Icon { get; set; }
+        public string Opt { get; set; }
+        public Nullable<bool> ShowMenu { get; set; }
+        public string Descriptions { get; set; }
         public Nullable<System.DateTime> CreatedAt { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedAt { get; set; }
         public string UpdatedBy { get; set; }
+        public Nullable<bool> IsRead { get; set; }
     }
 }

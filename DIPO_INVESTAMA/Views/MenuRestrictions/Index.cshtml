@@ -72,9 +72,9 @@
                                 @Html.DisplayFor(modelItem => Model.Content[i].UpdatedAt)
                             </td>
                             <td>
-                                @*<a style="cursor:pointer" href="@Url.Action("Edit","MenuRestriction", new { id = Model.Content[i].RestrictionId})">
-                                        <i class="glyphicon glyphicon-pencil"></i>
-                                    </a>*@
+                                <a style="cursor:pointer" href="@Url.Action("Edit","MenuRestrictions", new { id = Model.Content[i].RoleId})">
+                                        <i class="glyphicon glyphicon-pencil" style="color:green"></i>
+                                    </a>
                             </td>
                         </tr>
                     }

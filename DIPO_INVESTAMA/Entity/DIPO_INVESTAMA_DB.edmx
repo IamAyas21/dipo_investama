@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DIPO_INVESTAMAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DIPO_INVESTAMAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="AccountId" />
@@ -84,6 +84,7 @@
           <Property Name="ParentId" Type="varchar" MaxLength="50" />
           <Property Name="ShowMenu" Type="bit" />
           <Property Name="Descriptions" Type="varchar" MaxLength="10" />
+          <Property Name="IsRead" Type="bit" />
         </EntityType>
         <EntityType Name="MenuRestriction">
           <Key>
@@ -96,6 +97,7 @@
           <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
           <Property Name="UpdatedAt" Type="datetime" />
           <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="IsRead" Type="bit" />
         </EntityType>
         <EntityType Name="PettyCash">
           <Key>
@@ -413,6 +415,18 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           <Parameter Name="sortBy" Type="varchar" Mode="In" />
         </Function>
         <Function Name="sp_PrivilegeSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_PrivilegeTree" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="varchar" Mode="In" />
+          <Parameter Name="PrivilegeId" Type="varchar" Mode="In" />
+          <Parameter Name="ParentId" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_PrivilegeUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RestrictionId" Type="varchar" Mode="In" />
+          <Parameter Name="UserId" Type="varchar" Mode="In" />
+          <Parameter Name="PrivilegeId" Type="varchar" Mode="In" />
+          <Parameter Name="MenuId" Type="varchar" Mode="In" />
+          <Parameter Name="IsRead" Type="bit" Mode="In" />
+        </Function>
         <Function Name="sp_RejectedPettyCash" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PettyCashId" Type="varchar" Mode="In" />
           <Parameter Name="UserId" Type="varchar" Mode="In" />
@@ -555,8 +569,7 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DIPO_INVESTAMAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -647,6 +660,7 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           <Property Name="ShowMenu" Type="Boolean" />
           <Property Name="Descriptions" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="MenuRestrictions" Relationship="Self.FK_MenuRestriction_Menu" FromRole="Menu" ToRole="MenuRestriction" />
+          <Property Name="IsRead" Type="Boolean" />
         </EntityType>
         <EntityType Name="MenuRestriction">
           <Key>
@@ -661,6 +675,7 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Menu" Relationship="Self.FK_MenuRestriction_Menu" FromRole="MenuRestriction" ToRole="Menu" />
           <NavigationProperty Name="Role" Relationship="Self.FK_MenuRestriction_Role" FromRole="MenuRestriction" ToRole="Role" />
+          <Property Name="IsRead" Type="Boolean" />
         </EntityType>
         <EntityType Name="PettyCash">
           <Key>
@@ -891,7 +906,7 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           </FunctionImport>
           <FunctionImport Name="sp_AccountDDL" ReturnType="Collection(DIPO_INVESTAMAModel.sp_AccountDDL_Result)" />
           <FunctionImport Name="sp_AccountDelete">
-            <Parameter Name="AccountId" Mode="In" Type="String" />
+          <Parameter Name="AccountId" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_AccountDetailCreate">
             <Parameter Name="No" Mode="In" Type="String" />
@@ -900,7 +915,7 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
             <Parameter Name="CreatedBy" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_AccountDetailDelete">
-            <Parameter Name="AccountDetailId" Mode="In" Type="String" />
+          <Parameter Name="AccountDetailId" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_AccountDetailsDDL" ReturnType="Collection(DIPO_INVESTAMAModel.sp_AccountDetailsDDL_Result)" />
           <FunctionImport Name="sp_AccountDetailSelect" ReturnType="Collection(DIPO_INVESTAMAModel.sp_AccountDetailSelect_Result)" />
@@ -929,7 +944,7 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           </FunctionImport>
           <FunctionImport Name="sp_BankDDL" ReturnType="Collection(DIPO_INVESTAMAModel.sp_BankDDL_Result)" />
           <FunctionImport Name="sp_BankDelete">
-            <Parameter Name="bankId" Mode="In" Type="String" />
+          <Parameter Name="bankId" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_BankFacilityCreate">
             <Parameter Name="FacilityName" Mode="In" Type="String" />
@@ -941,7 +956,7 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           </FunctionImport>
           <FunctionImport Name="sp_BankFacilityDDL" ReturnType="Collection(DIPO_INVESTAMAModel.sp_BankFacilityDDL_Result)" />
           <FunctionImport Name="sp_BankFacilityDelete">
-            <Parameter Name="BankFacilityId" Mode="In" Type="String" />
+          <Parameter Name="BankFacilityId" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_BankFacilitySelect" ReturnType="Collection(DIPO_INVESTAMAModel.sp_BankFacilitySelect_Result)" />
           <FunctionImport Name="sp_BankFacilityUpdate">
@@ -970,7 +985,7 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           </FunctionImport>
           <FunctionImport Name="sp_DepartmentDDL" ReturnType="Collection(DIPO_INVESTAMAModel.sp_DepartmentDDL_Result)" />
           <FunctionImport Name="sp_DepartmentDelete">
-            <Parameter Name="DepartmentId" Mode="In" Type="String" />
+          <Parameter Name="DepartmentId" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_DepartmentSelect" ReturnType="Collection(DIPO_INVESTAMAModel.sp_DepartmentSelect_Result)" />
           <FunctionImport Name="sp_DepartmentUpdate">
@@ -1001,10 +1016,10 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
             <Parameter Name="CreatedBy" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_MenuDDL" ReturnType="Collection(DIPO_INVESTAMAModel.sp_MenuDDL_Result)">
-            <Parameter Name="RoleId" Mode="In" Type="String" />
+          <Parameter Name="RoleId" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_MenuDelete">
-            <Parameter Name="RestrictionId" Mode="In" Type="String" />
+          <Parameter Name="RestrictionId" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_MenuRestrictionByUserId" ReturnType="Collection(DIPO_INVESTAMAModel.sp_MenuRestrictionByUserId_Result)">
             <Parameter Name="userId" Mode="In" Type="String" />
@@ -1025,7 +1040,6 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
             <Parameter Name="bankFacilityId" Mode="In" Type="String" />
             <Parameter Name="sortBy" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_PrivilegeSelect" ReturnType="Collection(DIPO_INVESTAMAModel.sp_PrivilegeSelect_Result)" />
           <FunctionImport Name="sp_RejectedPettyCash">
             <Parameter Name="PettyCashId" Mode="In" Type="String" />
             <Parameter Name="UserId" Mode="In" Type="String" />
@@ -1064,7 +1078,7 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           </FunctionImport>
           <FunctionImport Name="sp_RoleDDL" ReturnType="Collection(DIPO_INVESTAMAModel.sp_RoleDDL_Result)" />
           <FunctionImport Name="sp_RoleDelete">
-            <Parameter Name="RoleId" Mode="In" Type="String" />
+          <Parameter Name="RoleId" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_RoleSelect" ReturnType="Collection(DIPO_INVESTAMAModel.sp_RoleSelect_Result)" />
           <FunctionImport Name="sp_RoleUpdate">
@@ -1086,7 +1100,7 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
             <Parameter Name="CreatedBy" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_UserDelete">
-            <Parameter Name="UserId" Mode="In" Type="String" />
+          <Parameter Name="UserId" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_UserLogin" ReturnType="Collection(DIPO_INVESTAMAModel.sp_UserLogin_Result)">
             <Parameter Name="username" Mode="In" Type="String" />
@@ -1101,6 +1115,19 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
             <Parameter Name="RoleId" Mode="In" Type="String" />
             <Parameter Name="DepartmentId" Mode="In" Type="String" />
             <Parameter Name="UpdatedBy" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_PrivilegeSelect" ReturnType="Collection(DIPO_INVESTAMAModel.sp_PrivilegeSelect_Result)" />
+          <FunctionImport Name="sp_PrivilegeTree" ReturnType="Collection(DIPO_INVESTAMAModel.sp_PrivilegeTree_Result)">
+            <Parameter Name="UserId" Mode="In" Type="String" />
+            <Parameter Name="PrivilegeId" Mode="In" Type="String" />
+            <Parameter Name="ParentId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_PrivilegeUpdate">
+            <Parameter Name="RestrictionId" Mode="In" Type="String" />
+            <Parameter Name="UserId" Mode="In" Type="String" />
+            <Parameter Name="PrivilegeId" Mode="In" Type="String" />
+            <Parameter Name="MenuId" Mode="In" Type="String" />
+            <Parameter Name="IsRead" Mode="In" Type="Boolean" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_AccountDDL_Result">
@@ -1245,13 +1272,6 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           <Property Type="String" Name="RejectedBy" Nullable="true" MaxLength="100" />
           <Property Type="Decimal" Name="Balance" Nullable="true" Precision="19" />
         </ComplexType>
-        <ComplexType Name="sp_PrivilegeSelect_Result">
-          <Property Type="String" Name="RoleName" Nullable="true" MaxLength="50" />
-          <Property Type="DateTime" Name="CreatedAt" Nullable="true" Precision="23" />
-          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="100" />
-          <Property Type="DateTime" Name="UpdatedAt" Nullable="true" Precision="23" />
-          <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="100" />
-        </ComplexType>
         <ComplexType Name="sp_ReportOfAccount_Result">
           <Property Type="String" Name="Month" Nullable="true" MaxLength="3" />
           <Property Type="Decimal" Name="Cash_In" Nullable="true" Precision="19" />
@@ -1323,6 +1343,30 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="RoleName" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_PrivilegeSelect_Result">
+          <Property Type="String" Name="RoleId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="RoleName" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="UpdatedAt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_PrivilegeTree_Result">
+          <Property Type="String" Name="MenuId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ParentId" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MenuName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Controller" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Action" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Icon" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="Opt" Nullable="true" MaxLength="25" />
+          <Property Type="Boolean" Name="ShowMenu" Nullable="true" />
+          <Property Type="String" Name="Descriptions" Nullable="true" MaxLength="10" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="UpdatedAt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsRead" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1400,6 +1444,7 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           <EntitySetMapping Name="Menus">
             <EntityTypeMapping TypeName="DIPO_INVESTAMAModel.Menu">
               <MappingFragment StoreEntitySet="Menu">
+                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
                 <ScalarProperty Name="MenuId" ColumnName="MenuId" />
                 <ScalarProperty Name="MenuName" ColumnName="MenuName" />
                 <ScalarProperty Name="Icon" ColumnName="Icon" />
@@ -1419,6 +1464,7 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           <EntitySetMapping Name="MenuRestrictions">
             <EntityTypeMapping TypeName="DIPO_INVESTAMAModel.MenuRestriction">
               <MappingFragment StoreEntitySet="MenuRestriction">
+                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
                 <ScalarProperty Name="RestrictionId" ColumnName="RestrictionId" />
                 <ScalarProperty Name="MenuId" ColumnName="MenuId" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
@@ -1732,17 +1778,6 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_PrivilegeSelect" FunctionName="DIPO_INVESTAMAModel.Store.sp_PrivilegeSelect">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_PrivilegeSelect_Result">
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_RejectedPettyCash" FunctionName="DIPO_INVESTAMAModel.Store.sp_RejectedPettyCash" />
           <FunctionImportMapping FunctionImportName="sp_ReportOfAccount" FunctionName="DIPO_INVESTAMAModel.Store.sp_ReportOfAccount">
             <ResultMapping>
@@ -1858,6 +1893,39 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_UserUpdate" FunctionName="DIPO_INVESTAMAModel.Store.sp_UserUpdate" />
+          <FunctionImportMapping FunctionImportName="sp_PrivilegeSelect" FunctionName="DIPO_INVESTAMAModel.Store.sp_PrivilegeSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_PrivilegeSelect_Result">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_PrivilegeTree" FunctionName="DIPO_INVESTAMAModel.Store.sp_PrivilegeTree">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_PrivilegeTree_Result">
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Opt" ColumnName="Opt" />
+                <ScalarProperty Name="ShowMenu" ColumnName="ShowMenu" />
+                <ScalarProperty Name="Descriptions" ColumnName="Descriptions" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_PrivilegeUpdate" FunctionName="DIPO_INVESTAMAModel.Store.sp_PrivilegeUpdate" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -33,6 +33,7 @@ namespace DIPO_INVESTAMA.Entity
         public string ParentId { get; set; }
         public Nullable<bool> ShowMenu { get; set; }
         public string Descriptions { get; set; }
+        public Nullable<bool> IsRead { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MenuRestriction> MenuRestrictions { get; set; }

@@ -21,6 +21,7 @@ namespace DIPO_INVESTAMA.Entity
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedAt { get; set; }
         public string UpdatedBy { get; set; }
+        public Nullable<bool> IsRead { get; set; }
     
         public virtual Menu Menu { get; set; }
         public virtual Role Role { get; set; }
