@@ -1,0 +1,75 @@
+Time: 02/11/2020 09:39:24 PM
+------------------------------------------------------------------------
+Message: The 'Balance' property on 'sp_ReportChartBankFacility_Result' could not be set to a 'System.Int32' value. You must set this property to a non-null value of type 'System.Decimal'. 
+StackTrace:    at System.Data.Entity.Core.Common.Internal.Materialization.Shaper.ErrorHandlingValueReader`1.GetValue(DbDataReader reader, Int32 ordinal)
+   at lambda_method(Closure , Shaper )
+   at System.Data.Entity.Core.Common.Internal.Materialization.Coordinator`1.ReadNextElement(Shaper shaper)
+   at System.Data.Entity.Core.Common.Internal.Materialization.Shaper`1.SimpleEnumerator.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at DIPO_INVESTAMA.Logic.DashboardBusinessLogic.getReportChartBank() in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Logic\DashboardBusinessLogic.cs:line 34
+   at DIPO_INVESTAMA.Controllers.HomeController.ReportChartBank() in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Controllers\HomeController.cs:line 65
+Source: EntityFramework
+TargetSite: T GetValue(System.Data.Common.DbDataReader, Int32)
+------------------------------------------------------------------------
+
+Time: 02/11/2020 09:40:42 PM
+------------------------------------------------------------------------
+Message: The 'Balance' property on 'sp_ReportChartBankFacility_Result' could not be set to a 'System.Int32' value. You must set this property to a non-null value of type 'System.Decimal'. 
+StackTrace:    at System.Data.Entity.Core.Common.Internal.Materialization.Shaper.ErrorHandlingValueReader`1.GetValue(DbDataReader reader, Int32 ordinal)
+   at lambda_method(Closure , Shaper )
+   at System.Data.Entity.Core.Common.Internal.Materialization.Coordinator`1.ReadNextElement(Shaper shaper)
+   at System.Data.Entity.Core.Common.Internal.Materialization.Shaper`1.SimpleEnumerator.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at DIPO_INVESTAMA.Logic.DashboardBusinessLogic.getReportChartBank() in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Logic\DashboardBusinessLogic.cs:line 34
+   at DIPO_INVESTAMA.Controllers.HomeController.ReportChartBank() in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Controllers\HomeController.cs:line 65
+Source: EntityFramework
+TargetSite: T GetValue(System.Data.Common.DbDataReader, Int32)
+------------------------------------------------------------------------
+
+Time: 02/11/2020 09:41:08 PM
+------------------------------------------------------------------------
+Message: The 'Balance' property on 'sp_ReportChartBankFacility_Result' could not be set to a 'System.Int32' value. You must set this property to a non-null value of type 'System.Decimal'. 
+StackTrace:    at System.Data.Entity.Core.Common.Internal.Materialization.Shaper.ErrorHandlingValueReader`1.GetValue(DbDataReader reader, Int32 ordinal)
+   at lambda_method(Closure , Shaper )
+   at System.Data.Entity.Core.Common.Internal.Materialization.Coordinator`1.ReadNextElement(Shaper shaper)
+   at System.Data.Entity.Core.Common.Internal.Materialization.Shaper`1.SimpleEnumerator.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at DIPO_INVESTAMA.Logic.DashboardBusinessLogic.getReportChartBank() in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Logic\DashboardBusinessLogic.cs:line 34
+   at DIPO_INVESTAMA.Controllers.HomeController.ReportChartBank() in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Controllers\HomeController.cs:line 65
+Source: EntityFramework
+TargetSite: T GetValue(System.Data.Common.DbDataReader, Int32)
+------------------------------------------------------------------------
+
+Time: 02/11/2020 09:56:35 PM
+------------------------------------------------------------------------
+Message: The 'Balance' property on 'sp_ReportChartBankFacility_Result' could not be set to a 'System.Int32' value. You must set this property to a non-null value of type 'System.Decimal'. 
+StackTrace:    at System.Data.Entity.Core.Common.Internal.Materialization.Shaper.ErrorHandlingValueReader`1.GetValue(DbDataReader reader, Int32 ordinal)
+   at lambda_method(Closure , Shaper )
+   at System.Data.Entity.Core.Common.Internal.Materialization.Coordinator`1.ReadNextElement(Shaper shaper)
+   at System.Data.Entity.Core.Common.Internal.Materialization.Shaper`1.SimpleEnumerator.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at DIPO_INVESTAMA.Logic.DashboardBusinessLogic.getReportChartBank() in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Logic\DashboardBusinessLogic.cs:line 34
+   at DIPO_INVESTAMA.Controllers.HomeController.ReportChartBank() in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Controllers\HomeController.cs:line 65
+Source: EntityFramework
+TargetSite: T GetValue(System.Data.Common.DbDataReader, Int32)
+------------------------------------------------------------------------
+
+Time: 02/11/2020 11:15:41 PM
+------------------------------------------------------------------------
+Message: The 'Balance' property on 'sp_ReportChartBankFacility_Result' could not be set to a 'System.Int32' value. You must set this property to a non-null value of type 'System.Decimal'. 
+StackTrace:    at System.Data.Entity.Core.Common.Internal.Materialization.Shaper.ErrorHandlingValueReader`1.GetValue(DbDataReader reader, Int32 ordinal)
+   at lambda_method(Closure , Shaper )
+   at System.Data.Entity.Core.Common.Internal.Materialization.Coordinator`1.ReadNextElement(Shaper shaper)
+   at System.Data.Entity.Core.Common.Internal.Materialization.Shaper`1.SimpleEnumerator.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at DIPO_INVESTAMA.Logic.DashboardBusinessLogic.getReportChartBank() in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Logic\DashboardBusinessLogic.cs:line 34
+   at DIPO_INVESTAMA.Controllers.HomeController.ReportChartBank() in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Controllers\HomeController.cs:line 65
+Source: EntityFramework
+TargetSite: T GetValue(System.Data.Common.DbDataReader, Int32)
+------------------------------------------------------------------------
+

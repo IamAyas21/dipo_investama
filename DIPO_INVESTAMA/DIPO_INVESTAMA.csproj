@@ -295,6 +295,9 @@
     <Compile Include="Entity\sp_PrivilegeTree_Result.cs">
       <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entity\sp_ReportChartBankFacility_Result.cs">
+      <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entity\sp_ReportOfAccountCashIn_Result.cs">
       <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
     </Compile>
@@ -305,6 +308,9 @@
       <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\sp_ReportOfBank_Result.cs">
+      <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\sp_ReportSummaryBank_Result.cs">
       <DependentUpon>DIPO_INVESTAMA_DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\sp_RoleDDL_Result.cs">
@@ -410,6 +416,7 @@
     <Content Include="Content\AdminLTE\plugins\bootstrap3-wysihtml5.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\dashboard.css" />
     <Content Include="Content\login.css" />
     <Content Include="Content\layout.css" />
     <Content Include="Content\input.css" />
@@ -474,6 +481,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\kendo.all.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -551,6 +559,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\AdminLTE\kendo\" />
     <Folder Include="Log\" />
     <Folder Include="Views\Menu\" />
   </ItemGroup>

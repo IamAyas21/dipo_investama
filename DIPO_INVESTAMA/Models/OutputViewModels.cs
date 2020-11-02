@@ -23,6 +23,8 @@ namespace DIPO_INVESTAMA.Models
         public string CheckedBy { get; set; }
         public string ApprovalBy { get; set; }
         public string RejectedBy { get; set; }
+        public string CountCheckedBy { get; set; }
+        public string CountApprovalBy { get; set; }
         public PagedList<OutputViewModels> TodaysJournal { get; set; }
     }
 }

@@ -25,7 +25,16 @@ namespace DIPO_INVESTAMA.Logic
             }
         }
 
-        public  List<sp_ReportOfBank_Result> getReportOfBank(DashboardViewModels model)
+        public List<sp_ReportSummaryBank_Result> getReportSummaryBank()
+        {
+            return _db.sp_ReportSummaryBank().ToList();
+        }
+        public List<sp_ReportChartBankFacility_Result> getReportChartBank()
+        {
+            return _db.sp_ReportChartBankFacility().ToList();
+        }
+
+        public List<sp_ReportOfBank_Result> getReportOfBank(DashboardViewModels model)
         {
             if(!string.IsNullOrEmpty(model.PeriodeReportBank))
             {

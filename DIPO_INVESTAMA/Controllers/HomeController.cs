@@ -58,6 +58,20 @@ namespace DIPO_INVESTAMA.Controllers
         }
 
         [HttpPost]
+        public ActionResult ReportChartBank()
+        {
+            try
+            {
+                return Json(DashboardBusinessLogic.getInstance().getReportChartBank(), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                Logging.getInstance().CreateLogError(e);
+                return Json(e.Message, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
         public ActionResult ReportOfBank(DashboardViewModels model)
         {
             try

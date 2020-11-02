@@ -1,243 +1,268 @@
 ﻿@model DIPO_INVESTAMA.Models.DashboardViewModels
+<link href="~/Content/dashboard.css" rel="stylesheet" />
 @using (Html.BeginForm("Index", "Home", FormMethod.Post))
 {
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <h4>Report of Bank</h4>
+    //Section Bank and Account
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="report img-rounded">
+                        <div class="box-header with-border">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <h4>Report of Bank</h4>
+                                </div>
+                                <div class="col-xs-6" align="right">
+                                    @*<button type="submit" name="Submit" value="PDF_ReportBank"><img src="~/Assets/icon/pdf.png" width="30" height="30" /></button>*@
+                                    <button type="submit" name="Submit" value="Excel_ReportBank"><img src="~/Assets/icon_xlxs.png" width="30" height="30" /></button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-sm-6" align="right">
-                            @*<button type="submit" name="Submit" value="PDF_ReportBank"><img src="~/Assets/icon/pdf.png" width="30" height="30" /></button>*@
-                            <button type="submit" name="Submit" value="Excel_ReportBank"><img src="~/Assets/icon_xlxs.png" width="30" height="30" /></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-xs-4">
-                            <label>Filter</label>
-                            @Html.DropDownListFor(model => model.FilterReportBank, ViewBag.FilterBankList as SelectList, new { @class = "form-control" })
-                        </div>
-                        <div class="col-xs-4">
-                            <label>Periode</label>
-                            @Html.TextBoxFor(model => model.PeriodeReportBank, new { @class = "form-control pull-left", @placeholder = "Date", autocomplete = "off" })
-                        </div>
-                        <div class="col-xs-4">
-                            <label>View by</label>
-                            @Html.DropDownListFor(model => model.ViewByReportBank
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <label>Filter</label>
+                                    @Html.DropDownListFor(model => model.FilterReportBank, ViewBag.FilterBankList as SelectList, new { @class = "form-control ddl" })
+                                </div>
+                                <div class="col-xs-4">
+                                    <label>Periode</label>
+                                    @Html.TextBoxFor(model => model.PeriodeReportBank, new { @class = "form-control pull-left period", @placeholder = "Date", autocomplete = "off" })
+                                </div>
+                                <div class="col-xs-4">
+                                    <label>View by</label>
+                                    @Html.DropDownListFor(model => model.ViewByReportBank
                        , new List<SelectListItem>
                         {
                            new SelectListItem{ Text="Choose", Value = "" },
                            new SelectListItem{ Text="Monthly", Value = "Monthly" },
                            new SelectListItem{ Text="Yearly", Value = "Yearly" }
-                        }, new { @class = "form-control" })
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 chart-container">
-                            <div id="chart" >
-                                <canvas id="areaChartBank"></canvas>
+                        }, new { @class = "form-control ddl" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 chart-container">
+                                    <div id="chart">
+                                        <canvas id="areaChartBank"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-3">
+
+                                </div>
+                                <div class="col-xs-3">
+
+                                </div>
+                                <div class="col-xs-3">
+
+                                </div>
+                                <div class="col-xs-3">
+
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-3">
-
-                        </div>
-                        <div class="col-xs-3">
-
-                        </div>
-                        <div class="col-xs-3">
-
-                        </div>
-                        <div class="col-xs-3">
-
-                        </div>
-                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <h4>Report of Account</h4>
+                <div class="col-lg-6">
+                    <div class="report img-rounded">
+                        <div class="box-header with-border">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <h4>Report of Account</h4>
+                                </div>
+                                <div class="col-xs-6" align="right">
+                                    @*<button type="submit" name="Submit" value="PDF_ReportAccount"><img src="~/Assets/icon/pdf.png" width="30" height="30" /></button>*@
+                                    <button type="submit" name="Submit" value="Excel_ReportAccount"><img src="~/Assets/icon_xlxs.png" width="30" height="30" /></button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-sm-6" align="right">
-                            @*<button type="submit" name="Submit" value="PDF_ReportAccount"><img src="~/Assets/icon/pdf.png" width="30" height="30" /></button>*@
-                            <button type="submit" name="Submit" value="Excel_ReportAccount"><img src="~/Assets/icon_xlxs.png" width="30" height="30" /></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-xs-4">
-                            <label>Filter</label>
-                            @Html.DropDownListFor(model => model.FilterReportAccount, ViewBag.FilterAccountList as SelectList, new { @class = "form-control" })
-                        </div>
-                        <div class="col-xs-4">
-                            <label>Periode</label>
-                            @Html.TextBoxFor(model => model.PeriodeReportAccount, new { @class = "form-control pull-left", @placeholder = "Date", autocomplete = "off" })
-                        </div>
-                        <div class="col-xs-4">
-                            <label>View by</label>
-                            @Html.DropDownListFor(model => model.ViewByReportAccount
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <label>Filter</label>
+                                    @Html.DropDownListFor(model => model.FilterReportAccount, ViewBag.FilterAccountList as SelectList, new { @class = "form-control ddl" })
+                                </div>
+                                <div class="col-xs-4">
+                                    <label>Periode</label>
+                                    @Html.TextBoxFor(model => model.PeriodeReportAccount, new { @class = "form-control pull-left period", @placeholder = "Date", autocomplete = "off" })
+                                </div>
+                                <div class="col-xs-4">
+                                    <label>View by</label>
+                                    @Html.DropDownListFor(model => model.ViewByReportAccount
                        , new List<SelectListItem>
                         {
                            new SelectListItem{ Text="Choose", Value = "" },
                            new SelectListItem{ Text="Monthly", Value = "Monthly" },
                            new SelectListItem{ Text="Yearly", Value = "Yearly" }
-                        }, new { @class = "form-control" })
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div id="chart">
-                                <canvas id="areaChartAccount"></canvas>
+                        }, new { @class = "form-control ddl" })
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-3">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div id="chart">
+                                        <canvas id="areaChartAccount"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-3">
 
-                        </div>
-                        <div class="col-xs-3">
+                                </div>
+                                <div class="col-xs-3">
 
-                        </div>
-                        <div class="col-xs-3">
+                                </div>
+                                <div class="col-xs-3">
 
-                        </div>
-                        <div class="col-xs-3">
+                                </div>
+                                <div class="col-xs-3">
 
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <h4>Report of Account Cash In</h4>
+    </section>
+    //End Section Bank and Account
+
+    //Section Cash In and Cash Out
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="report img-rounded">
+                        <div class="box-header with-border">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <h4>Report of Account Cash In</h4>
+                                </div>
+                                <div class="col-xs-6" align="right">
+                                    @*<button type="submit" name="Submit" value="PDF_CashIn"><img src="~/Assets/icon/pdf.png" width="30" height="30" /></button>*@
+                                    <button type="submit" name="Submit" value="Excel_CashIn"><img src="~/Assets/icon_xlxs.png" width="30" height="30" /></button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-sm-6" align="right">
-                            @*<button type="submit" name="Submit" value="PDF_CashIn"><img src="~/Assets/icon/pdf.png" width="30" height="30" /></button>*@
-                            <button type="submit" name="Submit" value="Excel_CashIn"><img src="~/Assets/icon_xlxs.png" width="30" height="30" /></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-xs-4">
-                            <label>Filter</label>
-                            @Html.DropDownListFor(model => model.FilterReportCashIn, ViewBag.FilterCashInList as SelectList, new { @class = "form-control" })
-                        </div>
-                        <div class="col-xs-4">
-                            <label>Periode</label>
-                            @Html.TextBoxFor(model => model.PeriodeReportCashIn, new { @class = "form-control pull-left", @placeholder = "Date", autocomplete = "off" })
-                        </div>
-                        <div class="col-xs-4">
-                            <label>View by</label>
-                            @Html.DropDownListFor(model => model.ViewByReportCashIn
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <label>Filter</label>
+                                    @Html.DropDownListFor(model => model.FilterReportCashIn, ViewBag.FilterCashInList as SelectList, new { @class = "form-control ddl" })
+                                </div>
+                                <div class="col-xs-4">
+                                    <label>Periode</label>
+                                    @Html.TextBoxFor(model => model.PeriodeReportCashIn, new { @class = "form-control pull-left period", @placeholder = "Date", autocomplete = "off" })
+                                </div>
+                                <div class="col-xs-4">
+                                    <label>View by</label>
+                                    @Html.DropDownListFor(model => model.ViewByReportCashIn
                        , new List<SelectListItem>
                         {
                           new SelectListItem{ Text="Choose", Value = "" },
                            new SelectListItem{ Text="Monthly", Value = "Monthly" },
                            new SelectListItem{ Text="Yearly", Value = "Yearly" }
-                        }, new { @class = "form-control" })
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div id="chart">
-                                <canvas id="areaChartCashIn"></canvas>
+                        }, new { @class = "form-control ddl" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div id="chart">
+                                        <canvas id="areaChartCashIn"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-3">
+
+                                </div>
+                                <div class="col-xs-3">
+
+                                </div>
+                                <div class="col-xs-3">
+
+                                </div>
+                                <div class="col-xs-3">
+
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-3">
-
-                        </div>
-                        <div class="col-xs-3">
-
-                        </div>
-                        <div class="col-xs-3">
-
-                        </div>
-                        <div class="col-xs-3">
-
-                        </div>
-                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <h4>Report of Account Cash Out</h4>
+                <div class="col-lg-6">
+                    <div class="report img-rounded">
+                        <div class="box-header with-border">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <h4>Report of Account Cash Out</h4>
+                                </div>
+                                <div class="col-xs-6" align="right">
+                                    @*<button type="submit" name="Submit" value="PDF_CashOut"><img src="~/Assets/icon/pdf.png" width="30" height="30" /></button>*@
+                                    <button type="submit" name="Submit" value="Excel_CashOut"><img src="~/Assets/icon_xlxs.png" width="30" height="30" /></button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-sm-6" align="right">
-                            @*<button type="submit" name="Submit" value="PDF_CashOut"><img src="~/Assets/icon/pdf.png" width="30" height="30" /></button>*@
-                            <button type="submit" name="Submit" value="Excel_CashOut"><img src="~/Assets/icon_xlxs.png" width="30" height="30" /></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-xs-4">
-                            <label>Filter</label>
-                            @Html.DropDownListFor(model => model.FilterReportCashOut, ViewBag.FilterCashOutList as SelectList, new { @class = "form-control" })
-                        </div>
-                        <div class="col-xs-4">
-                            <label>Periode</label>
-                            @Html.TextBoxFor(model => model.PeriodeReportCashOut, new { @class = "form-control pull-left", @placeholder = "Date", autocomplete = "off" })
-                        </div>
-                        <div class="col-xs-4">
-                            <label>View by</label>
-                            @Html.DropDownListFor(model => model.ViewByReportCashOut
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <label>Filter</label>
+                                    @Html.DropDownListFor(model => model.FilterReportCashOut, ViewBag.FilterCashOutList as SelectList, new { @class = "form-control ddl" })
+                                </div>
+                                <div class="col-xs-4">
+                                    <label>Periode</label>
+                                    @Html.TextBoxFor(model => model.PeriodeReportCashOut, new { @class = "form-control pull-left period", @placeholder = "Date", autocomplete = "off" })
+                                </div>
+                                <div class="col-xs-4">
+                                    <label>View by</label>
+                                    @Html.DropDownListFor(model => model.ViewByReportCashOut
                        , new List<SelectListItem>
                         {
                             new SelectListItem{ Text="Choose", Value = "" },
                            new SelectListItem{ Text="Monthly", Value = "Monthly" },
                            new SelectListItem{ Text="Yearly", Value = "Yearly" }
-                        }, new { @class = "form-control" })
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div id="chart">
-                                <canvas id="areaChartCashOut"></canvas>
+                        }, new { @class = "form-control ddl" })
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-3">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div id="chart">
+                                        <canvas id="areaChartCashOut"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-3">
 
-                        </div>
-                        <div class="col-xs-3">
+                                </div>
+                                <div class="col-xs-3">
 
-                        </div>
-                        <div class="col-xs-3">
+                                </div>
+                                <div class="col-xs-3">
 
-                        </div>
-                        <div class="col-xs-3">
+                                </div>
+                                <div class="col-xs-3">
 
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
+    <div class="row">
+        <div class="col-lg-6">
+            @*<table class="table Poppins-Regular font-white" id="tblSummaryBank"></table>*@
+
+        </div>
+        <div class="col-lg-6">
+            <div id="chartdiv">
+
+            </div>
+
+        </div>
+    </div>
 }
 <script>
     $(function () {
@@ -245,6 +270,9 @@
         var chartOfAccount;
         var chartOfCashIn;
         var chartOfCashOut;
+        var chartdiv;
+
+        getReportChartBank();
 
         $('#PeriodeReportBank').daterangepicker({
             autoclose: true
@@ -271,22 +299,253 @@
         getReportOfAccountCashIn();
         getReportOfAccountCashOut();
 
-        ChangeMethod("FilterReportBank", "change", "ReportOfBank", "Home", "POST", "Bank");
-        ChangeMethod("PeriodeReportBank", "change", "ReportOfBank", "Home", "POST", "Bank");
-        ChangeMethod("ViewByReportBank", "change", "ReportOfBank", "Home", "POST", "Bank");
+        $("#FilterReportBank").on("change", function () {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("ReportOfBank", "Home")",
+                data: { model: model() },
+                success: function (response) {
+                    ChartOfBank(response);
+                },
+                error: function (response) {
+                    alert(response)
+                }
+            });
+        });
 
-        ChangeMethod("FilterReportAccount", "change", "ReportOfAccount", "Home", "POST", "Account");
-        ChangeMethod("PeriodeReportAccount", "change", "ReportOfAccount", "Home", "POST", "Account");
-        ChangeMethod("ViewByReportAccount", "change", "ReportOfAccount", "Home", "POST", "Account");
+        $("#PeriodeReportBank").on("change", function () {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("ReportOfBank", "Home")",
+                data: { model: model() },
+                success: function (response) {
+                    ChartOfBank(response);
+                },
+                error: function (response) {
+                    alert(response)
+                }
+            });
+        });
 
-        ChangeMethod("FilterReportCashIn", "change", "ReportOfAccountCashIn", "Home", "POST", "Cash In");
-        ChangeMethod("PeriodeReportCashIn", "change", "ReportOfAccountCashIn", "Home", "POST", "Cash In");
-        ChangeMethod("ViewByReportCashIn", "change", "ReportOfAccountCashIn", "Home", "POST", "Cash In");
+        $("#ViewByReportBank").on("change", function () {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("ReportOfBank", "Home")",
+                data: { model: model() },
+                success: function (response) {
+                    ChartOfBank(response);
+                },
+                error: function (response) {
+                    alert(response)
+                }
+            });
+        });
 
-        ChangeMethod("FilterReportCashOut", "change", "ReportOfAccountCashOut", "Home", "POST", "Cash Out");
-        ChangeMethod("PeriodeReportCashOut", "change", "ReportOfAccountCashOut", "Home", "POST", "Cash Out");
-        ChangeMethod("ViewByReportCashOut", "change", "ReportOfAccountCashOut", "Home", "POST", "Cash Out");
+        $("#FilterReportAccount").on("change", function () {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("ReportOfAccount", "Home")",
+                data: { model: model() },
+                success: function (response) {
+                    ChartOfBank(response);
+                },
+                error: function (response) {
+                    alert(response)
+                }
+            });
+        });
+
+        $("#PeriodeReportAccount").on("change", function () {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("ReportOfAccount", "Home")",
+                data: { model: model() },
+                success: function (response) {
+                    ChartOfBank(response);
+                },
+                error: function (response) {
+                    alert(response)
+                }
+            });
+        });
+
+        $("#ViewByReportAccount").on("change", function () {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("ReportOfAccount", "Home")",
+                data: { model: model() },
+                success: function (response) {
+                    ChartOfBank(response);
+                },
+                error: function (response) {
+                    alert(response)
+                }
+            });
+        });
+
+        $("#FilterReportCashIn").on("change", function () {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("ReportOfAccountCashIn", "Home")",
+                data: { model: model() },
+                success: function (response) {
+                    ChartOfBank(response);
+                },
+                error: function (response) {
+                    alert(response)
+                }
+            });
+        });
+
+        $("#PeriodeReportCashIn").on("change", function () {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("ReportOfAccountCashIn", "Home")",
+                data: { model: model() },
+                success: function (response) {
+                    ChartOfBank(response);
+                },
+                error: function (response) {
+                    alert(response)
+                }
+            });
+        });
+
+        $("#ViewByReportCashIn").on("change", function () {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("ReportOfAccountCashIn", "Home")",
+                data: { model: model() },
+                success: function (response) {
+                    ChartOfBank(response);
+                },
+                error: function (response) {
+                    alert(response)
+                }
+            });
+        });
+
+        $("#FilterReportCashOut").on("change", function () {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("ReportOfAccountCashOut", "Home")",
+                data: { model: model() },
+                success: function (response) {
+                    ChartOfBank(response);
+                },
+                error: function (response) {
+                    alert(response)
+                }
+            });
+        });
+
+        $("#PeriodeReportCashOut").on("change", function () {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("ReportOfAccountCashOut", "Home")",
+                data: { model: model() },
+                success: function (response) {
+                    ChartOfBank(response);
+                },
+                error: function (response) {
+                    alert(response)
+                }
+            });
+        });
+
+        $("#ViewByReportCashOut").on("change", function () {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("ReportOfAccountCashOut", "Home")",
+                data: { model: model() },
+                success: function (response) {
+                    ChartOfBank(response);
+                },
+                error: function (response) {
+                    alert(response)
+                }
+            });
+        });
+
     });
+
+    function getReportChartBank() {
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("ReportChartBank", "Home")",
+            data: { model: model() },
+            success: function (response) {
+                console.log(response);
+                try {
+                    chartdiv.destroy();
+                }
+                catch (err) {
+
+                }
+
+                am4core.ready(function () {
+
+                    // Themes begin
+                    am4core.useTheme(am4themes_animated);
+                    // Themes end
+
+                    // Create chart instance
+                    var chart = am4core.create("chartdiv", am4charts.XYChart3D);
+
+                    chart.titles.create().text = "O/S (%) & LCU (M) per LK/Bank";
+
+                    // Add data
+                    chart.data = response;
+
+                    // Create axes
+                    var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+                    categoryAxis.dataFields.category = "BankFacilityName";
+                    categoryAxis.renderer.grid.template.location = 0;
+                    categoryAxis.renderer.grid.template.strokeOpacity = 0;
+
+                    var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+                    valueAxis.renderer.grid.template.strokeOpacity = 0;
+                    valueAxis.min = -10;
+                    valueAxis.max = 110;
+                    valueAxis.strictMinMax = true;
+                    valueAxis.renderer.baseGrid.disabled = true;
+                    valueAxis.renderer.labels.template.adapter.add("text", function (text) {
+                        if ((text > 100) || (text < 0)) {
+                            return "";
+                        }
+                        else {
+                            return text + "%";
+                        }
+                    })
+
+                    // Create series
+                    var series1 = chart.series.push(new am4charts.ConeSeries());
+                    series1.dataFields.valueY = "Balance";
+                    series1.dataFields.categoryX = "BankFacilityName";
+                    series1.columns.template.width = am4core.percent(80);
+                    series1.columns.template.fillOpacity = 0.9;
+                    series1.columns.template.strokeOpacity = 1;
+                    series1.columns.template.strokeWidth = 2;
+
+                    var series2 = chart.series.push(new am4charts.ConeSeries());
+                    series2.dataFields.valueY = "Cast Out";
+                    series2.dataFields.categoryX = "BankFacilityName";
+                    series2.stacked = true;
+                    series2.columns.template.width = am4core.percent(80);
+                    series2.columns.template.fill = am4core.color("#000");
+                    series2.columns.template.fillOpacity = 0.1;
+                    series2.columns.template.stroke = am4core.color("#000");
+                    series2.columns.template.strokeOpacity = 0.2;
+                    series2.columns.template.strokeWidth = 2;
+
+                });
+            },
+            error: function (response) {
+                alert(response)
+            }
+        });
+    }
 
     function getReportOfBank(response) {
         $.ajax({
@@ -294,9 +553,11 @@
             url: "@Url.Action("ReportOfBank", "Home")",
             data: { model: model() },
             success: function (response) {
+
                 ChartOfBank(response);
             },
             error: function (response) {
+
                 alert(response)
             }
         });
@@ -370,8 +631,7 @@
         });
     }
 
-    function ChartOfAccount(response)
-    {
+    function ChartOfAccount(response) {
         try {
             chartOfAccount.destroy();
         }
@@ -440,8 +700,7 @@
         });
     }
 
-    function ChartOfCashIn(response)
-    {
+    function ChartOfCashIn(response) {
         try {
             chartOfCashIn.destroy();
         }
@@ -511,8 +770,7 @@
         });
     }
 
-    function ChartOfCashOut(response)
-    {
+    function ChartOfCashOut(response) {
         try {
             chartOfCashOut.destroy();
         }
@@ -587,45 +845,15 @@
         };
     }
 
-    function ChangeMethod(id, event, action, controller, method, report) {
-        $("#" + id).on(event, function () {
-            $.ajax(
-            {
-                url: controller + "/" + action,
-                type: method,
-                data: { model: model() },
-                success: function (response) {
-                    if(report == "Bank")
-                    {
-                        ChartOfBank(response);
-                    }
-                    else if(report == "Account")
-                    {
-                        ChartOfAccount(response);
-                    }
-                    else if (report == "Cash In") {
-                        ChartOfCashIn(response);
-                    }
-                    else if (report == "Cash Out") {
-                        ChartOfCashOut(response);
-                    }
-                },
-                error: function () {
-                    alert("error");
-                }
-            });
-        });
-    }
-
     function barChart(bardata, id, report) {
-        var Obj;    
+        var Obj;
         var chartOptions = {
             legend: {
                 display: true,
                 position: 'top',
                 labels: {
                     boxWidth: 80,
-                    fontColor: 'black'
+                    fontColor: 'white'
                 }
             },
             showLines: true,

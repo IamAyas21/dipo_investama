@@ -104,7 +104,7 @@ namespace DIPO_INVESTAMA.Controllers
             }
             else
             {
-                //TempData["Error"] = "Name :" + Privilege.Parent.previlage_name + " already exist!";
+                TempData["Error"] = "Name :" + Privilege.Parent.RoleName + " already exist!";
             }
 
             return View(Privilege);

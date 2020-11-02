@@ -857,5 +857,28 @@ namespace DIPO_INVESTAMA.Entity
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_PrivilegeUpdate", restrictionIdParameter, userIdParameter, privilegeIdParameter, menuIdParameter, isReadParameter);
         }
+    
+        public virtual ObjectResult<sp_ReportSummaryBank_Result> sp_ReportSummaryBank()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ReportSummaryBank_Result>("sp_ReportSummaryBank");
+        }
+    
+        public virtual ObjectResult<sp_ReportChartBankFacility_Result> sp_ReportChartBankFacility()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ReportChartBankFacility_Result>("sp_ReportChartBankFacility");
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_PrivilegeByUserId(string userId, string roleName)
+        {
+            var userIdParameter = userId != null ?
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(string));
+    
+            var roleNameParameter = roleName != null ?
+                new ObjectParameter("roleName", roleName) :
+                new ObjectParameter("roleName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_PrivilegeByUserId", userIdParameter, roleNameParameter);
+        }
     }
 }

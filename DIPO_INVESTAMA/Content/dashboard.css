@@ -1,0 +1,33 @@
+﻿#chartdiv {
+    width: 100%;
+    height: 500px;
+}
+
+section {
+    min-height: 250px;
+    margin-bottom: 25px;
+    margin-top: 25px;
+}
+
+h4 {
+    color: white;
+}
+
+canvas {
+    color: white;
+}
+
+.report {
+    background-color: #001e6e;
+    color: white;
+}
+
+.ddl {
+    background-color: #001e6e;
+    color: white;
+}
+
+.period {
+    background-color: #001e6e;
+    color: white;
+}
