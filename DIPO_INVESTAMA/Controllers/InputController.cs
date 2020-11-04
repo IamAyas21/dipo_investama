@@ -45,16 +45,25 @@ namespace DIPO_INVESTAMA.Controllers
             }
             DateTime tmpDate = new DateTime(year, month, day);
             model.Date = tmpDate.ToString("yyyy-MMM-dd");
-            if(InputBusinessLogic.getInstance().InputJournal(model)  == -1)
+            int msg = InputBusinessLogic.getInstance().InputJournal(model);
+            if (msg == -1)
             {
                 TempData["Success"] = "Successfully was inserted";
                 return RedirectToAction("Index");
             }
             else
             {
-                TempData["Error"] = "Unsuccessfully was inserted";
+                if(msg == 1)
+                {
+                    TempData["Error"] = "amount cannot be greater than ceiling";
+                }
+                else
+                {
+                    TempData["Error"] = "Unsuccessfully was inserted";
+                }
             }
 
+            model.TodaysJournal = Journals();
             ViewBag.AccountList = common.ToSelectList(AccountDetailsBusinessLogic.getInstance().getAccountDetailDDL(), "ID", "NAME", model.Account);
             ViewBag.BankAccountList = common.ToSelectList(BankFacilityBusinessLogic.getInstance().getBankFacilityDDL(), "ID", "NAME", model.BankAccount);
             return View(model);

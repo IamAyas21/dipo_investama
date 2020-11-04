@@ -22,14 +22,20 @@ namespace DIPO_INVESTAMA.Controllers
         private string fontPath = ConfigurationManager.AppSettings["FontPath"];
         // GET: Output
         //[CheckAuthorize(Roles = "Output")]
-        public ActionResult Index()
+        public ActionResult Index(string sd, string ed, string acc, string bnk, string srt)
         {
-            OutputViewModels model = new OutputViewModels();
-            model.TodaysJournal = Journals(model);
-            ViewBag.AccountList = common.ToSelectList(AccountDetailsBusinessLogic.getInstance().getAccountDetailDDL(), "ID", "NAME", string.Empty);
-            ViewBag.BankFacilityList = common.ToSelectList(BankFacilityBusinessLogic.getInstance().getBankFacilityDDL(), "ID", "NAME", model.BankAccount);
-            ViewBag.SortByList = common.ToSelectList(OutputBusinessLogic.getInstance().getSortByDDL(), "ID", "NAME", string.Empty);
-            return View(model);
+            OutputViewModels models = new OutputViewModels();
+            models.Date = string.Format("{0}{1}", sd == null ? string.Empty : sd, ed == null ? string.Empty : " - " + ed);
+            models.Account = acc == null ? string.Empty : acc;
+            models.BankAccount = bnk == null ? string.Empty : bnk;
+            models.SortBy = srt == null ? string.Empty : srt;
+            models.TodaysJournal = Journals(models);
+
+            ViewBag.AccountList = common.ToSelectList(AccountDetailsBusinessLogic.getInstance().getAccountDetailDDL(), "ID", "NAME", models.Account);
+            ViewBag.BankFacilityList = common.ToSelectList(BankFacilityBusinessLogic.getInstance().getBankFacilityDDL(), "ID", "NAME", models.BankAccount);
+            ViewBag.SortByList = common.ToSelectList(OutputBusinessLogic.getInstance().getSortByDDL(), "ID", "NAME", models.SortBy);
+
+            return View(models);
         }
 
         [HttpPost]
@@ -54,6 +60,13 @@ namespace DIPO_INVESTAMA.Controllers
                 {
 
                 }
+            }
+
+            DateTime? startDate = null, endDate = null;
+            if (!String.IsNullOrEmpty(model.Date))
+            {
+                startDate = Convert.ToDateTime(model.Date.Split('-')[0].Trim());
+                endDate = Convert.ToDateTime(model.Date.Split('-')[1].Trim());
             }
 
             return View(model);

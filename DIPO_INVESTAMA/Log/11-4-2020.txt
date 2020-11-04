@@ -1,0 +1,22 @@
+Time: 04/11/2020 03:07:38 AM
+------------------------------------------------------------------------
+Message: The 'PettyCashId' property on 'sp_OutputJournal_Result' could not be set to a 'System.DateTime' value. You must set this property to a non-null value of type 'System.String'. 
+StackTrace:    at System.Data.Entity.Core.Common.Internal.Materialization.Shaper.ErrorHandlingValueReader`1.GetValue(DbDataReader reader, Int32 ordinal)
+   at lambda_method(Closure , Shaper )
+   at System.Data.Entity.Core.Common.Internal.Materialization.Coordinator`1.ReadNextElement(Shaper shaper)
+   at System.Data.Entity.Core.Common.Internal.Materialization.Shaper`1.SimpleEnumerator.MoveNext()
+   at DIPO_INVESTAMA.Logic.OutputBusinessLogic.TodaysJournal(OutputViewModels model) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Logic\OutputBusinessLogic.cs:line 43
+Source: EntityFramework
+TargetSite: T GetValue(System.Data.Common.DbDataReader, Int32)
+------------------------------------------------------------------------
+
+Time: 04/11/2020 07:15:28 PM
+------------------------------------------------------------------------
+Message: String was not recognized as a valid DateTime.
+StackTrace:    at System.DateTimeParse.Parse(String s, DateTimeFormatInfo dtfi, DateTimeStyles styles)
+   at System.Convert.ToDateTime(String value)
+   at DIPO_INVESTAMA.Logic.OutputBusinessLogic.TodaysJournal(OutputViewModels model) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Logic\OutputBusinessLogic.cs:line 39
+Source: mscorlib
+TargetSite: System.DateTime Parse(System.String, System.Globalization.DateTimeFormatInfo, System.Globalization.DateTimeStyles)
+------------------------------------------------------------------------
+

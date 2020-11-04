@@ -1,6 +1,6 @@
 ﻿@model DIPO_INVESTAMA.Models.OutputViewModels
 @{
-    ViewBag.Title = "Today's Journal";
+    ViewBag.Title = "Journal";
 }
 
 @using (Html.BeginForm("Index", "Output"))
@@ -42,7 +42,7 @@
                             @Html.DropDownListFor(model => model.Account, ViewBag.AccountList as SelectList, new { @class = "form-control" })
                         </div>
                     </div>
-                    <div class="col-lg-2">
+                    <div class="col-lg-4">
                         <div class="form-group">
                             @Html.DropDownListFor(model => model.BankAccount, ViewBag.BankFacilityList as SelectList, new { @class = "form-control" })
                         </div>
@@ -52,80 +52,336 @@
                             @Html.DropDownListFor(model => model.SortBy, ViewBag.SortByList as SelectList, new { @class = "form-control" })
                         </div>
                     </div>
-                    <div class="col-lg-3">
-                        @*<button type="submit" name="Submit" value="PDF" style="background-image:~/Assets/icon/pdf.png"; width="30"; height="30";></button>*@
+                    <div class="col-lg-1" >
+                        <button type="submit" class="body-button" name="Submit" value="Excel"><img src="~/Assets/icon/Group 1290.png" width="30" height="30" /></button>
+                        @*<button type="submit" name="Submit" value="PDF" style="background-image:~/Assets/icon/pdf.png"; width="30"; height="30";></button>
                         <button type="submit" class="body-button" name="Submit" value="PDF" ><img src="~/Assets/icon/pdf.png" width="30" height="30"/></button>
-                        <button type="submit" class="body-button" name="Submit" value="Excel" ><img src="~/Assets/icon/Group 1290.png" width="30" height="30" /></button>
-                        <button type="submit" class="body-button" name="Submit" value="Print" ><img src="~/Assets/icon/print.png" width="30" height="30" /></button>
+                        <button type="submit" class="body-button" name="Submit" value="Print" ><img src="~/Assets/icon/print.png" width="30" height="30" /></button>*@
                     </div>
                 </div>
             </div>
         </form>
     </div>
 
-    @Html.Partial("PartialViews/Journals", Model.TodaysJournal)
+
+    <div class="box box-primary body-box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title Poppins-Bold font-white">Journal</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <div class="box-body">
+            <table class="table Poppins-Regular font-white" id="example1">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Date")
+                        </th>
+                        @*<th>
+                            @Html.DisplayName("Maker")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Department")
+                        </th>*@
+                        <th>
+                            @Html.DisplayName("Account")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Bank")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Description")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Cash In")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Cash Out")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Balance")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Status")
+                        </th>
+                        <th>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>                   
+                    @for (int i = 0; i < Model.TodaysJournal.Content.Count; i++)
+                    {
+                        <tr>
+                            <td> 
+                                @if(Convert.ToInt32(Convert.ToDateTime(Model.TodaysJournal.Content[i].Date).ToString("yyyyMMdd")) <= Convert.ToInt32(DateTime.Now.ToString("yyyyMMdd")))
+                                {
+                                    <label style="color:white">@Model.TodaysJournal.Content[i].Date</label>
+                                }
+                                else
+                                {
+                                    <label style="color:gray">@Model.TodaysJournal.Content[i].Date</label>
+                                }
+                            </td>
+                            @*<td>
+                                @Model.TodaysJournal.Content[i].Maker
+                            </td>
+                            <td>
+                                @Model.TodaysJournal.Content[i].Department
+                            </td>*@
+                            <td>
+                                @if (Convert.ToInt32(Convert.ToDateTime(Model.TodaysJournal.Content[i].Date).ToString("yyyyMMdd")) <= Convert.ToInt32(DateTime.Now.ToString("yyyyMMdd")))
+                                {
+                                    <label style="color:white">@Model.TodaysJournal.Content[i].Account</label>
+                                }
+                                else
+                                {
+                                    <label style="color:gray">@Model.TodaysJournal.Content[i].Account</label>
+                                }
+                            </td>
+                            <td>
+                                @if (Convert.ToInt32(Convert.ToDateTime(Model.TodaysJournal.Content[i].Date).ToString("yyyyMMdd")) <= Convert.ToInt32(DateTime.Now.ToString("yyyyMMdd")))
+                                {
+                                    <label style="color:white">@Model.TodaysJournal.Content[i].BankAccount</label>
+                                }
+                                else
+                                {
+                                    <label style="color:gray">@Model.TodaysJournal.Content[i].BankAccount</label>
+                                }
+                            </td>
+                            <td>
+                                @if (Convert.ToInt32(Convert.ToDateTime(Model.TodaysJournal.Content[i].Date).ToString("yyyyMMdd")) <= Convert.ToInt32(DateTime.Now.ToString("yyyyMMdd")))
+                                {
+                                    <label style="color:white">@Model.TodaysJournal.Content[i].Description</label>
+                                }
+                                else
+                                {
+                                    <label style="color:gray">@Model.TodaysJournal.Content[i].Description</label>
+                                }
+                            </td>
+                            <td>
+                                <span>@Convert.ToDecimal(Model.TodaysJournal.Content[i].CashIn.Equals("") ? "0" : Model.TodaysJournal.Content[i].CashIn).ToString("#,##;[#,##];-")</span>
+                            </td>
+                            <td>
+                                @if (Convert.ToInt32(Convert.ToDateTime(Model.TodaysJournal.Content[i].Date).ToString("yyyyMMdd")) <= Convert.ToInt32(DateTime.Now.ToString("yyyyMMdd")))
+                                {
+                                    if (Model.TodaysJournal.Content[i].CashOut != "")
+                                    {
+                                        <label style="color:white"><span>@Convert.ToDecimal(Model.TodaysJournal.Content[i].CashOut.Equals("") ? "0" : Model.TodaysJournal.Content[i].CashOut).ToString("#,##;[#,##];-")</span></label>
+                                    }
+                                    else
+                                    {
+                                        <label style="color:white">@Html.DisplayFor(modelItem => Model.TodaysJournal.Content[i].CashOut)</label>
+                                    }
+                                }
+                                else
+                                {
+                                    if (Model.TodaysJournal.Content[i].CashOut != "")
+                                    {
+                                        <label style="color:gray"><span>@Convert.ToDecimal(Model.TodaysJournal.Content[i].CashOut.Equals("") ? "0" : Model.TodaysJournal.Content[i].CashOut).ToString("#,##;[#,##];-")</span></label>
+                                    }
+                                    else
+                                    {
+                                        <label style="color:gray">@Html.DisplayFor(modelItem => Model.TodaysJournal.Content[i].CashOut)</label>
+                                    }
+                                }
+
+                                @*@if (Convert.ToDecimal(Model.Content[i].CashOut) < 0)
+                                {
+                                   <span style="color:red">@Convert.ToDecimal(Model.Content[i].CashOut).ToString("#,##;[#,##];-")</span>
+                                }
+                                else
+                                {
+                                    <span>@Convert.ToDecimal(Model.Content[i].CashOut).ToString("#,##;[#,##];-") </span>
+                                }*@
+
+                            </td>
+                            <td>
+                                @if (Convert.ToDecimal(Model.TodaysJournal.Content[i].Balance) < 0)
+                                {
+                                    <span style="color:red;">@Convert.ToDecimal(Model.TodaysJournal.Content[i].Balance).ToString("#,##;[#,##];-")</span>
+                                }
+                                else
+                                {
+                                    <span>@Convert.ToDecimal(Model.TodaysJournal.Content[i].Balance).ToString("#,##;[#,##];-")</span>
+                                }
+                            </td>
+                            <td>
+                                @if (Model.TodaysJournal.Content[i].CheckedBy == null && Model.TodaysJournal.Content[i].RejectedBy == null)
+                                {
+                                    if (Convert.ToInt32(Convert.ToDateTime(Model.TodaysJournal.Content[i].Date).ToString("yyyyMMdd")) <= Convert.ToInt32(DateTime.Now.ToString("yyyyMMdd")))
+                                    {
+                                        <label style="color:white">@Html.DisplayName("is waiting for checking")</label>
+                                    }
+                                    else
+                                    {
+                                        <label style="color:gray">@Html.DisplayName("is waiting for checking")</label>
+                                    }
+                                }
+                                else if (Model.TodaysJournal.Content[i].ApprovalBy == null && Model.TodaysJournal.Content[i].CheckedBy != null && Model.TodaysJournal.Content[i].RejectedBy == null)
+                                {
+                                    if (Convert.ToInt32(Convert.ToDateTime(Model.TodaysJournal.Content[i].Date).ToString("yyyyMMdd")) <= Convert.ToInt32(DateTime.Now.ToString("yyyyMMdd")))
+                                    {
+                                        <label style="color:white">@Html.DisplayName("is waiting for approval")</label>
+                                    }
+                                    else
+                                    {
+                                        <label style="color:gray">@Html.DisplayName("is waiting for approval")</label>
+                                    }
+                                }
+                            </td>
+                            <td>
+                                @if (Model.TodaysJournal.Content[i].CheckedBy == null && Model.TodaysJournal.Content[i].RejectedBy == null)
+                                {
+                                    <a style="cursor:pointer" value="loop" onclick="ShowModalCheck(@i)">
+                                        <i class="glyphicon glyphicon-ok" style="color:green"></i>
+                                    </a>
+                                    <div id="modalCheck_@i" class="modal fade" tabindex="-1" data-keyboard="false" data-backdrop="static">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content" style="width:700px;">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" style="float:left; width:100px; background-color:none"> <i class="glyphicon glyphicon-ok"></i> Check</h4>
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Do you really to checked ??
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a data-toggle="tooltip" title="Check" href="@Url.Action("Checked", "Output", new { id = Model.TodaysJournal.Content[i].PettyCashId })" class="btn btn-primary"> Check</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                else if (Model.TodaysJournal.Content[i].ApprovalBy == null && Model.TodaysJournal.Content[i].CheckedBy != null && Model.TodaysJournal.Content[i].RejectedBy == null)
+                                {
+                                    <a style="cursor:pointer" value="loop" onclick="ShowModalApprove(@i)">
+                                        <i class="glyphicon glyphicon-ok" style="color:green"></i>
+                                    </a>
+                                    <div id="modalApprove_@i" class="modal fade" tabindex="-1" data-keyboard="false" data-backdrop="static">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content" style="width:700px;">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" style="float:left; width:100px; background-color:none"> <i class="glyphicon glyphicon-ok"></i> Approve</h4>
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Do you really to approved ??
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a data-toggle="tooltip" title="Approve" href="@Url.Action("Approved", "Output", new { id = Model.TodaysJournal.Content[i].PettyCashId })" class="btn btn-primary"> Approve</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                                @if ((Model.TodaysJournal.Content[i].ApprovalBy == null || Model.TodaysJournal.Content[i].CheckedBy == null) && Model.TodaysJournal.Content[i].RejectedBy == null)
+                                {
+                                    <a style="cursor:pointer" value="loop" onclick="ShowModalApprove(@i)">
+                                        <i class="glyphicon glyphicon-remove" style="color:red"></i>
+                                    </a>
+                                    <div id="modalApprove_@i" class="modal fade" tabindex="-1" data-keyboard="false" data-backdrop="static">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content" style="width:700px;">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" style="float:left; width:100px; background-color:none"> <i class="glyphicon glyphicon-remove"></i> Reject</h4>
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Do you really to rejected ??
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a data-toggle="tooltip" title="Reject" href="@Url.Action("Rejected", "Output", new { id = Model.TodaysJournal.Content[i].PettyCashId })" class="btn btn-primary"> Reject</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+    @*@Html.Partial("PartialViews/Journals", Model.TodaysJournal)*@
 }
 
 <script type="text/javascript">
+    function ShowModalCheck(idx) {
+        $("#modalCheck_" + idx).modal('show');
+    }
+
+    function ShowModalApprove(idx) {
+        $("#modalApprove_" + idx).modal('show');
+    }
+
     $(function()
     {
         $('#Date').daterangepicker({
             autoclose: true
         })
-        $('#Date').val("");
+        //$('#Date').val("");
         $("#Date").on("change", function () {
-            var data = { Date: $("#Date").val(), Account: $("#Account").val(), BankAccount: $("#BankAccount").val(), SortBy: $("#SortBy").val() };
-
-            $.ajax(
+            //var data = { Date: $("#Date").val(), Account: $("#Account").val(), BankAccount: $("#BankAccount").val(), SortBy: $("#SortBy").val() };
+            var url = "@Url.Action("Index","Output")";
+            window.location.href = url + "?sd=" + $("#Date").val().split("-")[0] + "&ed=" + $("#Date").val().split("-")[1] + "&acc=" + $("#Account").val() + "&bnk=" + $("#BankAccount").val() + "&srt=" + $("#SortBy").val()
+            @*$.ajax(
             {
                 url: "@Url.Action("Index", "Output")",
                 type: 'POST',
                 data: { model: data },
                 success: function (response) {
-                  
+                    debugger
                 },
                 error: function () {
                     alert("error");
                 }
-            });
+            });*@
         });
 
         $("#Account").on("change", function () {
-            var data = { Date: $("#Date").val(), Account: $("#Account").val(), BankAccount: $("#BankAccount").val(), SortBy: $("#SortBy").val() };
-
-            $.ajax(
+            //var data = { Date: $("#Date").val(), Account: $("#Account").val(), BankAccount: $("#BankAccount").val(), SortBy: $("#SortBy").val() };
+            var url = "@Url.Action("Index","Output")";
+            window.location.href = url + "?sd=" + $("#Date").val().split("-")[0] + "&ed=" + $("#Date").val().split("-")[1] + "&acc=" + $("#Account").val() + "&bnk=" + $("#BankAccount").val() + "&srt=" + $("#SortBy").val()
+            @*$.ajax(
             {
                 url: "@Url.Action("Index", "Output")",
                 type: 'POST',
             data: { model: data },
             success: function (response) {
-                  
+
             },
             error: function () {
                 alert("error");
             }
-        });
+        });*@
         });
 
         $("#BankAccount").on("change", function () {
-            var data = { Date: $("#Date").val(), Account: $("#Account").val(), BankAccount: $("#BankAccount").val(), SortBy: $("#SortBy").val() };
-
-            $.ajax(
+            //var data = { Date: $("#Date").val(), Account: $("#Account").val(), BankAccount: $("#BankAccount").val(), SortBy: $("#SortBy").val() };
+            var url = "@Url.Action("Index","Output")";
+            window.location.href = url + "?sd=" + $("#Date").val().split("-")[0] + "&ed=" + $("#Date").val().split("-")[1] + "&acc=" + $("#Account").val() + "&bnk=" + $("#BankAccount").val() + "&srt=" + $("#SortBy").val()
+            @*$.ajax(
             {
                 url: "@Url.Action("Index", "Output")",
                 type: 'POST',
             data: { model: data },
             success: function (response) {
-                  
+
             },
             error: function () {
                 alert("error");
             }
-        });
+        });*@
     });
 
         $("#SortBy").on("change", function () {
-            var data = { Date: $("#Date").val(), Account: $("#Account").val(), BankAccount: $("#BankAccount").val(), SortBy: $("#SortBy").val() };
+            var url = "@Url.Action("Index","Output")";
+            window.location.href = url + "?sd=" + $("#Date").val().split("-")[0] + "&ed=" + $("#Date").val().split("-")[1] + "&acc=" + $("#Account").val() + "&bnk=" + $("#BankAccount").val() + "&srt=" + $("#SortBy").val()
+            @*var data = { Date: $("#Date").val(), Account: $("#Account").val(), BankAccount: $("#BankAccount").val(), SortBy: $("#SortBy").val() };
 
             $.ajax(
             {
@@ -133,12 +389,12 @@
                 type: 'POST',
             data: { model: data },
             success: function (response) {
-                  
+
             },
             error: function () {
                 alert("error");
             }
-        });
+        });*@
     });
     })
 </script>

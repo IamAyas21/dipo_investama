@@ -1,0 +1,113 @@
+Time: 03/11/2020 09:13:08 PM
+------------------------------------------------------------------------
+Message: Input string was not in a correct format.
+StackTrace:    at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseDecimal(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.Convert.ToDecimal(String value)
+   at DIPO_INVESTAMA.Logic.InputBusinessLogic.InputJournal(InputViewModels model)
+Source: mscorlib
+TargetSite: Void StringToNumber(System.String, System.Globalization.NumberStyles, NumberBuffer ByRef, System.Globalization.NumberFormatInfo, Boolean)
+------------------------------------------------------------------------
+
+Time: 03/11/2020 09:19:27 PM
+------------------------------------------------------------------------
+Message: An error occurred while executing the command definition. See the inner exception for details.
+StackTrace:    at System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   at System.Data.Entity.Core.Objects.ObjectContext.CreateFunctionObjectResult[TElement](EntityCommand entityCommand, ReadOnlyCollection`1 entitySets, EdmType[] edmTypes, ExecutionOptions executionOptions)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass47`1.<ExecuteFunction>b__46()
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass47`1.<ExecuteFunction>b__45()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ExecutionOptions executionOptions, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, MergeOption mergeOption, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ObjectParameter[] parameters)
+   at DIPO_INVESTAMA.Entity.DIPO_INVESTAMAEntities.sp_GetBalanceCeilingByBankFacilityId(String bankFacilityId)
+   at DIPO_INVESTAMA.Logic.InputBusinessLogic.InputJournal(InputViewModels model)
+Source: EntityFramework
+TargetSite: System.Data.Common.DbDataReader ExecuteStoreCommands(System.Data.Entity.Core.EntityClient.EntityCommand, System.Data.CommandBehavior)
+------------------------------------------------------------------------
+
+Time: 03/11/2020 09:19:34 PM
+------------------------------------------------------------------------
+Message: An error occurred while executing the command definition. See the inner exception for details.
+StackTrace:    at System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   at System.Data.Entity.Core.Objects.ObjectContext.CreateFunctionObjectResult[TElement](EntityCommand entityCommand, ReadOnlyCollection`1 entitySets, EdmType[] edmTypes, ExecutionOptions executionOptions)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass47`1.<ExecuteFunction>b__46()
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass47`1.<ExecuteFunction>b__45()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ExecutionOptions executionOptions, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, MergeOption mergeOption, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ObjectParameter[] parameters)
+   at DIPO_INVESTAMA.Entity.DIPO_INVESTAMAEntities.sp_TodaysJournal()
+   at DIPO_INVESTAMA.Logic.InputBusinessLogic.TodaysJournal()
+Source: EntityFramework
+TargetSite: System.Data.Common.DbDataReader ExecuteStoreCommands(System.Data.Entity.Core.EntityClient.EntityCommand, System.Data.CommandBehavior)
+------------------------------------------------------------------------
+
+Time: 03/11/2020 09:19:47 PM
+------------------------------------------------------------------------
+Message: An error occurred while executing the command definition. See the inner exception for details.
+StackTrace:    at System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   at System.Data.Entity.Core.Objects.ObjectContext.CreateFunctionObjectResult[TElement](EntityCommand entityCommand, ReadOnlyCollection`1 entitySets, EdmType[] edmTypes, ExecutionOptions executionOptions)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass47`1.<ExecuteFunction>b__46()
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass47`1.<ExecuteFunction>b__45()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ExecutionOptions executionOptions, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, MergeOption mergeOption, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ObjectParameter[] parameters)
+   at DIPO_INVESTAMA.Entity.DIPO_INVESTAMAEntities.sp_TodaysJournal()
+   at DIPO_INVESTAMA.Logic.InputBusinessLogic.TodaysJournal()
+Source: EntityFramework
+TargetSite: System.Data.Common.DbDataReader ExecuteStoreCommands(System.Data.Entity.Core.EntityClient.EntityCommand, System.Data.CommandBehavior)
+------------------------------------------------------------------------
+
+Time: 03/11/2020 09:19:52 PM
+------------------------------------------------------------------------
+Message: An error occurred while executing the command definition. See the inner exception for details.
+StackTrace:    at System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   at System.Data.Entity.Core.Objects.ObjectContext.CreateFunctionObjectResult[TElement](EntityCommand entityCommand, ReadOnlyCollection`1 entitySets, EdmType[] edmTypes, ExecutionOptions executionOptions)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass47`1.<ExecuteFunction>b__46()
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass47`1.<ExecuteFunction>b__45()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ExecutionOptions executionOptions, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, MergeOption mergeOption, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ObjectParameter[] parameters)
+   at DIPO_INVESTAMA.Entity.DIPO_INVESTAMAEntities.sp_TodaysJournal()
+   at DIPO_INVESTAMA.Logic.InputBusinessLogic.TodaysJournal()
+Source: EntityFramework
+TargetSite: System.Data.Common.DbDataReader ExecuteStoreCommands(System.Data.Entity.Core.EntityClient.EntityCommand, System.Data.CommandBehavior)
+------------------------------------------------------------------------
+
+Time: 03/11/2020 10:10:19 PM
+------------------------------------------------------------------------
+Message: String was not recognized as a valid DateTime.
+StackTrace:    at System.DateTimeParse.Parse(String s, DateTimeFormatInfo dtfi, DateTimeStyles styles)
+   at System.Convert.ToDateTime(String value)
+   at DIPO_INVESTAMA.Logic.OutputBusinessLogic.TodaysJournal(OutputViewModels model) in D:\Visual Studio\Project\DIPO_INVESTAMA\DIPO_INVESTAMA\Logic\OutputBusinessLogic.cs:line 39
+Source: mscorlib
+TargetSite: System.DateTime Parse(System.String, System.Globalization.DateTimeFormatInfo, System.Globalization.DateTimeStyles)
+------------------------------------------------------------------------
+
+Time: 03/11/2020 10:14:28 PM
+------------------------------------------------------------------------
+Message: The string was not recognized as a valid DateTime. There is an unknown word starting at index 0.
+StackTrace:    at System.DateTimeParse.Parse(String s, DateTimeFormatInfo dtfi, DateTimeStyles styles)
+   at System.Convert.ToDateTime(String value)
+   at DIPO_INVESTAMA.Logic.OutputBusinessLogic.TodaysJournal(OutputViewModels model)
+Source: mscorlib
+TargetSite: System.DateTime Parse(System.String, System.Globalization.DateTimeFormatInfo, System.Globalization.DateTimeStyles)
+------------------------------------------------------------------------
+
+Time: 03/11/2020 10:14:33 PM
+------------------------------------------------------------------------
+Message: The string was not recognized as a valid DateTime. There is an unknown word starting at index 0.
+StackTrace:    at System.DateTimeParse.Parse(String s, DateTimeFormatInfo dtfi, DateTimeStyles styles)
+   at System.Convert.ToDateTime(String value)
+   at DIPO_INVESTAMA.Logic.OutputBusinessLogic.TodaysJournal(OutputViewModels model)
+Source: mscorlib
+TargetSite: System.DateTime Parse(System.String, System.Globalization.DateTimeFormatInfo, System.Globalization.DateTimeStyles)
+------------------------------------------------------------------------
+

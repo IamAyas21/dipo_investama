@@ -31,8 +31,13 @@ namespace DIPO_INVESTAMA.Logic
         {
             try
             {
+                if((Convert.ToDecimal(model.Amount.Replace(".", "")) > Convert.ToDecimal(_db.sp_GetBalanceCeilingByBankFacilityId(model.BankAccount).FirstOrDefault().Value)) && model.Origin.Equals("Cash Out"))
+                {
+                    return 1;
+                }
+
                 decimal amt = Convert.ToDecimal(model.Amount.Replace(".", ""));
-                return _db.sp_InputJournal(model.Date == string.Empty?DateTime.Now:Convert.ToDateTime(model.Date), model.Account, model.BankAccount, amt, model.Description, model.Origin, SessionManager.userId());
+                return _db.sp_InputJournal(model.Date == string.Empty ? DateTime.Now : Convert.ToDateTime(model.Date), model.Account, model.BankAccount, amt, model.Description, model.Origin, SessionManager.userId());
             }
             catch (Exception e)
             {

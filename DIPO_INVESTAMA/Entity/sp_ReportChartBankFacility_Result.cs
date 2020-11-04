@@ -14,7 +14,7 @@ namespace DIPO_INVESTAMA.Entity
     public partial class sp_ReportChartBankFacility_Result
     {
         public string BankFacilityName { get; set; }
-        public Nullable<decimal> Balance { get; set; }
-        public Nullable<decimal> Cash_Out { get; set; }
+        public decimal Balance { get; set; }
+        public decimal Cash_Out { get; set; }
     }
 }
