@@ -2,6 +2,35 @@
 <link href="~/Content/dashboard.css" rel="stylesheet" />
 @using (Html.BeginForm("Index", "Home", FormMethod.Post))
 {
+    <section>
+        <div class="container">
+            <div class="row">
+                @for (int i = 0; i < Model.HomeTileReport.Count; i++)
+                {
+                    <div class="col-xs-3 tile-dashboard">
+                        <div class="tile">
+                            <h4 class="tile-name">@Model.HomeTileReport[i].Name</h4>
+                            <h3 class="tile-amount">@Model.HomeTileReport[i].Amount M</h3>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div id="chartdiv">
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
     //Section Bank and Account
     <section>
         <div class="container">
@@ -246,35 +275,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="row">
-        @for (int i = 0; i < Model.HomeTileReport.Count; i++)
-        {
-            <div class="col-xs-3 tile-dashboard">
-                <div class="tile">
-                    <h4 class="tile-name">@Model.HomeTileReport[i].Name</h4>
-                    <h3 class="tile-amount">@Model.HomeTileReport[i].Amount</h3>
-                </div>
-            </div>
-        }
-    </div>
-
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-6">
-                    @*<table class="table Poppins-Regular font-white" id="tblSummaryBank"></table>*@
-
-                </div>
-                <div class="col-xs-6">
-                    <div id="chartdiv">
-
-                    </div>
-
                 </div>
             </div>
         </div>

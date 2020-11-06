@@ -25,7 +25,11 @@ namespace DIPO_INVESTAMA.Controllers
         public ActionResult Index(string sd, string ed, string acc, string bnk, string srt)
         {
             OutputViewModels models = new OutputViewModels();
-            models.Date = string.Format("{0}{1}", sd == null ? string.Empty : sd, ed == null ? string.Empty : " - " + ed);
+
+            string strDate = DateTime.Now.AddMonths(-1).ToString("MM/dd/yyyy");
+            string endDate = DateTime.Now.ToString("MM/dd/yyyy");
+
+            models.Date = string.Format("{0}{1}", sd == null ? strDate : sd, ed == null ? " - "+ endDate : " - " + ed);
             models.Account = acc == null ? string.Empty : acc;
             models.BankAccount = bnk == null ? string.Empty : bnk;
             models.SortBy = srt == null ? string.Empty : srt;
