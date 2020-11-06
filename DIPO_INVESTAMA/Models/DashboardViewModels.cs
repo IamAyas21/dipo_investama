@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DIPO_INVESTAMA.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,5 +23,7 @@ namespace DIPO_INVESTAMA.Models
         public string FilterReportCashOut { get; set; }
         public string PeriodeReportCashOut { get; set; }
         public string ViewByReportCashOut { get; set; }
+
+        public List<sp_HomeTileReport_Result> HomeTileReport { get; set; }
     }
 }

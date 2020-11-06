@@ -889,5 +889,10 @@ namespace DIPO_INVESTAMA.Entity
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_UserUpdate", userIdParameter, userNameParameter, passwordParameter, nameParameter, roleIdParameter, departmentIdParameter, updatedByParameter);
         }
+    
+        public virtual ObjectResult<sp_HomeTileReport_Result> sp_HomeTileReport()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_HomeTileReport_Result>("sp_HomeTileReport");
+        }
     }
 }

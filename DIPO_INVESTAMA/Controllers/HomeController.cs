@@ -20,11 +20,15 @@ namespace DIPO_INVESTAMA.Controllers
         [CheckAuthorizeAttribute()]
         public ActionResult Index()
         {
+            DashboardViewModels models = new DashboardViewModels();
+            models.HomeTileReport = HomeBusinessLogic.getInstance().GetHomeTile();
+
             ViewBag.FilterBankList = common.ToSelectList(BankFacilityBusinessLogic.getInstance().getBankFacilityDDL(), "ID", "NAME", string.Empty);
             ViewBag.FilterAccountList = common.ToSelectList(AccountDetailsBusinessLogic.getInstance().getAccountDetailDDL(), "ID", "NAME", string.Empty);
             ViewBag.FilterCashInList = common.ToSelectList(AccountDetailsBusinessLogic.getInstance().getAccountDetailDDL(), "ID", "NAME", string.Empty);
             ViewBag.FilterCashOutList = common.ToSelectList(AccountDetailsBusinessLogic.getInstance().getAccountDetailDDL(), "ID", "NAME", string.Empty);
-            return View();
+
+            return View(models);
         }
 
         [HttpPost]

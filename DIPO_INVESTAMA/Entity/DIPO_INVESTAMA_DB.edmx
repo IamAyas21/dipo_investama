@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DIPO_INVESTAMAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DIPO_INVESTAMAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="AccountId" />
@@ -380,6 +380,7 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           <Parameter Name="bankFacilityId" Type="varchar" Mode="In" />
           <Parameter Name="sortBy" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="sp_HomeTileReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_InputJournal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="date" Type="datetime" Mode="In" />
           <Parameter Name="account" Type="varchar" Mode="In" />
@@ -582,8 +583,7 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DIPO_INVESTAMAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -922,7 +922,7 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           </FunctionImport>
           <FunctionImport Name="sp_AccountDDL" ReturnType="Collection(DIPO_INVESTAMAModel.sp_AccountDDL_Result)" />
           <FunctionImport Name="sp_AccountDelete">
-            <Parameter Name="AccountId" Mode="In" Type="String" />
+          <Parameter Name="AccountId" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_AccountDetailCreate">
             <Parameter Name="No" Mode="In" Type="String" />
@@ -931,7 +931,7 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
             <Parameter Name="CreatedBy" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_AccountDetailDelete">
-            <Parameter Name="AccountDetailId" Mode="In" Type="String" />
+          <Parameter Name="AccountDetailId" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_AccountDetailsDDL" ReturnType="Collection(DIPO_INVESTAMAModel.sp_AccountDetailsDDL_Result)" />
           <FunctionImport Name="sp_AccountDetailSelect" ReturnType="Collection(DIPO_INVESTAMAModel.sp_AccountDetailSelect_Result)" />
@@ -960,7 +960,7 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           </FunctionImport>
           <FunctionImport Name="sp_BankDDL" ReturnType="Collection(DIPO_INVESTAMAModel.sp_BankDDL_Result)" />
           <FunctionImport Name="sp_BankDelete">
-            <Parameter Name="bankId" Mode="In" Type="String" />
+          <Parameter Name="bankId" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_BankFacilityCreate">
             <Parameter Name="FacilityName" Mode="In" Type="String" />
@@ -972,7 +972,7 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           </FunctionImport>
           <FunctionImport Name="sp_BankFacilityDDL" ReturnType="Collection(DIPO_INVESTAMAModel.sp_BankFacilityDDL_Result)" />
           <FunctionImport Name="sp_BankFacilityDelete">
-            <Parameter Name="BankFacilityId" Mode="In" Type="String" />
+          <Parameter Name="BankFacilityId" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_BankFacilitySelect" ReturnType="Collection(DIPO_INVESTAMAModel.sp_BankFacilitySelect_Result)" />
           <FunctionImport Name="sp_BankFacilityUpdate">
@@ -1001,7 +1001,7 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           </FunctionImport>
           <FunctionImport Name="sp_DepartmentDDL" ReturnType="Collection(DIPO_INVESTAMAModel.sp_DepartmentDDL_Result)" />
           <FunctionImport Name="sp_DepartmentDelete">
-            <Parameter Name="DepartmentId" Mode="In" Type="String" />
+          <Parameter Name="DepartmentId" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_DepartmentSelect" ReturnType="Collection(DIPO_INVESTAMAModel.sp_DepartmentSelect_Result)" />
           <FunctionImport Name="sp_DepartmentUpdate">
@@ -1010,7 +1010,7 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
             <Parameter Name="UpdatedBy" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_GetBalanceCeilingByBankFacilityId" ReturnType="Collection(Decimal)">
-            <Parameter Name="bankFacilityId" Mode="In" Type="String" />
+          <Parameter Name="bankFacilityId" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_HistoryJournal" ReturnType="Collection(DIPO_INVESTAMAModel.sp_HistoryJournal_Result)">
             <Parameter Name="userId" Mode="In" Type="String" />
@@ -1035,10 +1035,10 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
             <Parameter Name="CreatedBy" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_MenuDDL" ReturnType="Collection(DIPO_INVESTAMAModel.sp_MenuDDL_Result)">
-            <Parameter Name="RoleId" Mode="In" Type="String" />
+          <Parameter Name="RoleId" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_MenuDelete">
-            <Parameter Name="RestrictionId" Mode="In" Type="String" />
+          <Parameter Name="RestrictionId" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_MenuRestrictionByUserId" ReturnType="Collection(DIPO_INVESTAMAModel.sp_MenuRestrictionByUserId_Result)">
             <Parameter Name="userId" Mode="In" Type="String" />
@@ -1116,7 +1116,7 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           </FunctionImport>
           <FunctionImport Name="sp_RoleDDL" ReturnType="Collection(DIPO_INVESTAMAModel.sp_RoleDDL_Result)" />
           <FunctionImport Name="sp_RoleDelete">
-            <Parameter Name="RoleId" Mode="In" Type="String" />
+          <Parameter Name="RoleId" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_RoleSelect" ReturnType="Collection(DIPO_INVESTAMAModel.sp_RoleSelect_Result)" />
           <FunctionImport Name="sp_RoleUpdate">
@@ -1138,7 +1138,7 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
             <Parameter Name="CreatedBy" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_UserDelete">
-            <Parameter Name="UserId" Mode="In" Type="String" />
+          <Parameter Name="UserId" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_UserLogin" ReturnType="Collection(DIPO_INVESTAMAModel.sp_UserLogin_Result)">
             <Parameter Name="username" Mode="In" Type="String" />
@@ -1154,6 +1154,7 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
             <Parameter Name="DepartmentId" Mode="In" Type="String" />
             <Parameter Name="UpdatedBy" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_HomeTileReport" ReturnType="Collection(DIPO_INVESTAMAModel.sp_HomeTileReport_Result)" />
         </EntityContainer>
         <ComplexType Name="sp_AccountDDL_Result">
           <Property Type="String" Name="ID" Nullable="false" MaxLength="50" />
@@ -1403,6 +1404,10 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
           <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="RoleName" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_HomeTileReport_Result">
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="11" />
+          <Property Type="String" Name="Amount" Nullable="false" MaxLength="7" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1985,6 +1990,14 @@ warning 6002: The table/view 'DIPO_INVESTAMA.dbo.vw_PettyCash' does not have a p
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_UserUpdate" FunctionName="DIPO_INVESTAMAModel.Store.sp_UserUpdate" />
+          <FunctionImportMapping FunctionImportName="sp_HomeTileReport" FunctionName="DIPO_INVESTAMAModel.Store.sp_HomeTileReport">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DIPO_INVESTAMAModel.sp_HomeTileReport_Result">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

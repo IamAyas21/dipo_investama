@@ -6,10 +6,10 @@
             @for (int i = 0; i < Model.Menu.Count(); i++)
             {
                 <li class="active">
-                    <a href="@Url.Action(Model.Menu[i].Parent.Action,Model.Menu[i].Parent.Controller)" class="@Model.Menu[i].Parent.Descriptions">
+                    <a href="#" class="@Model.Menu[i].Parent.Descriptions">
                         <i class="@Model.Menu[i].Parent.Icon"></i> @Model.Menu[i].Parent.MenuName
-                        @{ string arrow = Model.Menu[i].Child.Count() != 0 ? "fa arrow active" : "";}
-                        <span class="@arrow"></span>
+                        @*@{ string arrow = Model.Menu[i].Child.Count() != 0 ? "fa arrow active" : "";}
+                        <span class="@arrow"></span>*@
                     </a>
                     @if (Model.Menu[i].Child.Count() != 0)
                     {
@@ -20,7 +20,7 @@
                                     <a href="@Url.Action(Model.Menu[i].Child[j].Parent.Action, Model.Menu[i].Child[j].Parent.Controller)" class="@Model.Menu[i].Child[j].Parent.Descriptions">
                                         <i class="@Model.Menu[i].Child[j].Parent.Icon"></i> @Model.Menu[i].Child[j].Parent.MenuName
                                         @{ string tes = Model.Menu[i].Child[j].Child.Count != 0 ? "fa arrow active" : ""; }
-                                        <span class="@tes"></span>
+                                        @*<span class="@tes"></span>*@
                                     </a>
                                     @if (Model.Menu[i].Child[j].Child.Count() != 0)
                                     {

@@ -59,6 +59,8 @@ namespace DIPO_INVESTAMA.Logic
                     model.CheckedBy = item.CheckedBy;
                     model.ApprovalBy = item.ApprovalBy;
                     model.RejectedBy = item.RejectedBy;
+                    model.CountCheckedBy = _db.sp_PrivilegeByUserId(SessionManager.userId(), "Checker").FirstOrDefault().Value.ToString();
+                    model.CountApprovalBy = _db.sp_PrivilegeByUserId(SessionManager.userId(), "Approval").FirstOrDefault().Value.ToString();
                     list.Add(model);
                 }
                 //model.Date = string.Format("{0} - {1}", startDate, endDate);

@@ -42,7 +42,7 @@
                             @Html.DropDownListFor(model => model.Account, ViewBag.AccountList as SelectList, new { @class = "form-control" })
                         </div>
                     </div>
-                    <div class="col-lg-2">
+                    <div class="col-lg-4">
                         <div class="form-group">
                             @Html.DropDownListFor(model => model.BankAccount, ViewBag.BankFacilityList as SelectList, new { @class = "form-control" })
                         </div>
@@ -52,10 +52,10 @@
                             @Html.DropDownListFor(model => model.SortBy, ViewBag.SortByList as SelectList, new { @class = "form-control" })
                         </div>
                     </div>
-                    <div class="col-lg-3">
-                        <a type="submit" name="Submit" value="PDF"><img src="~/Assets/icon/pdf.png" width="30" height="30"/></a>
+                    <div class="col-lg-1">
                         <button type="submit" name="Submit" value="Excel"><img src="~/Assets/icon/Group 1290.png" width="30" height="30" /></button>
-                        <button type="submit" name="Submit" value="Print"><img src="~/Assets/icon/print.png" width="30" height="30" /></button>
+                        @*<a type="submit" name="Submit" value="PDF"><img src="~/Assets/icon/pdf.png" width="30" height="30"/></a>
+                        <button type="submit" name="Submit" value="Print"><img src="~/Assets/icon/print.png" width="30" height="30" /></button>*@
                     </div>
                 </div>
             </div>
@@ -71,9 +71,11 @@
         $('#Date').daterangepicker({
             autoclose: true
         })
-        $('#Date').val("");
+        //$('#Date').val("");
         $("#Date").on("change", function () {
-            var data = { Date: $("#Date").val(), Account: $("#Account").val(), BankAccount: $("#BankAccount").val(), SortBy: $("#SortBy").val() };
+            var url = "@Url.Action("Index","History")";
+            window.location.href = url + "?sd=" + $("#Date").val().split("-")[0] + "&ed=" + $("#Date").val().split("-")[1] + "&acc=" + $("#Account").val() + "&bnk=" + $("#BankAccount").val() + "&srt=" + $("#SortBy").val()
+            @*var data = { Date: $("#Date").val(), Account: $("#Account").val(), BankAccount: $("#BankAccount").val(), SortBy: $("#SortBy").val() };
 
             $.ajax(
             {
@@ -81,16 +83,18 @@
                 type: 'POST',
                 data: { model: data },
                 success: function (response) {
-                  
+
                 },
                 error: function () {
                     alert("error");
                 }
-            });
+            });*@
         });
 
         $("#Account").on("change", function () {
-            var data = { Date: $("#Date").val(), Account: $("#Account").val(), BankAccount: $("#BankAccount").val(), SortBy: $("#SortBy").val() };
+            var url = "@Url.Action("Index","History")";
+            window.location.href = url + "?sd=" + $("#Date").val().split("-")[0] + "&ed=" + $("#Date").val().split("-")[1] + "&acc=" + $("#Account").val() + "&bnk=" + $("#BankAccount").val() + "&srt=" + $("#SortBy").val()
+            @*var data = { Date: $("#Date").val(), Account: $("#Account").val(), BankAccount: $("#BankAccount").val(), SortBy: $("#SortBy").val() };
 
             $.ajax(
             {
@@ -98,16 +102,18 @@
                 type: 'POST',
             data: { model: data },
             success: function (response) {
-                  
+
             },
             error: function () {
                 alert("error");
             }
-        });
+        });*@
         });
 
         $("#BankAccount").on("change", function () {
-            var data = { Date: $("#Date").val(), Account: $("#Account").val(), BankAccount: $("#BankAccount").val(), SortBy: $("#SortBy").val() };
+            var url = "@Url.Action("Index","History")";
+            window.location.href = url + "?sd=" + $("#Date").val().split("-")[0] + "&ed=" + $("#Date").val().split("-")[1] + "&acc=" + $("#Account").val() + "&bnk=" + $("#BankAccount").val() + "&srt=" + $("#SortBy").val()
+            @*var data = { Date: $("#Date").val(), Account: $("#Account").val(), BankAccount: $("#BankAccount").val(), SortBy: $("#SortBy").val() };
 
             $.ajax(
             {
@@ -115,16 +121,18 @@
                 type: 'POST',
             data: { model: data },
             success: function (response) {
-                  
+
             },
             error: function () {
                 alert("error");
             }
-        });
+        });*@
     });
 
         $("#SortBy").on("change", function () {
-            var data = { Date: $("#Date").val(), Account: $("#Account").val(), BankAccount: $("#BankAccount").val(), SortBy: $("#SortBy").val() };
+            var url = "@Url.Action("Index","History")";
+            window.location.href = url + "?sd=" + $("#Date").val().split("-")[0] + "&ed=" + $("#Date").val().split("-")[1] + "&acc=" + $("#Account").val() + "&bnk=" + $("#BankAccount").val() + "&srt=" + $("#SortBy").val()
+            @*var data = { Date: $("#Date").val(), Account: $("#Account").val(), BankAccount: $("#BankAccount").val(), SortBy: $("#SortBy").val() };
 
             $.ajax(
             {
@@ -132,12 +140,12 @@
                 type: 'POST',
             data: { model: data },
             success: function (response) {
-                  
+
             },
             error: function () {
                 alert("error");
             }
-        });
+        });*@
     });
     })
 </script>

@@ -230,7 +230,7 @@
                                 }
                             </td>
                             <td>
-                                @if (Model.TodaysJournal.Content[i].CheckedBy == null && Model.TodaysJournal.Content[i].RejectedBy == null)
+                                @if (Model.TodaysJournal.Content[i].CheckedBy == null && Model.TodaysJournal.Content[i].RejectedBy == null && Model.TodaysJournal.Content[i].CountCheckedBy.Equals("1"))
                                 {
                                     <a style="cursor:pointer" value="loop" onclick="ShowModalCheck(@i)">
                                         <i class="glyphicon glyphicon-ok" style="color:green"></i>
@@ -252,7 +252,7 @@
                                         </div>
                                     </div>
                                 }
-                                else if (Model.TodaysJournal.Content[i].ApprovalBy == null && Model.TodaysJournal.Content[i].CheckedBy != null && Model.TodaysJournal.Content[i].RejectedBy == null)
+                                else if (Model.TodaysJournal.Content[i].ApprovalBy == null && Model.TodaysJournal.Content[i].CheckedBy != null && Model.TodaysJournal.Content[i].RejectedBy == null && Model.TodaysJournal.Content[i].CountApprovalBy.Equals("1"))
                                 {
                                     <a style="cursor:pointer" value="loop" onclick="ShowModalApprove(@i)">
                                         <i class="glyphicon glyphicon-ok" style="color:green"></i>

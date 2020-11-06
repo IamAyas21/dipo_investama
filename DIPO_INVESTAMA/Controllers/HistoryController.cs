@@ -21,11 +21,16 @@ namespace DIPO_INVESTAMA.Controllers
     {
         private string fontPath = ConfigurationManager.AppSettings["FontPath"];
         // GET: Output
-        [CheckAuthorize(Roles = "History")]
-        public ActionResult Index()
+        [CheckAuthorize(Roles = "Log")]
+        public ActionResult Index(string sd, string ed, string acc, string bnk, string srt)
         {
             HistoryViewModels model = new HistoryViewModels();
+            model.Date = string.Format("{0}{1}", sd == null ? string.Empty : sd, ed == null ? string.Empty : " - " + ed);
+            model.Account = acc == null ? string.Empty : acc;
+            model.BankAccount = bnk == null ? string.Empty : bnk;
+            model.SortBy = srt == null ? string.Empty : srt;
             model.TodaysJournal = Journals(model);
+
             ViewBag.AccountList = common.ToSelectList(AccountDetailsBusinessLogic.getInstance().getAccountDetailDDL(), "ID", "NAME", string.Empty);
             ViewBag.BankFacilityList = common.ToSelectList(BankFacilityBusinessLogic.getInstance().getBankFacilityDDL(), "ID", "NAME", model.BankAccount);
             ViewBag.SortByList = common.ToSelectList(OutputBusinessLogic.getInstance().getSortByDDL(), "ID", "NAME", string.Empty);

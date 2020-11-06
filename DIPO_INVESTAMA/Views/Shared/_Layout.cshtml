@@ -114,7 +114,7 @@
 </head>
 <body class="skin-blue sidebar-mini wysihtml5-supported" style="height: auto; min-height: 100%;">
     <div class="wrapper" style="height: auto; min-height: 100%;">
-
+   
         <header class="main-header">
             <!-- Logo -->
             <a href="@Url.Action("Index","Home")" class="logo">
@@ -143,15 +143,11 @@
 
                                     <p>
                                         @DIPO_INVESTAMA.Utils.SessionManager.name()
-                                        @*<small>Member since Nov. 2012</small>*@
                                     </p>
                                 </li>
                                 <!-- Menu Body -->
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
-                                    @*<div class="pull-left">
-                                            <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                        </div>*@
                                     <div class="pull-right">
                                         <a href="@Url.Action("Logout","Account")" class="btn btn-default btn-flat">Sign out</a>
                                     </div>
@@ -162,6 +158,7 @@
                 </div>
             </nav>
         </header>
+
         <!-- Left side column. contains the logo and sidebar -->
         @Html.Action("Menu", "Menu", new { controller = ViewContext.RouteData.Values["Controller"].ToString(), action = ViewContext.RouteData.Values["Action"].ToString() })
 
@@ -188,10 +185,9 @@
         <!-- /.content-wrapper -->
         <footer class="main-footer">
             <div class="pull-right hidden-xs">
-                <b>Version</b> 2.4.13
+                <b>Version</b> 1.0.0.3
             </div>
-            <strong>Copyright © 2014-2019 <a href="https://adminlte.io">AdminLTE</a>.</strong> All rights
-            reserved.
+            <strong>Copyright © @DateTime.Now.Year <a href="@Url.Action("Index","Home")">DIPO INVESTAMA</a></strong>
         </footer>
 
         <!-- Control Sidebar -->
